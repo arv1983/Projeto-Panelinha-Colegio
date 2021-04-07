@@ -38,7 +38,7 @@ const UpdateUserComp = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => console.log(res.data))
+      .then((res) => console.log(res))
       .catch((e) => console.log(e));
 
     reset();

@@ -23,7 +23,7 @@ const Login = () => {
           JSON.stringify(response.data.accessToken)
         );
         console.log(jwt_decode(localStorage.getItem("token")).user_id);
-        setId(jwt_decode(localStorage.getItem("token")).user_id);
+        setId(jwt_decode(localStorage.getItem("token")).sub);
         history.push("/users");
       })
       .catch((e) => {

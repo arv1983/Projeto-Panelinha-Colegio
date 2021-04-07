@@ -1,5 +1,6 @@
 
 import CreateProfileDev from './components/CreateProfileDev';
+import Routes from './routes';
 
 
 
@@ -8,8 +9,7 @@ function App() {
   return (
     <div className="App">
          <div>
-      <CreateProfileDev/>
-
+          <Routes/>
       </div> 
        
    
