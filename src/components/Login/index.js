@@ -2,34 +2,40 @@ import api from "../../services/api";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import { User } from "../../providers/UserProvider";
 
 const Login = () => {
+  const { setId } = User();
+
+  const history = useHistory();
+
   const handleData = (dados) => {
     console.log(dados);
-    api.post("/login", dados).then(
-      (response) => {
+    api
+      .post("/login", dados)
+      .then((response) => {
         console.log(response);
-
         localStorage.clear();
-        // armazenar token
-        if (response.request.status === 200) {
-          localStorage.setItem("token", JSON.stringify(response.data.access));
-          //    history.push('/home ou sei la')
-        } else {
-          console.log("deu merda");
-        }
-      },
-      (e) => {
-        console.log("deu merda2");
+        localStorage.setItem(
+          "token",
+          JSON.stringify(response.data.accessToken)
+        );
+        console.log(jwt_decode(localStorage.getItem("token")).user_id);
+        setId(jwt_decode(localStorage.getItem("token")).user_id);
+        history.push("/users");
+      })
+      .catch((e) => {
         console.log(e);
-      }
-    );
+      });
   };
 
   const schema = yup.object().shape({
     email: yup.string().required("required"),
     password: yup.string().required("required"),
   });
+
   const {
     register,
     handleSubmit,
@@ -42,19 +48,15 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit(handleData)}>
         <input
-          // id="email"
-          // name="email"
           {...register("email")}
-          placeholder="username"
-          defaultValue="teste@teste.com"
+          placeholder="Email"
+          error={!!errors.password}
         />
-        <p style={{ color: "red" }}>{errors.username?.message}</p>
+        <p style={{ color: "red" }}>{errors.email?.message}</p>
         <input
-          // name="password"
-          // type="password"
           {...register("password")}
-          defaultValue="teste"
-          placeholder="password"
+          placeholder="Password"
+          error={!!errors.password}
         />
 
         <button type="submit">Login </button>
