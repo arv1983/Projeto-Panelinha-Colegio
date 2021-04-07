@@ -2,12 +2,11 @@ import api from "../../services/api";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
 
 const Login = () => {
   const handleData = (dados) => {
     console.log(dados);
-    axios.post("https://capstone-grupo1.herokuapp.com/login", dados).then(
+    api.post("/login", dados).then(
       (response) => {
         console.log(response);
 
@@ -31,7 +30,11 @@ const Login = () => {
     email: yup.string().required("required"),
     password: yup.string().required("required"),
   });
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -39,17 +42,17 @@ const Login = () => {
     <>
       <form onSubmit={handleSubmit(handleData)}>
         <input
-          id="email"
-          name="email"
-          ref={register}
+          // id="email"
+          // name="email"
+          {...register("email")}
           placeholder="username"
           defaultValue="teste@teste.com"
         />
         <p style={{ color: "red" }}>{errors.username?.message}</p>
         <input
-          name="password"
-          type="password"
-          ref={register}
+          // name="password"
+          // type="password"
+          {...register("password")}
           defaultValue="teste"
           placeholder="password"
         />
