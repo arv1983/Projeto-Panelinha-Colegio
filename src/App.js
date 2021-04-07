@@ -1,11 +1,17 @@
-import './App.css';
+
+import CreateProfileDev from './components/CreateProfileDev';
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+         <div>
+      <CreateProfileDev/>
+
+      </div> 
        
-      </header>
+   
     </div>
   );
 }
