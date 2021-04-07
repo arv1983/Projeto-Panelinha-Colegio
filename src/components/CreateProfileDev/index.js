@@ -5,14 +5,14 @@ import { useState } from "react";
 import {Container} from "./styles"
 
 const CreateProfileDev= () => {
-  // const token = useState(()=>{
-  //   const localToken = localStorage.getItem("token") || "";
-  //   if(!localToken){
-  //     return "";
-  //   }
-  //    return JSON.parse(localToken);
+  const token = useState(()=>{
+    const localToken = localStorage.getItem("token") || "";
+    if(!localToken){
+      return "";
+    }
+     return JSON.parse(localToken);
      
-  // })
+  })
 
 
 
@@ -64,18 +64,18 @@ console.log(data);
         <input {...register("city")} placeholder="Cidade"/>
         </div>
 
-        
+        <div>
         <input  {...register("have_job")}type="radio"  value="true" />
          <label>Empregado</label>
         <input   {...register("have_job")} type="radio" value="false"/>
           <label >Desempregado</label>
-        
-      
+          </div>
+         <div>
         <input  {...register("avaliable_job")}type="radio"  value="true" />
          <label>Disponível</label>
         <input   {...register("avaliable_job")} type="radio" value="false"/>
           <label >Não Disponível</label>
-        
+          </div>
         <div>
         <input {...register("quarter")} placeholder="Período"/>
         </div>
@@ -96,12 +96,12 @@ console.log(data);
         <input {...register("description")} placeholder="Descrição"/>
         </div>
 
-        
+        <div>
         <input  {...register("is_coach")}type="radio"  value="false"  />
          <label>Sim</label>
         <input   {...register("is_coach")} type="radio" value="true"/>
           <label >Não</label>
-        
+        </div>
         <div>
         <button type="submit">Enviar </button>
         </div>
