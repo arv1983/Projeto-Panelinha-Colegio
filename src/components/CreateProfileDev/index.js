@@ -18,7 +18,7 @@ const CreateProfileDev= () => {
 
 
   const schema = yup.object().shape({
-     name: yup.string().max(20).required(),
+     name: yup.string().max(40).required(),
      city: yup.string().max(20).required(),
      have_job:yup.boolean("The value must be boolean")
      .required("Required field")
@@ -65,13 +65,13 @@ console.log(data);
         </div>
 
         
-        <input  {...register("have_job")}type="radio"  value="true" checked/>
+        <input  {...register("have_job")}type="radio"  value="true" />
          <label>Empregado</label>
         <input   {...register("have_job")} type="radio" value="false"/>
           <label >Desempregado</label>
         
       
-        <input  {...register("avaliable_job")}type="radio"  value="true" checked/>
+        <input  {...register("avaliable_job")}type="radio"  value="true" />
          <label>Disponível</label>
         <input   {...register("avaliable_job")} type="radio" value="false"/>
           <label >Não Disponível</label>
@@ -97,9 +97,9 @@ console.log(data);
         </div>
 
         
-        <input  {...register("is_coach")}type="radio"  value="true"  checked/>
+        <input  {...register("is_coach")}type="radio"  value="false"  />
          <label>Sim</label>
-        <input   {...register("is_coach")} type="radio" value="false"/>
+        <input   {...register("is_coach")} type="radio" value="true"/>
           <label >Não</label>
         
         <div>
