@@ -45,10 +45,10 @@ const Login = () => {
           // id="email"
           // name="email"
           {...register("email")}
-          placeholder="username"
+          placeholder="email"
           defaultValue="teste@teste.com"
         />
-        <p style={{ color: "red" }}>{errors.username?.message}</p>
+        <p style={{ color: "red" }}>{errors.email?.message}</p>
         <input
           // name="password"
           // type="password"
@@ -56,6 +56,7 @@ const Login = () => {
           defaultValue="teste"
           placeholder="password"
         />
+        <p style={{ color: "red" }}>{errors.password?.message}</p>
 
         <button type="submit">Login </button>
       </form>
