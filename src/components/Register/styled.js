@@ -1,6 +1,5 @@
-import styled from 'styled-components';
 import { COLORS } from '../../stylesGlobal';
-
+import styled from 'styled-components'
 
 export const Boxes = styled.div`
 
@@ -63,52 +62,3 @@ export const Content = styled.div`
   }
 
 `
-
-export const Title = styled.h1`
-
-  font-size: 40px;
-  margin-top: 15%;
-
-  @media(min-width: 450px){
-    margin-top: 20%;
-  }
-
-  @media(min-width: 600px){  
-    margin-top: 10%;
-  }
-`
-
-// export const TextForm = styled.div`
-//   margin: auto;
-//   width: 85%;
-
-//   @media(min-width: 600px){
-//     width: 45%;
-//   }
-
-// `
-
-
-// export const TextContent = styled.div`
-
-//   padding: 5px 5px 5px 20px ;
-//   width: 85%;
-//   text-align: justify;
-//   font-size: 17px;
-
-//   @media(min-width: 600px){
-//     width: 45%;
-//   }
-
-// `
-
-// export const DivPai = styled.div`
-
-// display: flex;
-// flex-direction: column;
-//   @media(min-width: 600px){
-//     display: flex;
-//     flex-direction: row-reverse;
-//   }
-
-// `

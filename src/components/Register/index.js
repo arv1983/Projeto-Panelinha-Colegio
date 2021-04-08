@@ -3,6 +3,9 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { Button, Input, Seletor } from '../../stylesGlobal';
+import { Boxes, Content} from './styled'
+
 const Register = () => {
   const handleData = (dados) => {
     console.log(dados);
@@ -18,9 +21,10 @@ const Register = () => {
   };
 
   const schema = yup.object().shape({
-    email: yup.string().required("required"),
-    password: yup.string().required("required"),
-    type: yup.string().required("required"),
+    name:yup.string().required("Field Required"),
+    email: yup.string().required("Field Required"),
+    password: yup.string().required("Field Required"),
+    type: yup.string().required("Field Required"),
   });
   const {
     register,
@@ -32,19 +36,38 @@ const Register = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleData)}>
-        <input type="text" placeholder="email" {...register("email")}></input>
-        <input
-          type="text"
-          placeholder="password"
-          {...register("password")}
-        ></input>
-        <select {...register("type")}>
-          <option value="pf">Dev</option>
-          <option value="pj">Empresa</option>
-        </select>
-        <button type="submit">cadastro</button>
-      </form>
+      <Boxes>
+        <span></span>
+        <Content>
+          <form onSubmit={handleSubmit(handleData)}>
+            <div>
+              <Input type="text" placeholder="Name" {...register("name")}/>
+              <p style={{ color: "red" }}>{errors.name?.message}</p>
+            </div>
+            <div>
+              <Input type="text" placeholder="E-mail" {...register("email")}/>
+              <p style={{ color: "red" }}>{errors.email?.message}</p>
+            </div>
+            <div>
+              <Input
+                type="text"
+                placeholder="Password"
+                {...register("password")}
+              />
+              <p style={{ color: "red" }}>{errors.password?.message}</p>
+            </div>
+            <div>
+              <label>Tipo de Pessoa</label>
+              <Seletor {...register("type")}>
+                <option value="pf">Dev</option>
+                <option value="pj">Empresa</option>
+              </Seletor>
+            </div>
+            <Button type="submit">cadastro</Button>
+          </form>
+          <a href="www.google.com">Login</a>
+        </Content>
+      </Boxes>
     </>
   );
 };

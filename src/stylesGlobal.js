@@ -29,7 +29,7 @@ export const Button = styled.button`
   padding: 10px;
   border-radius: 10px;
   width: 80%;
-  margin: 20px 0 10px 0;
+  margin: 20px 0 15px 0;
   text-transform: uppercase;
   letter-spacing: 2px;
 
@@ -46,7 +46,7 @@ export const Input = styled.input`
   margin: 5px;
   padding: 10px;
   border-radius: 10px;
-  width: 75%;
+  width: 80%;
   outline: none;
 
   transition: .2s ease-in-out;
@@ -57,4 +57,12 @@ export const Input = styled.input`
     color: ${COLORS.branco};
     font-weight: 900;
   }
+`
+
+export const Seletor = styled.select`
+ font-size: 15px;
+  margin: 5px 0 0 10px;
+  padding: 10px;
+  border-radius: 10px;
+
 `
