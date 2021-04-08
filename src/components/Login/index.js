@@ -6,6 +6,9 @@ import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { User } from "../../providers/UserProvider";
 
+import { Button, Input } from "../../stylesGlobal";
+import { Boxes, Content } from "./style";
+
 const Login = () => {
   const { setId } = User();
 
@@ -32,8 +35,8 @@ const Login = () => {
   };
 
   const schema = yup.object().shape({
-    email: yup.string().required("required"),
-    password: yup.string().required("required"),
+    email: yup.string().required("Required"),
+    password: yup.string().required("Field Required"),
   });
 
   const {
@@ -45,24 +48,33 @@ const Login = () => {
   });
 
   return (
-    <>
-      <form onSubmit={handleSubmit(handleData)}>
-        <input
-          {...register("email")}
-          placeholder="Email"
-          error={!!errors.password}
-        />
-        <p style={{ color: "red" }}>{errors.email?.message}</p>
-        <input
-          {...register("password")}
-          placeholder="Password"
-          error={!!errors.password}
-        />
-        <p style={{ color: "red" }}>{errors.password?.message}</p>
-
-        <button type="submit">Login </button>
-      </form>
-    </>
+    <div>
+      <Boxes>
+        <span></span>
+        <Content>
+          <form onSubmit={handleSubmit(handleData)}>
+            <div>
+              <Input
+                {...register("email")}
+                placeholder="E-mail"
+                error={!!errors.email}
+              />
+              <p style={{ color: "red" }}>{errors.email?.message}</p>
+            </div>
+            <div>
+              <Input
+                {...register("password")}
+                placeholder="Password"
+                error={!!errors.password}
+              />
+            </div>
+            <p style={{ color: "red" }}>{errors.password?.message}</p>
+            <Button type="submit">Login </Button>
+          </form>
+          <a href="www.google.com">Register</a>
+        </Content>
+      </Boxes>
+    </div>
   );
 };
 

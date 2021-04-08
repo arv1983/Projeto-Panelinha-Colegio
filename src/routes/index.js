@@ -1,16 +1,15 @@
 import { Switch, Route } from "react-router-dom";
 import Login from "../components/Login";
-import Register from "../components/Register";
 import UpProfileComp from "../components/UpProfileComp";
 import UpProfileDev from "../components/UpProfileDev";
 import GetAllUsersCompany from "../components/GetAllUsersCompany";
+import PageRegister from "../pages";
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <Register />
-        <Login />
+        <PageRegister />
       </Route>
       <Route exact path="/users">
         <UpProfileComp />
