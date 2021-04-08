@@ -5,10 +5,11 @@ import { COLORS } from '../../stylesGlobal';
 export const Boxes = styled.div`
 
   position: relative;
-  width: 100%;
-  height: 250px;
+  width: 90%;
+  height: 290px;
   margin: 25px auto;
   transition: 0.5s;
+  text-align: center;
 
   :hover{
     transform: translateY(-20px);
@@ -21,7 +22,7 @@ export const Boxes = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, white, blue);
+    background: linear-gradient(45deg, ${COLORS.roxo}, ${COLORS.azulClaro});
   }
 
   ::after{
@@ -31,7 +32,7 @@ export const Boxes = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, white, blue);
+    background: linear-gradient(55deg,${COLORS.roxo}, ${COLORS.azulClaro});
     filter: blur(15px);
   }
 

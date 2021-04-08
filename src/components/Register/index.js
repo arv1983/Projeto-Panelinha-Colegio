@@ -6,24 +6,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const Register = () => {
   const handleData = (dados) => {
     console.log(dados);
-    api.post("/register", dados).then(
-      (response) => {
+    api
+      .post("/register", dados)
+      .then((response) => {
         console.log(response);
-
-        localStorage.clear();
-        // armazenar token
-        if (response.request.status === 200) {
-          localStorage.setItem("token", JSON.stringify(response.data.access));
-          //    history.push('/home ou sei la')
-        } else {
-          console.log("deu merda");
-        }
-      },
-      (e) => {
+      })
+      .catch((e) => {
         console.log("deu merda2");
         console.log(e);
-      }
-    );
+      });
   };
 
   const schema = yup.object().shape({
@@ -42,9 +33,13 @@ const Register = () => {
   return (
     <>
       <form onSubmit={handleSubmit(handleData)}>
-        <input type="text" name="email" {...register("email")}></input>
-        <input type="text" name="password" {...register("password")}></input>
-        <select name="type" {...register("type")}>
+        <input type="text" placeholder="email" {...register("email")}></input>
+        <input
+          type="text"
+          placeholder="password"
+          {...register("password")}
+        ></input>
+        <select {...register("type")}>
           <option value="pf">Dev</option>
           <option value="pj">Empresa</option>
         </select>

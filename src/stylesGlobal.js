@@ -47,11 +47,14 @@ export const Input = styled.input`
   padding: 10px;
   border-radius: 10px;
   width: 75%;
+  outline: none;
+
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
 
   :focus{
     background: rgba(0,0,0,0.0);
     color: ${COLORS.branco};
     font-weight: 900;
-    border: 3px solid ${COLORS.branco};
   }
 `
