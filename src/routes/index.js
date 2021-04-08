@@ -1,24 +1,24 @@
 import { Switch, Route } from "react-router-dom";
-import GetallCompanys from "../components/getOneCompany";
+import GetallCompanys from "../components/GetOneCompany";
 import Login from "../components/Login";
 import UpProfileComp from "../components/UpProfileComp";
 import UpProfileDev from "../components/UpProfileDev";
+import GetAllUsersCompany from "../components/GetAllUsersCompany";
 import PageRegister from "../pages";
+import GetOneCompany from "../components/GetOneCompany";
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <PageRegister/>
-        
+        <PageRegister />
       </Route>
       <Route exact path="/users">
         <UpProfileComp />
         <UpProfileDev />
+        <GetOneCompany/>
       </Route>
-      <Route exact path="/all">
-        <GetallCompanys/>
-      </Route>
+    
     </Switch>
   );
 };
