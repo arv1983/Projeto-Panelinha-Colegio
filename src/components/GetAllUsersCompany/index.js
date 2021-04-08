@@ -9,29 +9,34 @@ const GetOneCompany = () => {
   const location = useLocation();
   const [dados, setDados] = useState([]);
 
-  const handleData = (e) => {
-    e.preventDefault();
-    console.log(e.target.busca.value);
+  // const handleData = (e) => {
+  // e.preventDefault();
+  // console.log(e.target.busca.value);
 
+  useEffect(() => {
     api
-      .get(`/users?type=Company&name=${e.target.busca.value}`, {
+      .get(`/users?type=Company&_limit=-1`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
         console.log(res.data);
+        console.log(res);
         setDados(res.data);
       })
       .catch((e) => console.log(e));
-  };
-  console.log(dados);
+  }, [token]);
+
+  //   };
+
+  //  console.log(dados);
   return (
     <>
-      <form onSubmit={(e) => handleData(e)}>
+      {/* <form onSubmit={(e) => handleData(e)}>
         <input name="busca" type="text"></input>
         <button type="submit">procurarr</button>
-      </form>
+      </form> */}
 
       {dados && dados.map((item) => <>{item.email}</>)}
     </>
