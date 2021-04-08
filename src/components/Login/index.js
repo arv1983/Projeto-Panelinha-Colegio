@@ -3,24 +3,22 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+import { Button, Input } from '../../stylesGlobal';
+import { Boxes, Content} from './style'
+
+
 const Login = () => {
   const handleData = (dados) => {
-    console.log(dados);
     api.post("/login", dados).then(
       (response) => {
-        console.log(response);
-
         localStorage.clear();
-        // armazenar token
+        
         if (response.request.status === 200) {
           localStorage.setItem("token", JSON.stringify(response.data.access));
-          //    history.push('/home ou sei la')
-        } else {
-          console.log("deu merda");
         }
       },
       (e) => {
-        console.log("deu merda2");
+        //tratar o erro depois
         console.log(e);
       }
     );
@@ -39,27 +37,30 @@ const Login = () => {
   });
 
   return (
-    <>
-      <form onSubmit={handleSubmit(handleData)}>
-        <input
-          // id="email"
-          // name="email"
-          {...register("email")}
-          placeholder="username"
-          defaultValue="teste@teste.com"
-        />
-        <p style={{ color: "red" }}>{errors.username?.message}</p>
-        <input
-          // name="password"
-          // type="password"
-          {...register("password")}
-          defaultValue="teste"
-          placeholder="password"
-        />
-
-        <button type="submit">Login </button>
-      </form>
-    </>
+    <div>
+      <Boxes>
+        <span></span>
+        <Content>
+          <form onSubmit={handleSubmit(handleData)}>
+          <div>
+            <Input
+              {...register("email")}
+              placeholder="username"
+              />
+            <p style={{ color: "red" }}>{errors.username?.message}</p>
+          </div>
+          <div>
+            <Input
+              {...register("password")}
+              placeholder="password"
+              />
+            </div>
+            <Button type="submit">Login </Button>
+          </form>
+          <a href="www.google.com">Register</a>
+        </Content>
+      </Boxes>
+    </div>
   );
 };
 

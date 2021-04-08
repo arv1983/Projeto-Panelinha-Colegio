@@ -1,13 +1,13 @@
 import "./App.css";
 import Login from "./components/Login";
-import Register from "./components/Register";
+// import Register from "./components/Register";
+import {GlobalStyle} from './stylesGlobal'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Register />
-      </header>
+      <GlobalStyle/>
+      <Login />
     </div>
   );
 }
