@@ -1,8 +1,8 @@
 import { Switch, Route } from "react-router-dom";
-import CreateProfileDev from "../components/CreateProfileDev";
 import Login from "../components/Login";
 import Register from "../components/Register";
-import UpdateUserComp from "../components/UpdateUserComp";
+import UpProfileComp from "../components/UpProfileComp";
+import UpProfileDev from "../components/UpProfileDev";
 
 const Routes = () => {
   return (
@@ -12,10 +12,9 @@ const Routes = () => {
         <Login />
       </Route>
       <Route exact path="/users">
-        <UpdateUserComp />
-        <CreateProfileDev/>
+        <UpProfileComp />
+        <UpProfileDev />
       </Route>
-     
     </Switch>
   );
 };

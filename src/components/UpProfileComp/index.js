@@ -5,7 +5,7 @@ import api from "../../services/api";
 import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 
-const UpdateUserComp = () => {
+const UpProfileComp = () => {
   const { id, loggedUser } = User();
 
   const [token] = useState(() => {
@@ -46,7 +46,7 @@ const UpdateUserComp = () => {
 
   return (
     <div>
-      <p>Update your profile</p>
+      <p>Atualizar perfil Dev</p>
 
       <form onSubmit={handleSubmit(handleUpdate)}>
         <div>
@@ -60,11 +60,11 @@ const UpdateUserComp = () => {
         </div>
 
         <div>
-          <span>Aceppting vacancies?</span>
+          <span>Está aceitando vagas?</span>
           <input type="radio" {...register("vacancies")} value="true" />
-          <label>Yes!</label>
+          <label>Sim!</label>
           <input {...register("vacancies")} type="radio" value="false" />
-          <label>Not yet!</label>
+          <label>Ainda não!</label>
           {/* <p>{errors.vacancies?.message}</p> */}
         </div>
 
@@ -84,10 +84,10 @@ const UpdateUserComp = () => {
           {/* <p>{errors.description?.message}</p> */}
         </div>
 
-        <button type="submit">Update</button>
+        <button type="submit">Atualizar</button>
       </form>
     </div>
   );
 };
 
-export default UpdateUserComp;
+export default UpProfileComp;

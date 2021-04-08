@@ -1,20 +1,11 @@
-
-import CreateProfileDev from './components/CreateProfileDev';
-import Routes from './routes';
-
-
-
+import Routes from "./routes";
 
 function App() {
   return (
     <div className="App">
-         <div>
-          <Routes/>
-      </div> 
-       
-   
-
-
+      <div>
+        <Routes />
+      </div>
     </div>
   );
 }
