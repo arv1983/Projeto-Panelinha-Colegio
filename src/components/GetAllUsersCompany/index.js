@@ -30,7 +30,7 @@ const GetOneCompany = () => {
     <>
       <form onSubmit={(e) => handleData(e)}>
         <input name="busca" type="text"></input>
-        <button type="submit">procurar</button>
+        <button type="submit">procurarr</button>
       </form>
 
       {dados && dados.map((item) => <>{item.email}</>)}
