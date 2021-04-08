@@ -17,11 +17,11 @@ export const UserProvider = (props) => {
   useEffect(() => {
     if (id) {
       api
-        .get(`/users/${id}/`)
+        .get(`/users/${id}`)
         .then((response) => {
           setLoggedUser(response.data);
         })
-        .catch((e) => e);
+        .catch((e) => console.log(e));
     }
   }, [id, loggedUser]);
 

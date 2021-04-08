@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
 import { User } from "../../providers/UserProvider";
 
 const Login = () => {
-  const { setId } = User();
+  const { setId, loggedUser } = User();
 
   const history = useHistory();
 
@@ -23,7 +23,8 @@ const Login = () => {
           JSON.stringify(response.data.accessToken)
         );
         setId(jwt_decode(localStorage.getItem("token")).sub);
-        history.push("/users");
+        loggedUser.type === "pf" && history.push("/users/dev");
+        loggedUser.type === "pj" && history.push("/users/comp");
       })
       .catch((e) => {
         console.log(e);

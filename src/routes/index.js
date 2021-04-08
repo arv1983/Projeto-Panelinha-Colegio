@@ -11,8 +11,10 @@ const Routes = () => {
         <Register />
         <Login />
       </Route>
-      <Route exact path="/users">
+      <Route exact path="/users/comp">
         <UpProfileComp />
+      </Route>
+      <Route exact path="/users/dev">
         <UpProfileDev />
       </Route>
     </Switch>
