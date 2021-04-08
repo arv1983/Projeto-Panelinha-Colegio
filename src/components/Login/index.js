@@ -6,9 +6,8 @@ import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { User } from "../../providers/UserProvider";
 
-import { Button, Input } from '../../stylesGlobal';
-import { Boxes, Content} from './style'
-
+import { Button, Input } from "../../stylesGlobal";
+import { Boxes, Content } from "./style";
 
 const Login = () => {
   const { setId } = User();
@@ -26,7 +25,7 @@ const Login = () => {
           "token",
           JSON.stringify(response.data.accessToken)
         );
-        console.log(jwt_decode(localStorage.getItem("token")).user_id);
+        console.log(jwt_decode(localStorage.getItem("token")).sub);
         setId(jwt_decode(localStorage.getItem("token")).sub);
         history.push("/users");
       })
@@ -54,19 +53,19 @@ const Login = () => {
         <span></span>
         <Content>
           <form onSubmit={handleSubmit(handleData)}>
-          <div>
-            <Input
-              {...register("email")}
-              placeholder="E-mail"
-              error={!!errors.email}
+            <div>
+              <Input
+                {...register("email")}
+                placeholder="E-mail"
+                error={!!errors.email}
               />
-            <p style={{ color: "red" }}>{errors.email?.message}</p>
-          </div>
-          <div>
-            <Input
-              {...register("password")}
-              placeholder="Password"
-              error={!!errors.password}
+              <p style={{ color: "red" }}>{errors.email?.message}</p>
+            </div>
+            <div>
+              <Input
+                {...register("password")}
+                placeholder="Password"
+                error={!!errors.password}
               />
             </div>
             <p style={{ color: "red" }}>{errors.password?.message}</p>
