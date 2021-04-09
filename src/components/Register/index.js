@@ -35,7 +35,6 @@ const Register = () => {
   });
 
   return (
-    <>
       <Boxes>
         <span></span>
         <Content>
@@ -65,10 +64,8 @@ const Register = () => {
             </div>
             <Button type="submit">cadastro</Button>
           </form>
-          <a href="www.google.com">Login</a>
         </Content>
       </Boxes>
-    </>
   );
 };
 
