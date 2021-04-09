@@ -17,27 +17,17 @@ const UpProfileDev = () => {
     return JSON.parse(localToken);
   });
 
-  const schema = yup.object().shape({
-    name: yup.string().max(40).required(),
-    city: yup.string().max(20).required(),
-    have_job: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-    avaliable_job: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-    quarter: yup.string().max(1),
-    social_medias: yup.string().max(25),
-    cellPhone: yup.string().max(12).required(),
-    softSkills: yup.string(),
-    description: yup.string().max(400).required(),
-    is_coach: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-  });
+  // const schema = yup.object().shape({
+  //   city: yup.string().max(20),
+  //   have_job: yup.boolean("The value must be boolean").nullable(),
+  //   avaliable_job: yup.boolean("The value must be boolean").nullable(),
+  //   quarter: yup.string().max(1),
+  //   social_medias: yup.string().max(25),
+  //   cellPhone: yup.string().max(12),
+  //   softSkills: yup.string(),
+  //   description: yup.string().max(400),
+  //   is_coach: yup.boolean("The value must be boolean").nullable(),
+  // });
 
   const {
     register,
@@ -45,7 +35,7 @@ const UpProfileDev = () => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
 
   const handleUpdate = (data) => {
@@ -57,8 +47,6 @@ const UpProfileDev = () => {
       })
       .then((res) => console.log(res))
       .catch((e) => console.log(e));
-
-    reset();
   };
 
   return (
@@ -75,17 +63,29 @@ const UpProfileDev = () => {
 
           <div>
             <span>Você possui emprego?</span>
-            <input {...register("have_job")} type="radio" value="true" />
+            <input {...register("have_job")} type="radio" value="Empregado" />
             <label>Empregado</label>
-            <input {...register("have_job")} type="radio" value="false" />
+            <input
+              {...register("have_job")}
+              type="radio"
+              value="Desempregado"
+            />
             <label>Desempregado</label>
           </div>
 
           <div>
             <span>Você está disponível para trabalhar?</span>
-            <input {...register("avaliable_job")} type="radio" value="true" />
+            <input
+              {...register("avaliable_job")}
+              type="radio"
+              value="Disponivel"
+            />
             <label>Disponível</label>
-            <input {...register("avaliable_job")} type="radio" value="false" />
+            <input
+              {...register("avaliable_job")}
+              type="radio"
+              value="NaoDisponivel"
+            />
             <label>Não Disponível</label>
           </div>
 
@@ -102,6 +102,7 @@ const UpProfileDev = () => {
           </div>
 
           <div>
+            <span>Tecnologias que você possui domínio:</span>
             <input {...register("softSkills")} placeholder="SoftSkills" />
           </div>
 
@@ -111,9 +112,9 @@ const UpProfileDev = () => {
 
           <div>
             <span>Você é coach?</span>
-            <input {...register("is_coach")} type="radio" value="false" />
-            <label>Sou coach</label>
             <input {...register("is_coach")} type="radio" value="true" />
+            <label>Sou coach</label>
+            <input {...register("is_coach")} type="radio" value="false" />
             <label>Não sou coach</label>
           </div>
 
