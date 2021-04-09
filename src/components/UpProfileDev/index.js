@@ -17,17 +17,17 @@ const UpProfileDev = () => {
     return JSON.parse(localToken);
   });
 
-  const schema = yup.object().shape({
-    city: yup.string().max(20),
-    have_job: yup.boolean("The value must be boolean").nullable(),
-    avaliable_job: yup.boolean("The value must be boolean").nullable(),
-    quarter: yup.string().max(1),
-    social_medias: yup.string().max(25),
-    cellPhone: yup.string().max(12),
-    softSkills: yup.string(),
-    description: yup.string().max(400),
-    is_coach: yup.boolean("The value must be boolean").nullable(),
-  });
+  // const schema = yup.object().shape({
+  //   city: yup.string().max(20),
+  //   have_job: yup.boolean("The value must be boolean").nullable(),
+  //   avaliable_job: yup.boolean("The value must be boolean").nullable(),
+  //   quarter: yup.string().max(1),
+  //   social_medias: yup.string().max(25),
+  //   cellPhone: yup.string().max(12),
+  //   softSkills: yup.string(),
+  //   description: yup.string().max(400),
+  //   is_coach: yup.boolean("The value must be boolean").nullable(),
+  // });
 
   const {
     register,
@@ -35,7 +35,7 @@ const UpProfileDev = () => {
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
 
   const handleUpdate = (data) => {
@@ -47,8 +47,6 @@ const UpProfileDev = () => {
       })
       .then((res) => console.log(res))
       .catch((e) => console.log(e));
-
-    reset();
   };
 
   return (
@@ -104,6 +102,7 @@ const UpProfileDev = () => {
           </div>
 
           <div>
+            <span>Tecnologias que você possui domínio:</span>
             <input {...register("softSkills")} placeholder="SoftSkills" />
           </div>
 
@@ -113,9 +112,9 @@ const UpProfileDev = () => {
 
           <div>
             <span>Você é coach?</span>
-            <input {...register("is_coach")} type="radio" value="false" />
-            <label>Sou coach</label>
             <input {...register("is_coach")} type="radio" value="true" />
+            <label>Sou coach</label>
+            <input {...register("is_coach")} type="radio" value="false" />
             <label>Não sou coach</label>
           </div>
 

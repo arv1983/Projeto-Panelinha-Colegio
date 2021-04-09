@@ -3,14 +3,28 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Button, Input, Seletor } from '../../stylesGlobal';
-import { Boxes, Content} from './styled'
+import { Button, Input, Seletor } from "../../stylesGlobal";
+import { Boxes, Content } from "./styled";
 
 const Register = () => {
   const handleData = (dados) => {
     console.log(dados);
     api
-      .post("/register", dados)
+      .post("/register", {
+        name: dados.name,
+        password: dados.password,
+        email: dados.email,
+        type: dados.type,
+        city: "",
+        have_job: "",
+        avaliable_job: "",
+        quarter: "",
+        social_medias: "",
+        cellPhone: "",
+        softSkills: "",
+        description: "",
+        is_coach: "",
+      })
       .then((response) => {
         console.log(response);
       })
@@ -18,10 +32,11 @@ const Register = () => {
         console.log("deu merda2");
         console.log(e);
       });
+    api.patch(`/register}`);
   };
 
   const schema = yup.object().shape({
-    name:yup.string().required("Field Required"),
+    name: yup.string().required("Field Required"),
     email: yup.string().required("Field Required"),
     password: yup.string().required("Field Required"),
     type: yup.string().required("Field Required"),
@@ -41,11 +56,11 @@ const Register = () => {
         <Content>
           <form onSubmit={handleSubmit(handleData)}>
             <div>
-              <Input type="text" placeholder="Name" {...register("name")}/>
+              <Input type="text" placeholder="Name" {...register("name")} />
               <p style={{ color: "red" }}>{errors.name?.message}</p>
             </div>
             <div>
-              <Input type="text" placeholder="E-mail" {...register("email")}/>
+              <Input type="text" placeholder="E-mail" {...register("email")} />
               <p style={{ color: "red" }}>{errors.email?.message}</p>
             </div>
             <div>

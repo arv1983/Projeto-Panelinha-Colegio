@@ -6,6 +6,7 @@ import UpProfileDev from "../components/UpProfileDev";
 import GetAllUsersCompany from "../components/GetAllUsersCompany";
 import PageRegister from "../pages";
 import GetOneCompany from "../components/GetOneCompany";
+import GetOneDev from "../components/GetOneDev";
 
 const Routes = () => {
   return (
@@ -15,12 +16,13 @@ const Routes = () => {
       </Route>
       <Route exact path="/users/comp">
         <UpProfileComp />
+        <GetOneCompany />
       </Route>
       <Route exact path="/users/dev">
         <UpProfileDev />
-        <GetOneCompany/>
+        <GetOneCompany />
+        <GetOneDev />
       </Route>
-    
     </Switch>
   );
 };

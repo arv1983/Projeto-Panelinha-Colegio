@@ -10,7 +10,7 @@ import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
 
 const Login = () => {
-  const { setId, loggedUser } = User();
+  const { id, setId, loggedUser } = User();
 
   const history = useHistory();
 

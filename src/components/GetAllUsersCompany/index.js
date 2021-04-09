@@ -21,16 +21,7 @@ const GetOneCompany = () => {
       .catch((e) => console.log(e));
   }, [token]);
 
-  return (
-    <>
-      {/* <form onSubmit={(e) => handleData(e)}>
-        <input name="busca" type="text"></input>
-        <button type="submit">procurarr</button>
-      </form> */}
-
-      {dados && dados.map((item) => <>{item.email}</>)}
-    </>
-  );
+  return <>{dados && dados.map((item) => <>{item.email}</>)}</>;
 };
 
 export default GetOneCompany;
