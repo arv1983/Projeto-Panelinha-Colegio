@@ -72,7 +72,6 @@ const Login = () => {
             <p style={{ color: "red" }}>{errors.password?.message}</p>
             <Button type="submit">Login </Button>
           </form>
-          <a href="www.google.com">Register</a>
         </Content>
       </Boxes>
     </div>

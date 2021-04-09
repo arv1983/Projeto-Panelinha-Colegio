@@ -1,14 +1,9 @@
-import * as yup from "yup";
-import { set, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
-import { User } from "../../providers/UserProvider";
 
 const GetOneDev = () => {
-  const { id } = User();
-
-  const [devs, setDevs] = useState();
+  const [devs, setDevs] = useState([]);
 
   const [countClick, setCountClick] = useState(0);
 
@@ -46,7 +41,7 @@ const GetOneDev = () => {
       setHave_job("");
       data.have_job = "";
     } else {
-      setHave_job("have_job=");
+      setHave_job("&have_job=");
     }
     if (data?.avaliable_job === null) {
       setAvaliable_job("");
@@ -85,7 +80,7 @@ const GetOneDev = () => {
   useEffect(() => {
     async function x() {
       const res = await api.get(
-        `/users?${have_job}${data_Have_job}${quarter}${data_Quarter}${softSkills}${data_SoftSkills}${is_coach}${data_Is_coach}${avaliable_job}${data_Avaliable_job}`
+        `/users?type=pf${have_job}${data_Have_job}${quarter}${data_Quarter}${softSkills}${data_SoftSkills}${is_coach}${data_Is_coach}${avaliable_job}${data_Avaliable_job}`
       );
       console.log(res);
       setDevs(res.data);
@@ -106,6 +101,7 @@ const GetOneDev = () => {
 
   return (
     <>
+      <span>Pesquise um usuário dev</span>
       <form onSubmit={handleSubmit(getDev)}>
         <div>
           <span>Você possui emprego?</span>
@@ -151,9 +147,7 @@ const GetOneDev = () => {
           <button type="submit">Pesquisar </button>
         </div>
       </form>
-      {devs?.map((d, i) => (
-        <div key={i}>{d.name}</div>
-      ))}
+      {countClick > 0 && devs.map((d, i) => <div key={i}>{d.name}</div>)}
     </>
   );
 };

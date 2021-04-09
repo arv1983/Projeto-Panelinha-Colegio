@@ -78,37 +78,3 @@ export const Title = styled.h1`
   }
 `
 
-// export const TextForm = styled.div`
-//   margin: auto;
-//   width: 85%;
-
-//   @media(min-width: 600px){
-//     width: 45%;
-//   }
-
-// `
-
-
-// export const TextContent = styled.div`
-
-//   padding: 5px 5px 5px 20px ;
-//   width: 85%;
-//   text-align: justify;
-//   font-size: 17px;
-
-//   @media(min-width: 600px){
-//     width: 45%;
-//   }
-
-// `
-
-// export const DivPai = styled.div`
-
-// display: flex;
-// flex-direction: column;
-//   @media(min-width: 600px){
-//     display: flex;
-//     flex-direction: row-reverse;
-//   }
-
-// `

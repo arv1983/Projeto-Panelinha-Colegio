@@ -50,40 +50,37 @@ const Register = () => {
   });
 
   return (
-    <>
-      <Boxes>
-        <span></span>
-        <Content>
-          <form onSubmit={handleSubmit(handleData)}>
-            <div>
-              <Input type="text" placeholder="Name" {...register("name")} />
-              <p style={{ color: "red" }}>{errors.name?.message}</p>
-            </div>
-            <div>
-              <Input type="text" placeholder="E-mail" {...register("email")} />
-              <p style={{ color: "red" }}>{errors.email?.message}</p>
-            </div>
-            <div>
-              <Input
-                type="text"
-                placeholder="Password"
-                {...register("password")}
-              />
-              <p style={{ color: "red" }}>{errors.password?.message}</p>
-            </div>
-            <div>
-              <label>Tipo de Pessoa</label>
-              <Seletor {...register("type")}>
-                <option value="pf">Dev</option>
-                <option value="pj">Empresa</option>
-              </Seletor>
-            </div>
-            <Button type="submit">cadastro</Button>
-          </form>
-          <a href="www.google.com">Login</a>
-        </Content>
-      </Boxes>
-    </>
+    <Boxes>
+      <span></span>
+      <Content>
+        <form onSubmit={handleSubmit(handleData)}>
+          <div>
+            <Input type="text" placeholder="Name" {...register("name")} />
+            <p style={{ color: "red" }}>{errors.name?.message}</p>
+          </div>
+          <div>
+            <Input type="text" placeholder="E-mail" {...register("email")} />
+            <p style={{ color: "red" }}>{errors.email?.message}</p>
+          </div>
+          <div>
+            <Input
+              type="text"
+              placeholder="Password"
+              {...register("password")}
+            />
+            <p style={{ color: "red" }}>{errors.password?.message}</p>
+          </div>
+          <div>
+            <label>Tipo de Pessoa</label>
+            <Seletor {...register("type")}>
+              <option value="pf">Dev</option>
+              <option value="pj">Empresa</option>
+            </Seletor>
+          </div>
+          <Button type="submit">cadastro</Button>
+        </form>
+      </Content>
+    </Boxes>
   );
 };
 
