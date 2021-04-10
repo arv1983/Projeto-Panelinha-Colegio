@@ -10,7 +10,7 @@ import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
 
 const Login = () => {
-  const { setId } = User();
+  const { id, setId, loggedUser } = User();
 
   const history = useHistory();
 
@@ -27,7 +27,8 @@ const Login = () => {
         );
         console.log(jwt_decode(localStorage.getItem("token")).sub);
         setId(jwt_decode(localStorage.getItem("token")).sub);
-        history.push("/users");
+        loggedUser.type === "pf" && history.push("/users/dev");
+        loggedUser.type === "pj" && history.push("/users/comp");
       })
       .catch((e) => {
         console.log(e);
@@ -71,7 +72,6 @@ const Login = () => {
             <p style={{ color: "red" }}>{errors.password?.message}</p>
             <Button type="submit">Login </Button>
           </form>
-          <a href="www.google.com">Register</a>
         </Content>
       </Boxes>
     </div>
