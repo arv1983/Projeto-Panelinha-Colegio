@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 
-const GetAllComp = () => {
+const GetAllDev = () => {
   const [dados, setDados] = useState([]);
 
   useEffect(() => {
     api
-      .get(`/users?type=pj`)
+      .get(`/users?type=pf`)
       .then((res) => {
         console.log(res.data);
         console.log(res);
@@ -17,10 +17,10 @@ const GetAllComp = () => {
 
   return (
     <>
-      <h2>Todas as companhias</h2>
-      {dados && dados.map((item, i) => <div key={i}>{item.email}</div>)}
+      <h2>Todos os Devs:</h2>
+      {dados && dados.map((item, i) => <div key={i}>{item.name}</div>)}
     </>
   );
 };
 
-export default GetAllComp;
+export default GetAllDev;

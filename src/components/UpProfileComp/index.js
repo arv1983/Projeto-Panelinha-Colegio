@@ -16,19 +16,19 @@ const UpProfileComp = () => {
     return JSON.parse(localToken);
   });
 
-  const schema = yup.object().shape({
-    name: yup.string().required("Required field"),
-    city: yup.string().required("Required field"),
-    vacancies: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-    social_medias: yup.string().required("Required field"),
-    description: yup.string().required("Required field"),
-  });
+  // const schema = yup.object().shape({
+  //   name: yup.string().required("Required field"),
+  //   city: yup.string().required("Required field"),
+  //   vacancies: yup
+  //     .boolean("The value must be boolean")
+  //     .required("Required field")
+  //     .nullable(),
+  //   social_medias: yup.string().required("Required field"),
+  //   description: yup.string().required("Required field"),
+  // });
 
-  const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
+  const { register, handleSubmit, errors } = useForm({
+    // resolver: yupResolver(schema),
   });
 
   const handleUpdate = (data) => {
@@ -40,46 +40,64 @@ const UpProfileComp = () => {
       })
       .then((res) => console.log(res))
       .catch((e) => console.log(e));
-
-    reset();
   };
 
   return (
     <div>
-      <p>Atualizar perfil Dev</p>
+      <h2>Atualizar perfil Comp</h2>
 
       <form onSubmit={handleSubmit(handleUpdate)}>
         <div>
-          <input placeholder="Enter your new name here" {...register("name")} />
+          <input
+            placeholder="Nome"
+            {...register("name")}
+            defaultValue={loggedUser.name}
+          />
           {/* <p>{errors.name?.message}</p> */}
         </div>
 
         <div>
-          <input placeholder="Enter your new city here" {...register("city")} />
+          <input
+            placeholder="Cidade"
+            {...register("city")}
+            defaultValue={loggedUser.city}
+          />
           {/* <p>{errors.city?.message}</p> */}
         </div>
 
         <div>
           <span>Está aceitando vagas?</span>
-          <input type="radio" {...register("vacancies")} value="true" />
+          <input
+            type="radio"
+            {...register("have_vacancies")}
+            value="true"
+            defaultChecked={loggedUser.have_vacancies}
+          />
           <label>Sim!</label>
-          <input {...register("vacancies")} type="radio" value="false" />
+          <input
+            {...register("have_vacancies")}
+            type="radio"
+            value="false"
+            defaultChecked={loggedUser.have_vacancies}
+          />
           <label>Ainda não!</label>
           {/* <p>{errors.vacancies?.message}</p> */}
         </div>
 
         <div>
           <input
-            placeholder="Enter your social medias here"
+            placeholder="Redes Sociais"
             {...register("social_medias")}
+            defaultValue={loggedUser.social_medias}
           />
           {/* <p>{errors.social_medias?.message}</p> */}
         </div>
 
         <div>
           <input
-            placeholder="Enter a descripton here"
+            placeholder="Descrição"
             {...register("description")}
+            defaultValue={loggedUser.description}
           />
           {/* <p>{errors.description?.message}</p> */}
         </div>

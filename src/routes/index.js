@@ -8,6 +8,7 @@ import PageLogReg from "../pages/PageLogReg";
 // import GetAllUsersCompany from "../components/GetAllUsersCompany";
 import GetOneCompany from "../components/GetOneCompany";
 import GetOneDev from "../components/GetOneDev";
+import GetAllDev from "../components/GetAllUsersDev";
 
 const Routes = () => {
   return (
@@ -21,8 +22,9 @@ const Routes = () => {
         <GetOneCompany />
       </Route>
       <Route exact path="/users/dev">
-        <GetOneCompany />
+        <GetAllDev />
         <GetOneDev />
+        <UpProfileDev />
       </Route>
     </Switch>
   );

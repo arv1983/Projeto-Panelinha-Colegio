@@ -26,6 +26,7 @@ const GetOneCompany = () => {
 
   return (
     <>
+      <h2>Pesquisar uma Comp</h2>
       <form onSubmit={handleSubmit(getCompany)}>
         <input
           name="company"

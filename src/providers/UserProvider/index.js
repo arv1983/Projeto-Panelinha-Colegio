@@ -8,6 +8,8 @@ export const UserProvider = (props) => {
 
   const [loggedUser, setLoggedUser] = useState();
 
+  const [userCountClick, setUserCountClick] = useState(0);
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setId(JSON.parse(jwt_decode(localStorage.getItem("token")).sub));
@@ -20,10 +22,11 @@ export const UserProvider = (props) => {
         .get(`/users/${id}`)
         .then((response) => {
           setLoggedUser(response.data);
+          console.log("Get:", response.data);
         })
         .catch((e) => console.log(e));
     }
-  }, [id, loggedUser]);
+  }, [id]);
 
   return (
     <UserContext.Provider
@@ -32,6 +35,8 @@ export const UserProvider = (props) => {
         setId,
         loggedUser,
         setLoggedUser,
+        userCountClick,
+        setUserCountClick,
       }}
     >
       {props.children}
