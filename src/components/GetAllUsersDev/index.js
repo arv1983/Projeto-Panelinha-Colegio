@@ -8,8 +8,6 @@ const GetAllDev = () => {
     api
       .get(`/users?type=pf`)
       .then((res) => {
-        console.log(res.data);
-        console.log(res);
         setDados(res.data);
       })
       .catch((e) => console.log(e));

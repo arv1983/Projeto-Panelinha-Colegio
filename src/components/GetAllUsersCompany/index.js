@@ -8,8 +8,6 @@ const GetAllComp = () => {
     api
       .get(`/users?type=pj`)
       .then((res) => {
-        console.log(res.data);
-        console.log(res);
         setDados(res.data);
       })
       .catch((e) => console.log(e));
@@ -17,8 +15,8 @@ const GetAllComp = () => {
 
   return (
     <>
-      <h2>Todas as companhias</h2>
-      {dados && dados.map((item, i) => <div key={i}>{item.email}</div>)}
+      <h2>Todas as Empresas</h2>
+      {dados && dados.map((item, i) => <div key={i}>{item.name}</div>)}
     </>
   );
 };

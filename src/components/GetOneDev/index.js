@@ -39,8 +39,6 @@ const GetOneDev = () => {
   } = useForm({});
 
   const getDev = (data) => {
-    console.log(data);
-
     if (data.name === "") {
       setName("");
     } else {
@@ -90,10 +88,11 @@ const GetOneDev = () => {
   useEffect(() => {
     async function x() {
       const res = await api.get(
-        `/users?${name}${data_Name}${have_job}${data_Have_job}${quarter}${data_Quarter}${softSkills}${data_SoftSkills}${is_coach}${data_Is_coach}${avaliable_job}${data_Avaliable_job}`
+        `/users?${name}${data_Name}${have_job}${data_Have_job}${quarter}${data_Quarter}${softSkills}${data_SoftSkills}${is_coach}${data_Is_coach}${avaliable_job}${data_Avaliable_job}&type=pf`
       );
-      console.log(res);
-      setDevs(res.data);
+      if (countClick > 0) {
+        setDevs(res.data);
+      }
     }
     x();
   }, [
@@ -153,9 +152,9 @@ const GetOneDev = () => {
 
         <div>
           <span>O Dev é coach?</span>
-          <input {...register("is_coach")} type="radio" value="true" />
+          <input {...register("is_coach")} type="radio" value={true} />
           <label>Sou coach</label>
-          <input {...register("is_coach")} type="radio" value="false" />
+          <input {...register("is_coach")} type="radio" value={false} />
           <label>Não sou coach</label>
         </div>
 

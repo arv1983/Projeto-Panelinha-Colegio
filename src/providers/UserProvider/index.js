@@ -6,13 +6,15 @@ export const UserContext = React.createContext({});
 export const UserProvider = (props) => {
   const [id, setId] = useState();
 
-  const [loggedUser, setLoggedUser] = useState();
+  const [loggedUser, setLoggedUser] = useState([]);
 
   const [userCountClick, setUserCountClick] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setId(JSON.parse(jwt_decode(localStorage.getItem("token")).sub));
+    } else {
+      setId(undefined);
     }
   }, []);
 
@@ -22,7 +24,6 @@ export const UserProvider = (props) => {
         .get(`/users/${id}`)
         .then((response) => {
           setLoggedUser(response.data);
-          console.log("Get:", response.data);
         })
         .catch((e) => console.log(e));
     }

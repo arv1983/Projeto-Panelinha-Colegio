@@ -5,11 +5,10 @@ import { useState } from "react";
 import { Container } from "./styles";
 import api from "../../services/api";
 import { User } from "../../providers/UserProvider";
+import { useEffect } from "react";
 
 const UpProfileDev = () => {
   const { id, loggedUser } = User();
-
-  const [checked, setChecked] = useState(false);
 
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
@@ -19,67 +18,79 @@ const UpProfileDev = () => {
     return JSON.parse(localToken);
   });
 
-  // const schema = yup.object().shape({
-  //   city: yup.string().max(20),
-  //   have_job: yup.boolean("The value must be boolean").nullable(),
-  //   avaliable_job: yup.boolean("The value must be boolean").nullable(),
-  //   quarter: yup.string().max(1),
-  //   social_medias: yup.string().max(25),
-  //   cellPhone: yup.string().max(12),
-  //   softSkills: yup.string(),
-  //   description: yup.string().max(400),
-  //   is_coach: yup.boolean("The value must be boolean").nullable(),
-  // });
+  const [nameInput, setNameInput] = useState("");
+
+  const [cityInput, setCityInput] = useState("");
+
+  const [have_jobInput, setHave_jobInput] = useState("");
+
+  const [avaliable_jobInput, setAvaliable_jobInput] = useState("");
+
+  const [quarterInput, setQuarterInput] = useState("");
+
+  const [social_mediasInput, setSocial_mediasInput] = useState("");
+
+  const [cellPhoneInput, setCellPhoneInput] = useState("");
+
+  const [softSkillsInput, setSoftSkillsInput] = useState("");
+
+  const [descriptionInput, setDescriptionInput] = useState("");
+
+  const [is_coachInput, setIs_coachInput] = useState("");
+
+  useEffect(() => {
+    setNameInput(loggedUser.name);
+    setCityInput(loggedUser.city);
+    setHave_jobInput(loggedUser.have_job);
+    setAvaliable_jobInput(loggedUser.avaliable_job);
+    setQuarterInput(loggedUser.quarter);
+    setSocial_mediasInput(loggedUser.social_medias);
+    setCellPhoneInput(loggedUser.cellPhone);
+    setSoftSkillsInput(loggedUser.softSkills);
+    setDescriptionInput(loggedUser.description);
+    setIs_coachInput(loggedUser.is_coach);
+  }, [
+    loggedUser.avaliable_job,
+    loggedUser.cellPhone,
+    loggedUser.city,
+    loggedUser.description,
+    loggedUser.have_job,
+    loggedUser.is_coach,
+    loggedUser.name,
+    loggedUser.quarter,
+    loggedUser.social_medias,
+    loggedUser.softSkills,
+  ]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    // resolver: yupResolver(schema),
-  });
-
-  // const handleCount = () => {
-  //   setUserCountClick(userCountClick + 1);
-  // };
+  } = useForm({});
 
   const handleUpdate = (data) => {
-    // if (data.name === "") {
-    //   data.name = loggedUser.name;
-    // }
-    // if (data.city === "") {
-    //   data.city = loggedUser.city;
-    // }
-    // if (data.have_job === null) {
-    //   data.have_job = loggedUser.have_job;
-    // }
-    // if (data.avaliable_job === null) {
-    // }
-    // if (data.quarter === "") {
-    //   data.quarter = loggedUser.quarter;
-    // }
-    // if (data.social_medias === "") {
-    //   data.social_medias = loggedUser.social_medias;
-    // }
-    // if (data.cellPhone === "") {
-    //   data.cellPhone = loggedUser.cellPhone;
-    // }
-    // if (data.softSkills === "") {
-    //   data.softSkills = loggedUser.softSkills;
-    // }
-    // if (data.description === "") {
-    //   data.description = loggedUser.description;
-    // }
-
-    loggedUser?.have_job === "Empregado" && setChecked(checked);
-
     api
-      .patch(`/users/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      .patch(
+        `/users/${id}`,
+        {
+          name: nameInput,
+          city: cityInput,
+          have_job: have_jobInput,
+          avaliable_job: avaliable_jobInput,
+          quarter: quarterInput,
+          social_medias: social_mediasInput,
+          cellPhone: cellPhoneInput,
+          softSkills: softSkillsInput,
+          description: descriptionInput,
+          is_coach: is_coachInput,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log("Patch", res.data);
       })
@@ -94,7 +105,8 @@ const UpProfileDev = () => {
           <input
             {...register("name")}
             placeholder="Nome"
-            value={loggedUser?.name}
+            value={nameInput}
+            onChange={(e) => setNameInput(e.target.value)}
           />
         </div>
 
@@ -102,7 +114,8 @@ const UpProfileDev = () => {
           <input
             {...register("city")}
             placeholder="Cidade"
-            defaultValue={loggedUser?.city}
+            value={cityInput}
+            onChange={(e) => setCityInput(e.target.value)}
           />
         </div>
 
@@ -111,15 +124,17 @@ const UpProfileDev = () => {
           <input
             {...register("have_job")}
             type="radio"
-            value="Empregado"
-            checked={checked}
+            value={have_jobInput}
+            onChange={() => setHave_jobInput("Empregado")}
+            checked={have_jobInput === "Empregado"}
           />
           <label>Empregado</label>
           <input
             {...register("have_job")}
             type="radio"
-            value="Desempregado"
-            defaultChecked={loggedUser?.have_job === "Desempregado" && true}
+            value={have_jobInput}
+            onChange={() => setHave_jobInput("Desempregado")}
+            checked={have_jobInput === "Desempregado"}
           />
           <label>Desempregado</label>
         </div>
@@ -129,15 +144,17 @@ const UpProfileDev = () => {
           <input
             {...register("avaliable_job")}
             type="radio"
-            value="Disponivel"
-            defaultChecked={loggedUser?.avaliable_job === "Disponivel"}
+            value={avaliable_jobInput}
+            onChange={() => setAvaliable_jobInput("Disponivel")}
+            checked={avaliable_jobInput === "Disponivel"}
           />
           <label>Disponível</label>
           <input
             {...register("avaliable_job")}
             type="radio"
-            value="NaoDisponivel"
-            defaultChecked={loggedUser?.avaliable_job === "NaoDisponivel"}
+            value={avaliable_jobInput}
+            onChange={() => setAvaliable_jobInput("NaoDisponivel")}
+            checked={avaliable_jobInput === "NaoDisponivel"}
           />
           <label>Não Disponível</label>
         </div>
@@ -146,7 +163,8 @@ const UpProfileDev = () => {
           <input
             {...register("quarter")}
             placeholder="Período"
-            defaultValue={loggedUser?.quarter}
+            value={quarterInput}
+            onChange={(e) => setQuarterInput(e.target.value)}
           />
         </div>
 
@@ -154,7 +172,8 @@ const UpProfileDev = () => {
           <input
             {...register("social_medias")}
             placeholder="Redes Sociais"
-            defaultValue={loggedUser?.social_medias}
+            value={social_mediasInput}
+            onChange={(e) => setSocial_mediasInput(e.target.value)}
           />
         </div>
 
@@ -162,7 +181,8 @@ const UpProfileDev = () => {
           <input
             {...register("cellPhone")}
             placeholder="Celular"
-            defaultValue={loggedUser?.cellPhone}
+            value={cellPhoneInput}
+            onChange={(e) => cellPhoneInput(e.target.value)}
           />
         </div>
 
@@ -170,7 +190,8 @@ const UpProfileDev = () => {
           <input
             {...register("softSkills")}
             placeholder="SoftSkills"
-            defaultValue={loggedUser?.softSkills}
+            value={softSkillsInput}
+            onChange={(e) => setSoftSkillsInput(e.target.value)}
           />
         </div>
 
@@ -178,7 +199,8 @@ const UpProfileDev = () => {
           <input
             {...register("description")}
             placeholder="Descrição"
-            defaultValue={loggedUser?.description}
+            value={descriptionInput}
+            onChange={(e) => setDescriptionInput(e.target.value)}
           />
         </div>
 
@@ -187,15 +209,17 @@ const UpProfileDev = () => {
           <input
             {...register("is_coach")}
             type="radio"
-            value="true"
-            defaultChecked={loggedUser?.is_coach === "true"}
+            value={is_coachInput}
+            onChange={() => setIs_coachInput(true)}
+            checked={is_coachInput === true}
           />
           <label>Sou coach</label>
           <input
             {...register("is_coach")}
             type="radio"
-            value="false"
-            defaultChecked={loggedUser?.is_coach === "false"}
+            value={is_coachInput}
+            onChange={() => setIs_coachInput(false)}
+            checked={is_coachInput === false}
           />
 
           <label>Não sou coach</label>
