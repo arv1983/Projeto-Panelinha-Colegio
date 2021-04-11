@@ -15,6 +15,7 @@ export const UserProvider = (props) => {
   }, []);
 
   useEffect(() => {
+    console.log("teste");
     if (id) {
       api
         .get(`/users/${id}`)
@@ -23,7 +24,7 @@ export const UserProvider = (props) => {
         })
         .catch((e) => console.log(e));
     }
-  }, [id, loggedUser]);
+  }, [id]);
 
   return (
     <UserContext.Provider
