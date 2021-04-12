@@ -2,10 +2,11 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { Container } from "./styles";
 import api from "../../services/api";
 import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
+
+import {InputProfile, BtnAtt, Label, DivOption} from '../../stylesGlobal';
 
 const UpProfileDev = () => {
   const { id, loggedUser } = User();
