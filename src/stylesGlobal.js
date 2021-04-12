@@ -110,10 +110,6 @@ export const BtnAtt = styled.button`
     margin: 10px 0 0 0;
 `
 
-export const Label = styled.label`
-    /* margin: 15px; */
-`
-
 export const DivAvatar = styled.div`
 padding:20px;
   img{
@@ -146,13 +142,9 @@ export const DivProfile = styled.div`
   }
 `
 export const DivOption = styled.div`
-div{
-  p{
     input{
       margin: 10px 5px 10px 10px;
     }
-  }
-}
   @media(min-width: 900px ){
   }
 `

@@ -1,6 +1,6 @@
-import GetOneCompany from "../../components/GetOneCompany";
 import Navegation from "../../components/Navegation";
 import UpProfileComp from "../../components/UpProfileComp";
+import Vacancies from "../../components/Vacancies";
 
 import {DivComp, DivAvatar, DivProfile} from '../../stylesGlobal'
 
@@ -17,9 +17,8 @@ const PageProfileComp = ()=>{
                 </DivComp>
             </DivProfile>
             <div  style={{ border:"1px solid white", width: "99%", height: "300px", margin: "30px auto" , textAlign: "center"}}>
-                <h1>Vagas</h1>
-            </div>
-            <GetOneCompany/>
+                <Vacancies/>
+            </div>   
         </>
         )
     }

@@ -4,11 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import api from "../../services/api";
 import { User } from "../../providers/UserProvider";
+import { useEffect } from "react";
 
 import {InputProfile, BtnAtt, Label, DivOption} from '../../stylesGlobal';
 
 const UpProfileDev = () => {
-  const { id } = User();
+  const { id, loggedUser } = User();
 
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
@@ -18,119 +19,217 @@ const UpProfileDev = () => {
     return JSON.parse(localToken);
   });
 
-  const schema = yup.object().shape({
-    name: yup.string().max(40).required(),
-    city: yup.string().max(20).required(),
-    have_job: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-    avaliable_job: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-    quarter: yup.string().max(1),
-    social_medias: yup.string().max(25),
-    cellPhone: yup.string().max(12).required(),
-    softSkills: yup.string(),
-    description: yup.string().max(400).required(),
-    is_coach: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-  });
+  const [nameInput, setNameInput] = useState("");
+
+  const [cityInput, setCityInput] = useState("");
+
+  const [have_jobInput, setHave_jobInput] = useState("");
+
+  const [avaliable_jobInput, setAvaliable_jobInput] = useState("");
+
+  const [quarterInput, setQuarterInput] = useState("");
+
+  const [social_mediasInput, setSocial_mediasInput] = useState("");
+
+  const [cellPhoneInput, setCellPhoneInput] = useState("");
+
+  const [softSkillsInput, setSoftSkillsInput] = useState("");
+
+  const [descriptionInput, setDescriptionInput] = useState("");
+
+  const [is_coachInput, setIs_coachInput] = useState("");
+
+  useEffect(() => {
+    setNameInput(loggedUser.name);
+    setCityInput(loggedUser.city);
+    setHave_jobInput(loggedUser.have_job);
+    setAvaliable_jobInput(loggedUser.avaliable_job);
+    setQuarterInput(loggedUser.quarter);
+    setSocial_mediasInput(loggedUser.social_medias);
+    setCellPhoneInput(loggedUser.cellPhone);
+    setSoftSkillsInput(loggedUser.softSkills);
+    setDescriptionInput(loggedUser.description);
+    setIs_coachInput(loggedUser.is_coach);
+  }, [
+    loggedUser.avaliable_job,
+    loggedUser.cellPhone,
+    loggedUser.city,
+    loggedUser.description,
+    loggedUser.have_job,
+    loggedUser.is_coach,
+    loggedUser.name,
+    loggedUser.quarter,
+    loggedUser.social_medias,
+    loggedUser.softSkills,
+  ]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  } = useForm({});
 
   const handleUpdate = (data) => {
     api
-      .patch(`/users/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      .patch(
+        `/users/${id}`,
+        {
+          name: nameInput,
+          city: cityInput,
+          have_job: have_jobInput,
+          avaliable_job: avaliable_jobInput,
+          quarter: quarterInput,
+          social_medias: social_mediasInput,
+          cellPhone: cellPhoneInput,
+          softSkills: softSkillsInput,
+          description: descriptionInput,
+          is_coach: is_coachInput,
         },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("Patch", res.data);
       })
-      .then((res) => console.log(res))
       .catch((e) => console.log(e));
-
-    reset();
   };
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit(handleUpdate)}>
-          <div>
-            <InputProfile {...register("name")} placeholder="Nome" />
-          </div>
+      <h2>Atualizar Perfil Dev</h2>
+      <form onSubmit={handleSubmit(handleUpdate)}>
+        <div>
+          <input
+            {...register("name")}
+            placeholder="Nome"
+            value={nameInput}
+            onChange={(e) => setNameInput(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <InputProfile {...register("city")} placeholder="Cidade" />
-          </div>
-          
-          <div>
-            <InputProfile {...register("quarter")} placeholder="Período" />
-          </div>
+        <div>
+          <input
+            {...register("city")}
+            placeholder="Cidade"
+            value={cityInput}
+            onChange={(e) => setCityInput(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <InputProfile {...register("social_medias")} placeholder="Midia Social" />
-          </div>
+        <div>
+          <span>Você possui emprego?</span>
+          <input
+            {...register("have_job")}
+            type="radio"
+            value={have_jobInput}
+            onChange={() => setHave_jobInput("Empregado")}
+            checked={have_jobInput === "Empregado"}
+          />
+          <label>Empregado</label>
+          <input
+            {...register("have_job")}
+            type="radio"
+            value={have_jobInput}
+            onChange={() => setHave_jobInput("Desempregado")}
+            checked={have_jobInput === "Desempregado"}
+          />
+          <label>Desempregado</label>
+        </div>
 
-          <div>
-            <InputProfile {...register("cellPhone")} placeholder="Celular" />
-          </div>
+        <div>
+          <span>Você está disponível para trabalhar?</span>
+          <input
+            {...register("avaliable_job")}
+            type="radio"
+            value={avaliable_jobInput}
+            onChange={() => setAvaliable_jobInput("Disponivel")}
+            checked={avaliable_jobInput === "Disponivel"}
+          />
+          <label>Disponível</label>
+          <input
+            {...register("avaliable_job")}
+            type="radio"
+            value={avaliable_jobInput}
+            onChange={() => setAvaliable_jobInput("NaoDisponivel")}
+            checked={avaliable_jobInput === "NaoDisponivel"}
+          />
+          <label>Não Disponível</label>
+        </div>
 
-          <div>
-            <InputProfile {...register("softSkills")} placeholder="SoftSkills" />
-          </div>
+        <div>
+          <input
+            {...register("quarter")}
+            placeholder="Período"
+            value={quarterInput}
+            onChange={(e) => setQuarterInput(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <InputProfile {...register("description")} placeholder="Descrição" />
-          </div>
-<DivOption>
+        <div>
+          <input
+            {...register("social_medias")}
+            placeholder="Redes Sociais"
+            value={social_mediasInput}
+            onChange={(e) => setSocial_mediasInput(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <p><h4>Você é coach? </h4></p>
-            <p>
-              <input {...register("is_coach")} type="radio" value="false" />
-              <Label>Sou coach</Label>
-              <input {...register("is_coach")} type="radio" value="true"  checked='true'  />
-              <Label>Não sou coach</Label>
-            </p>
-          </div>
+        <div>
+          <input
+            {...register("cellPhone")}
+            placeholder="Celular"
+            value={cellPhoneInput}
+            onChange={(e) => cellPhoneInput(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <p><h4>Você possui emprego? </h4></p>
-            <p>
-              <input {...register("have_job")} type="radio" value="true"/>
-              <Label>Empregado</Label>
-              <input {...register("have_job")} type="radio" value="false"  checked='true'  />
-              <Label>Desempregado</Label>
-            </p>
-          </div>
+        <div>
+          <input
+            {...register("softSkills")}
+            placeholder="SoftSkills"
+            value={softSkillsInput}
+            onChange={(e) => setSoftSkillsInput(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <p><h4>Você está disponível para trabalhar?</h4></p>
-            <p>
-              <input {...register("avaliable_job")} type="radio" value="true"   checked='true' />
-              <Label>Disponível</Label>
-              <input {...register("avaliable_job")} type="radio" value="false" />
-              <Label>Não Disponível</Label>
-            </p>
-          </div>
-</DivOption>
+        <div>
+          <input
+            {...register("description")}
+            placeholder="Descrição"
+            value={descriptionInput}
+            onChange={(e) => setDescriptionInput(e.target.value)}
+          />
+        </div>
 
-          <div>
-            <BtnAtt type="submit">Enviar </BtnAtt>
-          </div>
-        </form>
-      </div>
+        <div>
+          <span>Você é coach?</span>
+          <input
+            {...register("is_coach")}
+            type="radio"
+            value={is_coachInput}
+            onChange={() => setIs_coachInput(true)}
+            checked={is_coachInput === true}
+          />
+          <label>Sou coach</label>
+          <input
+            {...register("is_coach")}
+            type="radio"
+            value={is_coachInput}
+            onChange={() => setIs_coachInput(false)}
+            checked={is_coachInput === false}
+          />
+
+          <label>Não sou coach</label>
+        </div>
+
+        <div>
+          <button type="submit">Atualizar</button>
+        </div>
+      </form>
     </>
   );
 };

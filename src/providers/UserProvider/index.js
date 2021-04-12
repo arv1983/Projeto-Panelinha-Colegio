@@ -6,24 +6,28 @@ export const UserContext = React.createContext({});
 export const UserProvider = (props) => {
   const [id, setId] = useState();
 
-  const [loggedUser, setLoggedUser] = useState();
+  const [loggedUser, setLoggedUser] = useState([]);
+
+  const [userCountClick, setUserCountClick] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setId(JSON.parse(jwt_decode(localStorage.getItem("token")).sub));
+    } else {
+      setId(undefined);
     }
   }, []);
 
   useEffect(() => {
     if (id) {
       api
-        .get(`/users/${id}/`)
+        .get(`/users/${id}`)
         .then((response) => {
           setLoggedUser(response.data);
         })
-        .catch((e) => e);
+        .catch((e) => console.log(e));
     }
-  }, [id, loggedUser]);
+  }, [id]);
 
   return (
     <UserContext.Provider
@@ -32,6 +36,8 @@ export const UserProvider = (props) => {
         setId,
         loggedUser,
         setLoggedUser,
+        userCountClick,
+        setUserCountClick,
       }}
     >
       {props.children}

@@ -9,7 +9,7 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <PageLogReg/>
+        <PageLogReg />
       </Route>
       <Route exact path="/home">
         <PageHome/>
@@ -23,7 +23,6 @@ const Routes = () => {
       <Route exact path="/pesquisa">
         <PagePesquisa/>
       </Route>
-    
     </Switch>
   );
 };
