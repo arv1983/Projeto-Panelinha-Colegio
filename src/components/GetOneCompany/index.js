@@ -1,9 +1,8 @@
-import { InsertEmoticon } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
 
-import {Input,BtnAtt} from "../../stylesGlobal";
+import { Input, BtnAtt } from "../../stylesGlobal";
 
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);

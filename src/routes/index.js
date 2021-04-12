@@ -4,6 +4,7 @@ import PageLogReg from "../pages/PageLogReg";
 import PagePesquisa from "../pages/PagePesquisa";
 import PageProfileComp from "../pages/PageProfileCompany";
 import PageProfileUsers from "../pages/PageProfileUsers";
+import Vacancies from "../components/Vacancies";
 
 const Routes = () => {
   return (
@@ -12,16 +13,21 @@ const Routes = () => {
         <PageLogReg />
       </Route>
       <Route exact path="/home">
-        <PageHome/>
+        <PageHome />
       </Route>
       <Route exact path="/users/comp">
-        <PageProfileComp/>
+        <PageProfileComp />
       </Route>
+
+      <Route exact path="/vagas">
+        <Vacancies />
+      </Route>
+
       <Route exact path="/users/dev">
-        <PageProfileUsers/>
+        <PageProfileUsers />
       </Route>
       <Route exact path="/pesquisa">
-        <PagePesquisa/>
+        <PagePesquisa />
       </Route>
     </Switch>
   );
