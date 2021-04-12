@@ -4,6 +4,7 @@ import * as yup from "yup";
 import api from "../../services/api";
 import { useState } from "react";
 import { User } from "../../providers/UserProvider";
+import { useEffect } from "react";
 
 const UpProfileComp = () => {
   const { id, loggedUser } = User();
@@ -16,72 +17,112 @@ const UpProfileComp = () => {
     return JSON.parse(localToken);
   });
 
-  const schema = yup.object().shape({
-    name: yup.string().required("Required field"),
-    city: yup.string().required("Required field"),
-    vacancies: yup
-      .boolean("The value must be boolean")
-      .required("Required field")
-      .nullable(),
-    social_medias: yup.string().required("Required field"),
-    description: yup.string().required("Required field"),
-  });
+  const [nameInput, setNameInput] = useState("");
 
-  const { register, handleSubmit, errors, reset } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const [cityInput, setCityInput] = useState("");
 
-  const handleUpdate = (data) => {
+  const [have_vacanciesInput, setHave_vacanciesInput] = useState("");
+
+  const [social_mediasInput, setSocial_mediasInput] = useState("");
+
+  const [descriptionInput, setDescriptionInput] = useState("");
+
+  useEffect(() => {
+    setNameInput(loggedUser.name);
+    setCityInput(loggedUser.city);
+    setHave_vacanciesInput(loggedUser.have_vacancies);
+    setSocial_mediasInput(loggedUser.social_medias);
+    setDescriptionInput(loggedUser.description);
+  }, [
+    loggedUser.city,
+    loggedUser.description,
+    loggedUser.have_vacancies,
+    loggedUser.name,
+    loggedUser.social_medias,
+  ]);
+
+  const { register, handleSubmit } = useForm({});
+
+  const handleUpdate = (e) => {
     api
-      .patch(`/users/${id}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      .patch(
+        `/users/${id}`,
+        {
+          name: nameInput,
+          city: cityInput,
+          have_vacancies: false,
+          social_medias: social_mediasInput,
+          description: descriptionInput,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => console.log(res))
       .catch((e) => console.log(e));
-
-    reset();
   };
 
   return (
     <div>
-      <p>Atualizar perfil Dev</p>
+      <h2>Atualizar perfil da Empresa</h2>
 
       <form onSubmit={handleSubmit(handleUpdate)}>
         <div>
-          <input placeholder="Enter your new name here" {...register("name")} />
-          {/* <p>{errors.name?.message}</p> */}
+          <input
+            placeholder="Nome"
+            {...register("name")}
+            value={nameInput}
+            onChange={(e) => setNameInput(e.target.value)}
+          />
         </div>
 
         <div>
-          <input placeholder="Enter your new city here" {...register("city")} />
-          {/* <p>{errors.city?.message}</p> */}
+          <input
+            placeholder="Cidade"
+            {...register("city")}
+            value={cityInput}
+            onChange={(e) => setCityInput(e.target.value)}
+          />
         </div>
 
         <div>
           <span>Está aceitando vagas?</span>
-          <input type="radio" {...register("vacancies")} value="true" />
+          <input
+            type="radio"
+            {...register("have_vacancies")}
+            value={have_vacanciesInput}
+            onChange={() => setHave_vacanciesInput(true)}
+            checked={have_vacanciesInput === true}
+          />
           <label>Sim!</label>
-          <input {...register("vacancies")} type="radio" value="false" />
+          <input
+            {...register("have_vacancies")}
+            type="radio"
+            value={have_vacanciesInput}
+            onChange={() => setHave_vacanciesInput(false)}
+            checked={have_vacanciesInput === false}
+          />
           <label>Ainda não!</label>
-          {/* <p>{errors.vacancies?.message}</p> */}
         </div>
 
         <div>
           <input
-            placeholder="Enter your social medias here"
+            placeholder="Redes Sociais"
             {...register("social_medias")}
+            value={social_mediasInput}
+            onChange={(e) => setSocial_mediasInput(e.target.value)}
           />
-          {/* <p>{errors.social_medias?.message}</p> */}
         </div>
 
         <div>
           <input
-            placeholder="Enter a descripton here"
+            placeholder="Descrição"
             {...register("description")}
+            value={descriptionInput}
+            onChange={(e) => setDescriptionInput(e.target.value)}
           />
-          {/* <p>{errors.description?.message}</p> */}
         </div>
 
         <button type="submit">Atualizar</button>

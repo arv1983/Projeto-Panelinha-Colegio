@@ -5,53 +5,52 @@ import { useForm } from "react-hook-form";
 
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);
-  
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-  });
+  } = useForm({});
 
   const getCompany = (data) => {
+    console.log(data.company);
     api
-      .get(`/users?type=pj&${data.company?'name='+data.company:""}&
-      ${data.have_vacancies?'have_vacancies='+data.have_vacancies:""}`)
+      .get(
+        `/users?${data.company ? "name=" + data.company : ""}&${
+          data.have_vacancies ? "have_vacancies=" + data.have_vacancies : ""
+        }&${data.city ? "city=" + data.city : ""}&type=pj`
+      )
 
       .then((res) => {
-        
-        setCompanie(res.data)
-       
+        console.log(res);
+        setCompanie(res.data);
       })
       .catch((e) => console.log(e));
   };
 
+
   return (
     <>
+      <h2>Pesquisar uma Empresa pelo(a):</h2>
       <form onSubmit={handleSubmit(getCompany)}>
-        <input
-          name="company"
-          placeholder="Company"
-          {...register("company")}
-        ></input>
-          <input
-          name="City"
-          placeholder="City"
-          {...register("have_vacancies")}
-        ></input>
+        <input placeholder="Companhia" {...register("company")}></input>
+        <input {...register("have_vacancies")} type="radio" value="true" />
+          <label>Há Vagas</label>
+          <input {...register("have_vacancies")} type="radio" value="false" />
+          <label>Não Há vagas</label>
+
+        <input placeholder="Cidade" {...register("city")}></input>
         <button type="submit">Pesquisar</button>
       </form>
 
-      
-        {companie.map((comp, i) => (
-          <>
-          <h1 key={i}>{comp.name}</h1>
-          <h2 key={i}>{comp.have_vacancies}</h2>
-          </>
-        ))}
-      
-   </>
+      {companie.map((comp, i) => (
+        <div key={i}>
+          <h1>{comp.name}</h1>
+          <h2>{comp.have_vacancies}</h2>
+        </div>
+      ))}
+    </>
   );
 };
 
