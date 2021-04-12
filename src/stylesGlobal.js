@@ -59,10 +59,92 @@ export const Input = styled.input`
   }
 `
 
+export const InputProfile = styled.input`
+  font-size: 15px;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 99%;
+  outline: none;
+
+  transition: .2s ease-in-out;
+  box-sizing: border-box;
+
+  :focus{
+    background: rgba(0,0,0,0.0);
+    color: ${COLORS.branco};
+    font-weight: 900;
+  }
+`
+
 export const Seletor = styled.select`
  font-size: 15px;
   margin: 5px 0 0 10px;
   padding: 10px;
   border-radius: 10px;
 
+`
+
+export const DivComp = styled.div`
+  width: 98%;
+  text-align: center;
+  margin: auto;
+   
+   h1{
+       font-size: 22px;
+   }
+
+   @media (min-width: 900px){
+    width: 75%;
+    margin: 0;
+   }
+
+`
+export const BtnAtt = styled.button`
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 99%;
+    margin: 10px 0 0 0;
+`
+
+export const DivAvatar = styled.div`
+padding:20px;
+  img{
+    width: 150px;
+    height:150px;
+    border-radius: 50%;
+    background-color: red;
+  }
+  @media(min-width: 900px ){
+    img{
+      width: 300px;
+      height:300px;
+      border-radius: 50%;
+      background-color: red;
+    }
+  }
+`
+export const DivProfile = styled.div`
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  @media(min-width: 900px ){
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+`
+export const DivOption = styled.div`
+    input{
+      margin: 10px 5px 10px 10px;
+    }
+  @media(min-width: 900px ){
+  }
 `
