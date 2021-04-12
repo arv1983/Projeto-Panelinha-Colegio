@@ -2,9 +2,10 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { Container } from "./styles";
 import api from "../../services/api";
 import { User } from "../../providers/UserProvider";
+
+import {InputProfile, BtnAtt, Label, DivOption} from '../../stylesGlobal';
 
 const UpProfileDev = () => {
   const { id } = User();
@@ -63,65 +64,73 @@ const UpProfileDev = () => {
 
   return (
     <>
-      <Container>
+      <div>
         <form onSubmit={handleSubmit(handleUpdate)}>
           <div>
-            <input {...register("name")} placeholder="Nome" />
+            <InputProfile {...register("name")} placeholder="Nome" />
           </div>
 
           <div>
-            <input {...register("city")} placeholder="Cidade" />
+            <InputProfile {...register("city")} placeholder="Cidade" />
+          </div>
+          
+          <div>
+            <InputProfile {...register("quarter")} placeholder="Período" />
           </div>
 
           <div>
-            <span>Você possui emprego?</span>
-            <input {...register("have_job")} type="radio" value="true" />
-            <label>Empregado</label>
-            <input {...register("have_job")} type="radio" value="false" />
-            <label>Desempregado</label>
+            <InputProfile {...register("social_medias")} placeholder="Midia Social" />
           </div>
 
           <div>
-            <span>Você está disponível para trabalhar?</span>
-            <input {...register("avaliable_job")} type="radio" value="true" />
-            <label>Disponível</label>
-            <input {...register("avaliable_job")} type="radio" value="false" />
-            <label>Não Disponível</label>
+            <InputProfile {...register("cellPhone")} placeholder="Celular" />
           </div>
 
           <div>
-            <input {...register("quarter")} placeholder="Período" />
+            <InputProfile {...register("softSkills")} placeholder="SoftSkills" />
           </div>
 
           <div>
-            <input {...register("social_medias")} placeholder="Midia Social" />
+            <InputProfile {...register("description")} placeholder="Descrição" />
+          </div>
+<DivOption>
+
+          <div>
+            <p><h4>Você é coach? </h4></p>
+            <p>
+              <input {...register("is_coach")} type="radio" value="false" />
+              <Label>Sou coach</Label>
+              <input {...register("is_coach")} type="radio" value="true"  checked='true'  />
+              <Label>Não sou coach</Label>
+            </p>
           </div>
 
           <div>
-            <input {...register("cellPhone")} placeholder="Celular" />
+            <p><h4>Você possui emprego? </h4></p>
+            <p>
+              <input {...register("have_job")} type="radio" value="true"/>
+              <Label>Empregado</Label>
+              <input {...register("have_job")} type="radio" value="false"  checked='true'  />
+              <Label>Desempregado</Label>
+            </p>
           </div>
 
           <div>
-            <input {...register("softSkills")} placeholder="SoftSkills" />
+            <p><h4>Você está disponível para trabalhar?</h4></p>
+            <p>
+              <input {...register("avaliable_job")} type="radio" value="true"   checked='true' />
+              <Label>Disponível</Label>
+              <input {...register("avaliable_job")} type="radio" value="false" />
+              <Label>Não Disponível</Label>
+            </p>
           </div>
+</DivOption>
 
           <div>
-            <input {...register("description")} placeholder="Descrição" />
-          </div>
-
-          <div>
-            <span>Você é coach?</span>
-            <input {...register("is_coach")} type="radio" value="false" />
-            <label>Sou coach</label>
-            <input {...register("is_coach")} type="radio" value="true" />
-            <label>Não sou coach</label>
-          </div>
-
-          <div>
-            <button type="submit">Enviar </button>
+            <BtnAtt type="submit">Enviar </BtnAtt>
           </div>
         </form>
-      </Container>
+      </div>
     </>
   );
 };

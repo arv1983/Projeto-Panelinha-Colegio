@@ -5,6 +5,8 @@ import api from "../../services/api";
 import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 
+import {InputProfile, BtnAtt, Label} from '../../stylesGlobal'
+
 const UpProfileComp = () => {
   const { id, loggedUser } = User();
 
@@ -46,46 +48,36 @@ const UpProfileComp = () => {
 
   return (
     <div>
-      <p>Atualizar perfil Dev</p>
-
-      <form onSubmit={handleSubmit(handleUpdate)}>
-        <div>
-          <input placeholder="Enter your new name here" {...register("name")} />
-          {/* <p>{errors.name?.message}</p> */}
-        </div>
-
-        <div>
-          <input placeholder="Enter your new city here" {...register("city")} />
-          {/* <p>{errors.city?.message}</p> */}
-        </div>
-
-        <div>
-          <span>Está aceitando vagas?</span>
-          <input type="radio" {...register("vacancies")} value="true" />
-          <label>Sim!</label>
-          <input {...register("vacancies")} type="radio" value="false" />
-          <label>Ainda não!</label>
-          {/* <p>{errors.vacancies?.message}</p> */}
-        </div>
-
-        <div>
-          <input
-            placeholder="Enter your social medias here"
-            {...register("social_medias")}
-          />
-          {/* <p>{errors.social_medias?.message}</p> */}
-        </div>
-
-        <div>
-          <input
-            placeholder="Enter a descripton here"
-            {...register("description")}
-          />
-          {/* <p>{errors.description?.message}</p> */}
-        </div>
-
-        <button type="submit">Atualizar</button>
-      </form>
+      <h1>Empresa</h1>
+          <form onSubmit={handleSubmit(handleUpdate)}>
+              <div>
+                <InputProfile placeholder="Enter your new name here" {...register("name")} />
+                {/* <p>{errors.name?.message}</p> */}
+              </div>
+              <div>
+                <InputProfile placeholder="Enter your new city here" {...register("city")} />
+              </div>
+              <div>
+                <InputProfile
+                  placeholder="Enter your social medias here"
+                  {...register("social_medias")}
+                  />
+              </div>
+              <div>
+                <InputProfile
+                  placeholder="Enter a descripton here"
+                  {...register("description")}
+                  />
+              </div>
+                  <p>Está aceitando vagas?</p>
+                  <p>
+                  <input type="radio" {...register("vacancies")} value="true"  checked='true'  />
+                  <Label>Sim!</Label>
+                  <input {...register("vacancies")} type="radio" value="false" />
+                  <Label>Não!</Label>            
+                  </p>
+          <BtnAtt type="submit">Atualizar</BtnAtt>
+        </form>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import api from "../../services/api"
 import { useForm } from "react-hook-form";
 
+import {Input,BtnAtt} from "../../stylesGlobal"
 
 const GetOneCompany=()=>{
 const [companie,setCompanie]=useState([]);
@@ -36,8 +37,8 @@ api.get(`/users?name=${data.company}&type=pj`,)
 return (
     <>
 <form onSubmit={handleSubmit(getCompany)}>
-    <input name="company" placeholder="Company" {...register("company")}></input>
-    <button type="submit">Pesquisar</button>
+    <Input name="company" placeholder="Company" {...register("company")}/>
+    <BtnAtt type="submit">Pesquisar</BtnAtt>
 </form>
 
 <h1>{companie[0]?.name}</h1>
