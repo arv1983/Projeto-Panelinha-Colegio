@@ -8,33 +8,6 @@ import { Boxes, Content } from "./styled";
 const Register = () => {
   const handleData = (dados) => {
     console.log(dados);
-<<<<<<< HEAD
-    api
-      .post("/register", {
-        name: dados.name,
-        password: dados.password,
-        email: dados.email,
-        type: dados.type,
-        city: "",
-        have_job: "",
-        avaliable_job: "",
-        quarter: "",
-        social_medias: "",
-        cellPhone: "",
-        softSkills: "",
-        description: "",
-        is_coach: "",
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log("deu merda2");
-        console.log(e);
-      });
-    api.patch(`/register}`);
-    if (dados.type === "pf") {
-=======
 
     if (dados.type === "pf") {
       api
@@ -77,7 +50,6 @@ const Register = () => {
         .catch((e) => {
           console.log(e);
         });
->>>>>>> e5ebc524e52372966730a15486d6dd7737386493
     }
   };
 

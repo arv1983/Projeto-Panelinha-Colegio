@@ -25,6 +25,11 @@ const Routes = () => {
         <GetOneCompany />
         <Vacancies />
       </Route>
+
+      <Route exact path="/vagas">
+        <Vacancies />
+      </Route>
+
       <Route exact path="/users/dev">
         <GetAllDev />
         <GetOneDev />

@@ -1,4 +1,3 @@
-import { InsertEmoticon } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
@@ -55,6 +54,7 @@ const GetOneCompany = () => {
   };
 
   useEffect(() => {
+    console.log("loop");
     async function x() {
       const res = await api.get(
         `/users?${name}${data_Name}${city}${data_city}${have_vacancies}${data_haveVacancies}&type=pj`
@@ -76,11 +76,7 @@ const GetOneCompany = () => {
 
   return (
     <>
-<<<<<<< HEAD
-      dd
-=======
       <h2>Pesquisar uma Empresa pelo(a):</h2>
->>>>>>> e5ebc524e52372966730a15486d6dd7737386493
       <form onSubmit={handleSubmit(getCompany)}>
         <div>
           <input placeholder="Nome da Empresa" {...register("name")}></input>
@@ -99,16 +95,11 @@ const GetOneCompany = () => {
           <button type="submit">Pesquisar</button>
         </div>
       </form>
-<<<<<<< HEAD
       <h1>
         {companie.map((comp, i) => (
           <div key={i}>{comp.name}</div>
         ))}
       </h1>
-=======
-      {countClick > 0 &&
-        companie.map((comp, i) => <div key={i}>{comp.name}</div>)}
->>>>>>> e5ebc524e52372966730a15486d6dd7737386493
     </>
   );
 };
