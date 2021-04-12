@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
+import { Rotate } from "react-awesome-reveal";
+import CardCompany from "../CardCompany/injex";
 
 const GetOneDev = () => {
   const [devs, setDevs] = useState([]);
@@ -83,8 +85,13 @@ const GetOneDev = () => {
           <button type="submit">Pesquisar </button>
         </div>
       </form>
-      {devs.map((d, i) => (
-        <div key={i}>{d.name}</div>
+      {devs.map((devs, i) => (
+        <div key={i}>
+          
+          <Rotate direction="bottom-left" cascade="true">
+            <CardCompany devs={devs}/>
+          </Rotate>
+          </div>
       ))}
     </>
   );
