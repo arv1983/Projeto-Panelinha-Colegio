@@ -28,7 +28,6 @@ const Vacancies = () => {
   }, [id]);
 
   const handleData = (dados) => {
-    console.log("testeteste");
     api
       .post(
         "/vacancies",
@@ -48,16 +47,9 @@ const Vacancies = () => {
         }
       )
       .then((response) => {
-        // gambiarra emergencial
-        api
-          .get(`/vacancies?idUser=${id}`)
-          .then((response) => {
-            setLista(response.data);
-          })
-          .catch((e) => console.log(e));
+        console.log(response);
       })
       .catch((e) => {
-        console.log("deu merda2");
         console.log(e);
       });
   };
@@ -80,22 +72,41 @@ const Vacancies = () => {
 
   return (
     <>
+      <h2>Anunciar vaga de emprego</h2>
       <form onSubmit={handleSubmit(handleData)}>
-        <input type="text" placeholder="nome" {...register("nome")} />
-        <input type="text" placeholder="descricao" {...register("descricao")} />
-        <input
-          type="text"
-          placeholder="presencial"
-          {...register("presencial")}
-        />
-        <input
-          type="text"
-          placeholder="beneficios"
-          {...register("beneficios")}
-        />
-        <input type="text" placeholder="local" {...register("local")} />
-        <input type="text" placeholder="data" {...register("data")} />
-        <button type="submit">cadastro</button>
+        <div>
+          <input type="text" placeholder="nome" {...register("nome")} />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="descricao"
+            {...register("descricao")}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="presencial"
+            {...register("presencial")}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            placeholder="beneficios"
+            {...register("beneficios")}
+          />
+        </div>
+        <div>
+          <input type="text" placeholder="local" {...register("local")} />
+        </div>
+        <div>
+          <input type="text" placeholder="data" {...register("data")} />
+        </div>
+        <div>
+          <button type="submit">Anunciar vaga</button>
+        </div>
       </form>
 
       <VacanciesList lista={lista} />

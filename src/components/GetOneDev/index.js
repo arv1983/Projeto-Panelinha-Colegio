@@ -7,6 +7,10 @@ const GetOneDev = () => {
 
   const [countClick, setCountClick] = useState(0);
 
+  const [name, setName] = useState("");
+
+  const [data_Name, setData_Name] = useState("");
+
   const [have_job, setHave_job] = useState("");
 
   const [data_Have_job, setData_Have_job] = useState("");
@@ -35,31 +39,34 @@ const GetOneDev = () => {
   } = useForm({});
 
   const getDev = (data) => {
-    console.log(data);
-
-    if (data?.have_job === null) {
+    if (data.name === "") {
+      setName("");
+    } else {
+      setName("name=");
+    }
+    if (data.have_job === null) {
       setHave_job("");
       data.have_job = "";
     } else {
       setHave_job("&have_job=");
     }
-    if (data?.avaliable_job === null) {
+    if (data.avaliable_job === null) {
       setAvaliable_job("");
       data.avaliable_job = "";
     } else {
       setAvaliable_job("&avaliable_job=");
     }
-    if (data?.quarter === "") {
+    if (data.quarter === "") {
       setQuarter("");
     } else {
       setQuarter("&quarter=");
     }
-    if (data?.softSkills === "") {
+    if (data.softSkills === "") {
       setSoftSkills("");
     } else {
       setSoftSkills("&softSkills=");
     }
-    if (data?.is_coach === null) {
+    if (data.is_coach === null) {
       setIs_coach("");
       data.is_coach = "";
     } else {
@@ -68,6 +75,7 @@ const GetOneDev = () => {
 
     setCountClick(countClick + 1);
 
+    setData_Name(data.name);
     setData_Have_job(data.have_job);
     setData_Avaliable_job(data.avaliable_job);
     setData_Quarter(data.quarter);
@@ -80,17 +88,20 @@ const GetOneDev = () => {
   useEffect(() => {
     async function x() {
       const res = await api.get(
-        `/users?type=pf${have_job}${data_Have_job}${quarter}${data_Quarter}${softSkills}${data_SoftSkills}${is_coach}${data_Is_coach}${avaliable_job}${data_Avaliable_job}`
+        `/users?${name}${data_Name}${have_job}${data_Have_job}${quarter}${data_Quarter}${softSkills}${data_SoftSkills}${is_coach}${data_Is_coach}${avaliable_job}${data_Avaliable_job}&type=pf`
       );
-      console.log(res);
-      setDevs(res.data);
+      if (countClick > 0) {
+        setDevs(res.data);
+      }
     }
     x();
   }, [
+    name,
     avaliable_job,
     data_Avaliable_job,
     data_Have_job,
     data_Is_coach,
+    data_Name,
     data_Quarter,
     data_SoftSkills,
     have_job,
@@ -101,10 +112,14 @@ const GetOneDev = () => {
 
   return (
     <>
-      <span>Pesquise um usuário dev</span>
+      <h2>Pesquise um Dev</h2>
       <form onSubmit={handleSubmit(getDev)}>
         <div>
-          <span>Você possui emprego?</span>
+          <input {...register("name")} placeholder="Nome do dev" />
+        </div>
+
+        <div>
+          <span>O Dev possui emprego?</span>
           <input {...register("have_job")} type="radio" value="Empregado" />
           <label>Empregado</label>
           <input {...register("have_job")} type="radio" value="Desempregado" />
@@ -112,7 +127,7 @@ const GetOneDev = () => {
         </div>
 
         <div>
-          <span>Você está disponível para trabalhar?</span>
+          <span>O Dev está disponível para trabalhar?</span>
           <input
             {...register("avaliable_job")}
             type="radio"
@@ -136,10 +151,10 @@ const GetOneDev = () => {
         </div>
 
         <div>
-          <span>Você é coach?</span>
-          <input {...register("is_coach")} type="radio" value="true" />
+          <span>O Dev é coach?</span>
+          <input {...register("is_coach")} type="radio" value={true} />
           <label>Sou coach</label>
-          <input {...register("is_coach")} type="radio" value="false" />
+          <input {...register("is_coach")} type="radio" value={false} />
           <label>Não sou coach</label>
         </div>
 
