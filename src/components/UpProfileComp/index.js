@@ -6,6 +6,8 @@ import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 
+import {InputProfile, BtnAtt, DivOption} from '../../stylesGlobal'
+
 const UpProfileComp = () => {
   const { id, loggedUser } = User();
 
@@ -70,7 +72,7 @@ const UpProfileComp = () => {
 
       <form onSubmit={handleSubmit(handleUpdate)}>
         <div>
-          <input
+          <InputProfile
             placeholder="Nome"
             {...register("name")}
             value={nameInput}
@@ -79,7 +81,7 @@ const UpProfileComp = () => {
         </div>
 
         <div>
-          <input
+          <InputProfile
             placeholder="Cidade"
             {...register("city")}
             value={cityInput}
@@ -88,7 +90,25 @@ const UpProfileComp = () => {
         </div>
 
         <div>
-          <span>Está aceitando vagas?</span>
+          <InputProfile
+            placeholder="Redes Sociais"
+            {...register("social_medias")}
+            value={social_mediasInput}
+            onChange={(e) => setSocial_mediasInput(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <InputProfile
+            placeholder="Descrição"
+            {...register("description")}
+            value={descriptionInput}
+            onChange={(e) => setDescriptionInput(e.target.value)}
+          />
+        </div>
+
+        <DivOption>
+          <p>Está aceitando vagas?</p>
           <input
             type="radio"
             {...register("have_vacancies")}
@@ -104,28 +124,10 @@ const UpProfileComp = () => {
             onChange={() => setHave_vacanciesInput(false)}
             checked={have_vacanciesInput === false}
           />
-          <label>Ainda não!</label>
-        </div>
+          <label>Não!</label>
+        </DivOption>
 
-        <div>
-          <input
-            placeholder="Redes Sociais"
-            {...register("social_medias")}
-            value={social_mediasInput}
-            onChange={(e) => setSocial_mediasInput(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <input
-            placeholder="Descrição"
-            {...register("description")}
-            value={descriptionInput}
-            onChange={(e) => setDescriptionInput(e.target.value)}
-          />
-        </div>
-
-        <button type="submit">Atualizar</button>
+        <BtnAtt type="submit">Atualizar</BtnAtt>
       </form>
     </div>
   );

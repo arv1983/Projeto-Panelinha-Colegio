@@ -5,12 +5,14 @@ import Register from "../../components/Register"
 import {DivPai, TextForm, TextContent } from './style'
 
 import { Rotate} from 'react-awesome-reveal';
+import Navegation from "../../components/Navegation";
 
 const PageLogReg = ()=>{
 const [status, setStatus] = useState(false);
 
 return (
     <>
+        <Navegation/>
         <DivPai>
             <div className="divHead"> 
                 aaaaaaa

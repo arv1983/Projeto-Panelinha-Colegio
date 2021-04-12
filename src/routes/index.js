@@ -1,22 +1,18 @@
 import { Switch, Route } from "react-router-dom";
-import UpProfileComp from "../components/UpProfileComp";
-import UpProfileDev from "../components/UpProfileDev";
+import PageHome from "../pages/PageHome";
 import PageLogReg from "../pages/PageLogReg";
-// import GetallCompanys from "../components/GetOneCompany";
-// import UpProfileComp from "../components/UpProfileComp";
-// import UpProfileDev from "../components/UpProfileDev";
-// import GetAllUsersCompany from "../components/GetAllUsersCompany";
-import GetOneCompany from "../components/GetOneCompany";
-import GetOneDev from "../components/GetOneDev";
-import GetAllDev from "../components/GetAllUsersDev";
-import Vacancies from "../components/Vacancies";
-import GetAllComp from "../components/GetAllUsersCompany";
+import PagePesquisa from "../pages/PagePesquisa";
+import PageProfileComp from "../pages/PageProfileCompany";
+import PageProfileUsers from "../pages/PageProfileUsers";
 
 const Routes = () => {
   return (
     <Switch>
       <Route exact path="/">
         <PageLogReg />
+      </Route>
+      <Route exact path="/home">
+        <PageHome/>
       </Route>
       <Route exact path="/users/comp">
         <GetAllComp />
@@ -26,9 +22,10 @@ const Routes = () => {
         <Vacancies />
       </Route>
       <Route exact path="/users/dev">
-        <GetAllDev />
-        <GetOneDev />
-        <UpProfileDev />
+        <PageProfileUsers/>
+      </Route>
+      <Route exact path="/pesquisa">
+        <PagePesquisa/>
       </Route>
       <Route exact path="/up">
       <UpProfileComp />
