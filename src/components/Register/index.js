@@ -33,6 +33,8 @@ const Register = () => {
         console.log(e);
       });
     api.patch(`/register}`);
+    if (dados.type === "pf") {
+    }
   };
 
   const schema = yup.object().shape({

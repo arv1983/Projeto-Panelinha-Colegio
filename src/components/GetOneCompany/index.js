@@ -26,6 +26,7 @@ const GetOneCompany = () => {
 
   return (
     <>
+      dd
       <form onSubmit={handleSubmit(getCompany)}>
         <input
           name="company"
@@ -34,7 +35,6 @@ const GetOneCompany = () => {
         ></input>
         <button type="submit">Pesquisar</button>
       </form>
-
       <h1>
         {companie.map((comp, i) => (
           <div key={i}>{comp.name}</div>
