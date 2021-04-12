@@ -4,7 +4,6 @@ import UpProfileDev from "../../components/UpProfileDev";
 import GetAllComp from '../../components/GetAllUsersCompany'
 
 import {DivComp, DivAvatar, DivProfile} from '../../stylesGlobal'
-import Tecnologias from "../../components/Tecnologias";
 
 const PageProfileUsers = ()=>{    
     return (
@@ -20,7 +19,6 @@ const PageProfileUsers = ()=>{
             </DivProfile>
             <div  style={{ border:"1px solid white", width: "99%", height: "auto", margin: "30px auto" , textAlign: "center"}}>
                 <h1>Tecnologias</h1>
-                <Tecnologias/>
             </div>
             <GetOneCompany/>
         </div>
