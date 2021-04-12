@@ -103,7 +103,7 @@ const UpProfileDev = () => {
       <h2>Atualizar Perfil Dev</h2>
       <form onSubmit={handleSubmit(handleUpdate)}>
         <div>
-          <input
+          <InputProfile
             {...register("name")}
             placeholder="Nome"
             value={nameInput}
@@ -112,7 +112,7 @@ const UpProfileDev = () => {
         </div>
 
         <div>
-          <input
+          <InputProfile
             {...register("city")}
             placeholder="Cidade"
             value={cityInput}
@@ -121,47 +121,7 @@ const UpProfileDev = () => {
         </div>
 
         <div>
-          <span>Você possui emprego?</span>
-          <input
-            {...register("have_job")}
-            type="radio"
-            value={have_jobInput}
-            onChange={() => setHave_jobInput("Empregado")}
-            checked={have_jobInput === "Empregado"}
-          />
-          <label>Empregado</label>
-          <input
-            {...register("have_job")}
-            type="radio"
-            value={have_jobInput}
-            onChange={() => setHave_jobInput("Desempregado")}
-            checked={have_jobInput === "Desempregado"}
-          />
-          <label>Desempregado</label>
-        </div>
-
-        <div>
-          <span>Você está disponível para trabalhar?</span>
-          <input
-            {...register("avaliable_job")}
-            type="radio"
-            value={avaliable_jobInput}
-            onChange={() => setAvaliable_jobInput("Disponivel")}
-            checked={avaliable_jobInput === "Disponivel"}
-          />
-          <label>Disponível</label>
-          <input
-            {...register("avaliable_job")}
-            type="radio"
-            value={avaliable_jobInput}
-            onChange={() => setAvaliable_jobInput("NaoDisponivel")}
-            checked={avaliable_jobInput === "NaoDisponivel"}
-          />
-          <label>Não Disponível</label>
-        </div>
-
-        <div>
-          <input
+          <InputProfile
             {...register("quarter")}
             placeholder="Período"
             value={quarterInput}
@@ -170,7 +130,7 @@ const UpProfileDev = () => {
         </div>
 
         <div>
-          <input
+          <InputProfile
             {...register("social_medias")}
             placeholder="Redes Sociais"
             value={social_mediasInput}
@@ -179,7 +139,7 @@ const UpProfileDev = () => {
         </div>
 
         <div>
-          <input
+          <InputProfile
             {...register("cellPhone")}
             placeholder="Celular"
             value={cellPhoneInput}
@@ -188,7 +148,7 @@ const UpProfileDev = () => {
         </div>
 
         <div>
-          <input
+          <InputProfile
             {...register("softSkills")}
             placeholder="SoftSkills"
             value={softSkillsInput}
@@ -197,37 +157,77 @@ const UpProfileDev = () => {
         </div>
 
         <div>
-          <input
+          <InputProfile
             {...register("description")}
             placeholder="Descrição"
             value={descriptionInput}
             onChange={(e) => setDescriptionInput(e.target.value)}
           />
         </div>
+        <DivOption>
+  
+          <div>
+            <span>Você é coach?</span>
+            <input
+              {...register("is_coach")}
+              type="radio"
+              value={is_coachInput}
+              onChange={() => setIs_coachInput(true)}
+              checked={is_coachInput === true}
+              />
+            <label>Sou coach</label>
+            <input
+              {...register("is_coach")}
+              type="radio"
+              value={is_coachInput}
+              onChange={() => setIs_coachInput(false)}
+              checked={is_coachInput === false}
+              />
+            <label>Não sou coach</label>
+          </div>
+          <div>
+            <span>Você possui emprego?</span>
+            <input
+              {...register("have_job")}
+              type="radio"
+              value={have_jobInput}
+              onChange={() => setHave_jobInput("Empregado")}
+              checked={have_jobInput === "Empregado"}
+              />
+            <label>Empregado</label>
+            <input
+              {...register("have_job")}
+              type="radio"
+              value={have_jobInput}
+              onChange={() => setHave_jobInput("Desempregado")}
+              checked={have_jobInput === "Desempregado"}
+              />
+            <label>Desempregado</label>
+          </div>
+
+          <div>
+            <span>Você está disponível para trabalhar?</span>
+            <input
+              {...register("avaliable_job")}
+              type="radio"
+              value={avaliable_jobInput}
+              onChange={() => setAvaliable_jobInput("Disponivel")}
+              checked={avaliable_jobInput === "Disponivel"}
+              />
+            <label>Disponível</label>
+            <input
+              {...register("avaliable_job")}
+              type="radio"
+              value={avaliable_jobInput}
+              onChange={() => setAvaliable_jobInput("NaoDisponivel")}
+              checked={avaliable_jobInput === "NaoDisponivel"}
+              />
+            <label>Não Disponível</label>
+          </div>
+          </DivOption>
 
         <div>
-          <span>Você é coach?</span>
-          <input
-            {...register("is_coach")}
-            type="radio"
-            value={is_coachInput}
-            onChange={() => setIs_coachInput(true)}
-            checked={is_coachInput === true}
-          />
-          <label>Sou coach</label>
-          <input
-            {...register("is_coach")}
-            type="radio"
-            value={is_coachInput}
-            onChange={() => setIs_coachInput(false)}
-            checked={is_coachInput === false}
-          />
-
-          <label>Não sou coach</label>
-        </div>
-
-        <div>
-          <button type="submit">Atualizar</button>
+          <BtnAtt type="submit">Atualizar</BtnAtt>
         </div>
       </form>
     </>
