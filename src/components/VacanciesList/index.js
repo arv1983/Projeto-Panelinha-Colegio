@@ -92,7 +92,7 @@ const VacanciesList = (props) => {
             id: {item.id} vaga: {item.nome}
             <button onClick={() => deleta(item.id)}> Delete</button>
             {/* <div><button onClick={handleOpen} key={i}>
-                Editar vaga
+                Editar vaaaga
               </button>  */}
             <VacanciesListEdit dados={item} />
             {/* <Modal open={open} onClose={handleClose}>
