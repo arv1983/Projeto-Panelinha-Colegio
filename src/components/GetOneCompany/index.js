@@ -5,21 +5,24 @@ import { useForm } from "react-hook-form";
 
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);
-
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({});
+  } = useForm({
+  });
 
   const getCompany = (data) => {
-    console.log(data);
     api
-      .get(`/users?name=${data.company}&type=pj`)
+      .get(`/users?type=pj&${data.company?'name='+data.company:""}&
+      ${data.have_vacancies?'have_vacancies='+data.have_vacancies:""}`)
+
       .then((res) => {
-        setCompanie(res.data);
-        console.log(res);
+        
+        setCompanie(res.data)
+       
       })
       .catch((e) => console.log(e));
   };
@@ -32,15 +35,23 @@ const GetOneCompany = () => {
           placeholder="Company"
           {...register("company")}
         ></input>
+          <input
+          name="City"
+          placeholder="City"
+          {...register("have_vacancies")}
+        ></input>
         <button type="submit">Pesquisar</button>
       </form>
 
-      <h1>
+      
         {companie.map((comp, i) => (
-          <div key={i}>{comp.name}</div>
+          <>
+          <h1 key={i}>{comp.name}</h1>
+          <h2 key={i}>{comp.have_vacancies}</h2>
+          </>
         ))}
-      </h1>
-    </>
+      
+   </>
   );
 };
 

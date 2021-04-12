@@ -17,12 +17,15 @@ const Routes = () => {
       </Route>
       <Route exact path="/users/comp">
         <GetOneDev />
-        <UpProfileComp />
+       
         <GetOneCompany />
       </Route>
       <Route exact path="/users/dev">
         <GetOneCompany />
         <GetOneDev />
+      </Route>
+      <Route exact path="/up">
+      <UpProfileComp />
       </Route>
     </Switch>
   );
