@@ -10,12 +10,13 @@ import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
 
 const Login = () => {
-  const { id, setId, loggedUser } = User();
+  const { id, setId, loggedUser, userCountClick, setUserCountClick } = User();
 
   const history = useHistory();
 
   const handleData = (dados) => {
     console.log(dados);
+    setUserCountClick(userCountClick + 1);
     api
       .post("/login", dados)
       .then((response) => {
@@ -25,10 +26,8 @@ const Login = () => {
           "token",
           JSON.stringify(response.data.accessToken)
         );
-        console.log(jwt_decode(localStorage.getItem("token")).sub);
         setId(jwt_decode(localStorage.getItem("token")).sub);
-        loggedUser.type === "pf" && history.push("/users/dev");
-        loggedUser.type === "pj" && history.push("/users/comp");
+        history.push("/pesquisa");
       })
       .catch((e) => {
         console.log(e);
