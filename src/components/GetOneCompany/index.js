@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
 
-import { Input, BtnAtt } from "../../stylesGlobal";
+import {Input,BtnAtt} from "../../stylesGlobal";
+import CardUsers from "../CardUsers";
+import { Rotate } from "react-awesome-reveal";
 
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);
@@ -50,9 +52,16 @@ const GetOneCompany = () => {
           <button type="submit">Pesquisar</button>
         </div>
       </form>
+      <div style={{display: "flex", flexWrap: "wrap"}}>
+
       {companie.map((comp, i) => (
-        <div key={i}>{comp.name}</div>
+        <div key={i} >
+          <Rotate direction="bottom-left" cascade="true">
+            <CardUsers user={comp}/>
+          </Rotate>
+          </div>
       ))}
+      </div>
     </>
   );
 };

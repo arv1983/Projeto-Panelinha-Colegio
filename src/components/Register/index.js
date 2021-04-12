@@ -42,7 +42,7 @@ const Register = () => {
           city: "",
           social_medias: "",
           description: "",
-          have_vacancies: "",
+          have_vacancies: false,
           vacancies: "",
         })
         .then((response) => {
