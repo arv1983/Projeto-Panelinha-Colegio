@@ -2,37 +2,55 @@ import api from "../../services/api";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { Button, Input, Seletor } from "../../stylesGlobal";
 import { Boxes, Content } from "./styled";
 
 const Register = () => {
   const handleData = (dados) => {
     console.log(dados);
-    api
-      .post("/register", {
-        name: dados.name,
-        password: dados.password,
-        email: dados.email,
-        type: dados.type,
-        city: "",
-        have_job: "",
-        avaliable_job: "",
-        quarter: "",
-        social_medias: "",
-        cellPhone: "",
-        softSkills: "",
-        description: "",
-        is_coach: "",
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((e) => {
-        console.log("deu merda2");
-        console.log(e);
-      });
-    api.patch(`/register}`);
+
+    if (dados.type === "pf") {
+      api
+        .post("/register", {
+          name: dados.name,
+          password: dados.password,
+          email: dados.email,
+          type: dados.type,
+          city: "",
+          have_job: "",
+          avaliable_job: "",
+          quarter: "",
+          social_medias: "",
+          cellPhone: "",
+          softSkills: "",
+          description: "",
+          is_coach: "",
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else if (dados.type === "pj") {
+      api
+        .post("/register", {
+          name: dados.name,
+          password: dados.password,
+          email: dados.email,
+          type: dados.type,
+          city: "",
+          social_medias: "",
+          description: "",
+          vacancies: "",
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   };
 
   const schema = yup.object().shape({
