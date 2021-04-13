@@ -6,6 +6,9 @@ import api from "../../services/api";
 import { useState, useEffect } from "react";
 import VacanciesList from "../VacanciesList";
 
+import {InputProfile, BtnAtt} from '../../stylesGlobal'
+import {DivChecked, DivCampos} from './style';
+
 const Vacancies = () => {
   const [lista, setLista] = useState();
   const [token] = useState(() => {
@@ -32,6 +35,7 @@ const Vacancies = () => {
   }, [id]);
 
   const handleData = (dados) => {
+    console.log(dados);
     api
       .post(
         "/vacancies",
@@ -43,6 +47,21 @@ const Vacancies = () => {
           beneficios: dados.beneficios,
           local: dados.local,
           data: dados.data,
+          reactjs: dados.reactjs,
+          reactnative: dados.reactnative,
+          flutter: dados.flutter,
+          python: dados.python,
+          javascript: dados.javascript,
+          sql: dados.sql,
+          typescript: dados.typescript,
+          nodejs: dados.nodejs,
+          dart: dados.dart,
+          ruby_on_rails: dados.ruby_on_rails,
+          objective_c: dados.objective_c,
+          go: dados.go,
+          html5: dados.html5,
+          bootstrap: dados.bootstrap,
+          php: dados.php,
         },
         {
           headers: {
@@ -61,11 +80,26 @@ const Vacancies = () => {
   };
 
   const schema = yup.object().shape({
-    nome: yup.string().required("Campo obrigatorio"),
+    nome: yup.string().required("Campoobrigatorio"),
     descricao: yup.string().required("Campo obrigatorio"),
     presencial: yup.string().required("Campo obrigatorio"),
     beneficios: yup.string().required("Campo obrigatorio"),
     local: yup.string().required("Campo obrigatorio"),
+    reactjs: yup.boolean(),
+    reactNative: yup.boolean(),
+    flutter: yup.boolean(),
+    python: yup.boolean(),
+    javascript: yup.boolean(),
+    sql: yup.boolean(),
+    typescript: yup.boolean(),
+    nodejs: yup.boolean(),
+    dart: yup.boolean(),
+    ruby_on_rails: yup.boolean(),
+    objective_c: yup.boolean(),
+    go: yup.boolean(),
+    html5: yup.boolean(),
+    bootstrap: yup.boolean(),
+    php: yup.boolean(),
     data: yup.string().required("Campo obrigatorio"),
   });
   const {
@@ -97,40 +131,180 @@ const Vacancies = () => {
 
   return (
     <>
-      <h2>Anunciar vaga de emprego</h2>
       <form onSubmit={handleSubmit(handleData)}>
+        <DivCampos>
+          <div>
+            <InputProfile type="text" placeholder="nome" {...register("nome")} />
+          </div>
+          <div>
+            <InputProfile
+              type="text"
+              placeholder="descricao"
+              {...register("descricao")}
+              />
+          </div>
+          <div>
+            <InputProfile
+              type="text"
+              placeholder="presencial"
+              {...register("presencial")}
+              />
+          </div>
+          
+          <div>
+            <InputProfile
+              type="text"
+              placeholder="beneficios"
+              {...register("beneficios")}
+              />
+          </div>
+
+          <div>
+            <InputProfile type="text" placeholder="local" {...register("local")} />
+          </div>
+          <div>
+            <InputProfile type="text" placeholder="data" {...register("data")} />
+          </div>
+        </DivCampos>        
+        <DivChecked>
+          <div>
+            <input
+              type="checkbox"
+              name="reactjs"
+              value="true"
+              {...register("reactjs")}
+              />
+            <label for="ReactJs">ReactJs</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="reactnative"
+              value="true"
+              {...register("reactnative")}
+              />
+            <label for="ReactJs">React Native</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="flutter"
+              value="true"
+              {...register("flutter")}
+              />
+            <label for="flutter">Flutter</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="python"
+              value="true"
+              {...register("python")}
+              />
+            <label for="python">Python</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="javascript"
+              value="true"
+              {...register("javascript")}
+              />
+            <label for="javascript">JavaScript</label>
+          </div>
+
+          <div>
+            <input type="checkbox" name="sql" value="true" {...register("sql")} />
+            <label for="sql">SQL</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="typescript"
+              value="true"
+              {...register("typescript")}
+              />
+            <label for="typescript">Type scriṕt</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="nodejs"
+              value="true"
+              {...register("nodejs")}
+              />
+            <label for="nodejs">NodeJs</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="dart"
+              value="true"
+              {...register("dart")}
+              />
+            <label for="dart">Dart</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="ruby_on_rails"
+              value="true"
+              {...register("ruby_on_rails")}
+              />
+            <label for="ruby_on_rails">Ruby on rails</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="objective_c"
+              value="true"
+              {...register("objective_c")}
+              />
+            <label for="objective_c">Objective C</label>
+          </div>
+
+          <div>
+            <input type="checkbox" name="go" value="true" {...register("go")} />
+            <label for="go">Go</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="html5"
+              value="true"
+              {...register("html5")}
+              />
+            <label for="html5">Html5</label>
+          </div>
+
+          <div>
+            <input
+              type="checkbox"
+              name="bootstrap"
+              value="true"
+              {...register("bootstrap")}
+              />
+            <label for="bootstrap">Bootstrap</label>
+          </div>
+
+          <div>
+            <input type="checkbox" name="php" value="true" {...register("php")} />
+            <label for="php">Php</label>
+          </div>
+        </DivChecked>
+
         <div>
-          <input type="text" placeholder="nome" {...register("nome")} />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="descricao"
-            {...register("descricao")}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="presencial"
-            {...register("presencial")}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="beneficios"
-            {...register("beneficios")}
-          />
-        </div>
-        <div>
-          <input type="text" placeholder="local" {...register("local")} />
-        </div>
-        <div>
-          <input type="text" placeholder="data" {...register("data")} />
-        </div>
-        <div>
-          <button type="submit">Anunciar vaga</button>
+          <BtnAtt type="submit">Anunciar vaga</BtnAtt>
         </div>
       </form>
 

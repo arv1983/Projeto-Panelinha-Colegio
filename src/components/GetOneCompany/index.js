@@ -21,19 +21,21 @@ const GetOneCompany = () => {
   } = useForm({});
 
   const getCompany = (data) => {
+    console.log(data.company);
     api
       .get(
-        `/users?type=pj&${data.name ? "name=" + data.name : ""}&${
+        `/users?${data.company ? "name=" + data.company : ""}&${
           data.have_vacancies ? "have_vacancies=" + data.have_vacancies : ""
-        }&${data.city ? "city" + data.city : ""}`
+        }&${data.city ? "city=" + data.city : ""}&type=pj`
       )
-      .then((res) => {
-        setCompanie(res.data);
-        console.log(res.data);
-      });
 
-    reset();
+      .then((res) => {
+        console.log(res);
+        setCompanie(res.data);
+      })
+      .catch((e) => console.log(e));
   };
+
 
   return (
     <div>
