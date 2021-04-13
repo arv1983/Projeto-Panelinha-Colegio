@@ -1,12 +1,9 @@
-import { Hidden, Modal } from "@material-ui/core";
-import api from "../../services/api";
 import { useState, useEffect } from "react";
-import { User } from "../../providers/UserProvider";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Rotate } from "react-awesome-reveal";
+import CardVagas from "../CardVagas/index.js";
 import VacanciesListEdit from "./edit.js";
 
-import * as yup from "yup";
+import { DivVaga} from './style'
 
 const VacanciesList = (props) => {
   const [token] = useState(() => {
@@ -18,16 +15,23 @@ const VacanciesList = (props) => {
   });
 
   return (
-    <>
-      {props.lista &&
-        props.lista.map((item, i) => (
-          <div key={i}>
-            id: {item.id} vaga: {item.nome}
-            <button onClick={() => props.deleta(item.id)}> Delete</button>
-            <VacanciesListEdit dados={item} setLista={props.setLista} />
-          </div>
-        ))}
-    </>
+    <div>
+      <h1 style={{margin: "10px"}}>Vagas Cadastradas</h1>
+      <div style={{display:  "flex", flexWrap: "wrap"}}>
+        {props.lista &&
+          props.lista.map((item, i) => (
+            <div key={i}>
+              <Rotate>
+                  <DivVaga >
+                  <CardVagas item={item} />
+                  <button onClick={() => props.deleta(item.id)}> Delete</button>
+                  <VacanciesListEdit dados={item} setLista={props.setLista} />
+                </DivVaga>
+              </Rotate>
+            </div>
+          ))}
+      </div>
+    </div>
   );
 };
 

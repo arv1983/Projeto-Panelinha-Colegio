@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useHistory } from "react-router";
 import { User } from "../../providers/UserProvider";
 import { Vac } from "../../providers/VacancieProvider";
 import api from "../../services/api";
 
 const JoinVancacie = () => {
-  const { id } = User();
+  const { id, loggedUser } = User();
+  const history = useHistory();
+  
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {

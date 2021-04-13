@@ -7,7 +7,7 @@ import {DivComp, DivAvatar, DivProfile} from '../../stylesGlobal'
 const PageProfileComp = ()=>{    
     return (
         <>
-            {/* <Navegation/> */}
+            <Navegation/>
             <DivProfile>
                 <DivAvatar>
                     <img src="" alt=""></img>
@@ -16,7 +16,8 @@ const PageProfileComp = ()=>{
                     <UpProfileComp/>
                 </DivComp>
             </DivProfile>
-            <div  style={{ border:"1px solid white", width: "99%", height: "300px", margin: "30px auto" , textAlign: "center"}}>
+            <div  style={{ border:"1px solid white", width: "99%", height: "auto", margin: "30px auto" , textAlign: "center"}}>
+                <h1> Anuncia Vagas</h1>
                 <Vacancies/>
             </div>   
         </>
