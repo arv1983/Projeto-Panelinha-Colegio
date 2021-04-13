@@ -59,8 +59,8 @@ const Register = () => {
           city: "",
           social_medias: "",
           description: "",
-          have_vacancies: false,
-          vacancies: "",
+          have_vacancies:false,
+          vacancies:"",
         })
         .then((response) => {
           handleMessage();
