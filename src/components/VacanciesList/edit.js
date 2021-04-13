@@ -5,7 +5,11 @@ import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 
+import { User } from "../../providers/UserProvider";
+
 const VacanciesListEdit = (props) => {
+  const { id } = User();
+
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -13,15 +17,13 @@ const VacanciesListEdit = (props) => {
     }
     return JSON.parse(localToken);
   });
-  console.log(props);
 
   const [open, setOpen] = useState(false);
-  const handleOpen = (e) => {
-    console.log(e);
+  const handleOpen = () => {
     setOpen(true);
   };
-  const handleClose = (e) => {
-    console.log(e.target);
+
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -42,10 +44,9 @@ const VacanciesListEdit = (props) => {
   });
 
   const handleData = (dados) => {
-    console.log(dados);
     api
-      .post(
-        "/vacancies",
+      .patch(
+        `/vacancies/${props.dados.id}`,
         {
           nome: dados.nome,
           descricao: dados.descricao,
@@ -61,7 +62,14 @@ const VacanciesListEdit = (props) => {
         }
       )
       .then((response) => {
-        console.log(response);
+        if (response.status === 200) {
+          api
+            .get(`/vacancies?idUser=${id}`)
+            .then((response) => {
+              props.setLista(response.data);
+            })
+            .catch((e) => console.log(e));
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -79,7 +87,6 @@ const VacanciesListEdit = (props) => {
           <div>index:</div>
 
           <form onSubmit={handleSubmit(handleData)}>
-            {/* <input type="hidden" defaultValue={props.item.id}></input> */}
             <div>
               <input
                 type="text"
