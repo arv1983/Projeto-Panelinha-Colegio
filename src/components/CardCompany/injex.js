@@ -1,5 +1,6 @@
 import { Modal } from "@material-ui/core";
 import {useState} from "react";
+import ModalCompanay from "../ModalCompanay";
 import{ DivPai} from './style'
 
 const CardCompany = ({devs}) =>{
@@ -20,11 +21,10 @@ const CardCompany = ({devs}) =>{
                 </div>
                 <h2>{devs.name}</h2>
             </div>
+
             <button onClick={handleOpen}>Perfil Dev</button>
             <Modal open={open} onClose={handleClose}>
-                <div>
-                    <h3>{devs.name}</h3>
-                </div>
+                <ModalCompanay user={devs}/>
             </Modal>
         </DivPai>
     )
