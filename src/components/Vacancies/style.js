@@ -34,6 +34,11 @@ export const  DivCampos = styled.div`
         width: 58%;
         margin: auto;
     }
-
-
 `
+
+export const  DivBotao = styled.div`
+@media (min-width: 600px){
+        width: 68%;
+        margin: auto;
+    }
+ `

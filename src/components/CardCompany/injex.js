@@ -22,7 +22,7 @@ const CardCompany = ({devs}) =>{
                 <h2>{devs.name}</h2>
             </div>
 
-            <button onClick={handleOpen}>Perfil Dev</button>
+            <button onClick={handleOpen}>Perfil Empresa</button>
             <Modal open={open} onClose={handleClose}>
                 <ModalCompanay user={devs}/>
             </Modal>

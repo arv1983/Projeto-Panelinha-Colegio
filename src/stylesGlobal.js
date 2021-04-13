@@ -108,6 +108,12 @@ export const BtnAtt = styled.button`
     letter-spacing: 2px;
     width: 99%;
     margin: 10px 0 0 0;
+
+    :hover{
+        color: white;
+        background-color: black;
+    }
+
 `
 
 export const DivAvatar = styled.div`
