@@ -18,13 +18,17 @@ const Vacancies = () => {
 
   const { id } = User();
 
-  useEffect(() => {
+  const pegaLista = () => {
     api
       .get(`/vacancies?idUser=${id}`)
       .then((response) => {
         setLista(response.data);
       })
       .catch((e) => console.log(e));
+  };
+
+  useEffect(() => {
+    pegaLista();
   }, [id]);
 
   const handleData = (dados) => {
@@ -47,7 +51,9 @@ const Vacancies = () => {
         }
       )
       .then((response) => {
-        console.log(response);
+        if (response.status === 201) {
+          pegaLista();
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -69,6 +75,25 @@ const Vacancies = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  function deleta(numero) {
+    console.log(numero);
+
+    api
+      .delete(`/vacancies/${numero}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        console.log(response.status);
+        if (response.status === 200) {
+          pegaLista();
+        }
+      })
+      .catch((e) => console.log(e));
+  }
 
   return (
     <>
@@ -109,7 +134,7 @@ const Vacancies = () => {
         </div>
       </form>
 
-      <VacanciesList lista={lista} />
+      <VacanciesList lista={lista} setLista={setLista} deleta={deleta} />
     </>
   );
 };
