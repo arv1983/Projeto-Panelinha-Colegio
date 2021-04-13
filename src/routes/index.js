@@ -5,6 +5,7 @@ import PagePesquisa from "../pages/PagePesquisa";
 import PageProfileComp from "../pages/PageProfileCompany";
 import PageProfileUsers from "../pages/PageProfileUsers";
 import Vacancies from "../components/Vacancies";
+import JoinVancacie from "../components/JoinVacancie";
 
 const Routes = () => {
   return (
@@ -29,6 +30,11 @@ const Routes = () => {
       <Route exact path="/pesquisa">
         <PagePesquisa />
       </Route>
+      <Route exact path="/vacancies">
+        <JoinVancacie/>
+      </Route>
+    
+    
     </Switch>
   );
 };

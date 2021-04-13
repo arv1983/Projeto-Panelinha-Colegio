@@ -52,7 +52,7 @@ const UpProfileComp = () => {
         {
           name: nameInput,
           city: cityInput,
-          have_vacancies: have_vacanciesInput,
+          have_vacancies: false,
           social_medias: social_mediasInput,
           description: descriptionInput,
         },
