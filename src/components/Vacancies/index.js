@@ -5,12 +5,14 @@ import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
 import { useState, useEffect } from "react";
 import VacanciesList from "../VacanciesList";
+import { Vac } from "../../providers/VacancieProvider";
 
 import {InputProfile, BtnAtt} from '../../stylesGlobal'
 import {DivChecked, DivCampos, DivBotao} from './style';
 
 const Vacancies = () => {
   const [lista, setLista] = useState();
+  const{vacCountClick, setVacCountClick}= Vac();
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -22,6 +24,7 @@ const Vacancies = () => {
   const { id } = User();
 
   const pegaLista = () => {
+    setVacCountClick(vacCountClick + 1)
     api
       .get(`/vacancies?idUser=${id}`)
       .then((response) => {
@@ -70,6 +73,7 @@ const Vacancies = () => {
         }
       )
       .then((response) => {
+        setVacCountClick(vacCountClick + 1)
         if (response.status === 201) {
           pegaLista();
         }
@@ -111,7 +115,7 @@ const Vacancies = () => {
   });
 
   function deleta(numero) {
-    console.log(numero);
+    setVacCountClick(vacCountClick + 1)
 
     api
       .delete(`/vacancies/${numero}`, {

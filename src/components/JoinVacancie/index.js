@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
 import { User } from "../../providers/UserProvider";
+import { Vac } from "../../providers/VacancieProvider";
 import api from "../../services/api";
 
 const JoinVancacie = () => {
   const { id, loggedUser } = User();
   const history = useHistory();
-
+  
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -16,14 +17,14 @@ const JoinVancacie = () => {
     return JSON.parse(localToken);
   });
   const [vacancies, setVacancies] = useState([]);
-  const [count, setCount] = useState(0);
+  const {vacCountClick, setVacCountClick}= Vac();
 
   useEffect(() => {
     api
       .get(`/vacancies`)
       .then((res) => setVacancies(res.data))
       .catch((e) => console.log(e));
-  }, [count]);
+  }, [vacCountClick]);
 
   const subscribe = (vac_id) => {
     api
@@ -36,7 +37,7 @@ const JoinVancacie = () => {
           },
         }
       )
-      .then((res) => setCount(count + 1))
+      .then((res) => setVacCountClick(vacCountClick + 1))
       .catch((e) => console.log(e));
   };
 
@@ -51,7 +52,7 @@ const JoinVancacie = () => {
           },
         }
       )
-      .then((res) => setCount(count + 1))
+      .then((res) => setVacCountClick(vacCountClick + 1))
       .catch((e) => console.log(e));
   };
 
