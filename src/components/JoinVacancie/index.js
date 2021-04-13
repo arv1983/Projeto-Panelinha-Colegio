@@ -8,7 +8,6 @@ const JoinVancacie = () => {
   const { id, loggedUser } = User();
   const history = useHistory();
   
-  console.log(type);
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
