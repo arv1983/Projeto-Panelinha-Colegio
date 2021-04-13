@@ -22,6 +22,7 @@ const PagePesquisa = () =>{
                 <GetOneDev/>
             }
         </div>
+        
     )
 }
 
