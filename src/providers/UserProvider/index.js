@@ -13,8 +13,6 @@ export const UserProvider = (props) => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setId(JSON.parse(jwt_decode(localStorage.getItem("token")).sub));
-    } else {
-      setId(undefined);
     }
   }, []);
 
