@@ -3,6 +3,7 @@ import ModalCompanay from "../ModalCompanay"
 import {useState} from "react";
 
 import {DivPai, btnVagas} from './style';
+import ModalUser from "../ModalUser";
 
 const CardUsers = ({user}) =>{
     const [open, setOpen] = useState(false);
@@ -23,9 +24,9 @@ const CardUsers = ({user}) =>{
                 <h2>{user.name} {user.id}</h2>
             </div>
 
-            <button onClick={handleOpen}>Abrir Vagas</button>
+            <button onClick={handleOpen}>Exibir Pefil</button>
             <Modal open={open} onClose={handleClose}>
-                <ModalCompanay user={user}/>
+                <ModalUser user={user}/>
             </Modal>
         </DivPai>
     )

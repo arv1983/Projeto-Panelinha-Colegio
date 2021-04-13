@@ -390,6 +390,7 @@ const UpProfileDev = () => {
               {...register("is_coach")}
               type="radio"
               value={is_coachInput}
+              checked={true}
               onChange={() => setIs_coachInput(true)}
               checked={is_coachInput === true}
             />

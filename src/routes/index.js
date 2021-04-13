@@ -19,11 +19,6 @@ const Routes = () => {
       <Route exact path="/users/comp">
         <PageProfileComp />
       </Route>
-
-      <Route exact path="/vagas">
-        <Vacancies />
-      </Route>
-
       <Route exact path="/users/dev">
         <PageProfileUsers />
       </Route>
