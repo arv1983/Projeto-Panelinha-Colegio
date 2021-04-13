@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { Rotate } from "react-awesome-reveal";
 import CardCompany from "../CardCompany/injex";
+import {} from '../../stylesGlobal'
 
 const GetOneDev = () => {
   const [devs, setDevs] = useState([]);

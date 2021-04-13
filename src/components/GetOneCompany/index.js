@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
 
-import {Input,BtnAtt} from "../../stylesGlobal";
+import {InputProfile,DivOption} from "../../stylesGlobal";
 import CardUsers from "../CardUsers";
 import { Rotate } from "react-awesome-reveal";
 
@@ -36,17 +36,17 @@ const GetOneCompany = () => {
       <h2>Pesquisar uma Empresa pelo(a):</h2>
       <form onSubmit={handleSubmit(getCompany)}>
         <div>
-          <input placeholder="Nome da Empresa" {...register("name")}></input>
+          <InputProfile placeholder="Nome da Empresa" {...register("name")}></InputProfile>
         </div>
-        <div>
-          <span>Status de vaga de emprego:</span>
+        <DivOption>
+          <p>Status de vaga de emprego:</p>
           <input {...register("have_vacancies")} type="radio" value={true} />
           <label>Vagas abertas</label>
           <input {...register("have_vacancies")} type="radio" value={false} />
           <label>Vagas não abertas</label>
-        </div>
+        </DivOption>
         <div>
-          <input {...register("city")} placeholder="Cidade" />
+          <InputProfile {...register("city")} placeholder="Cidade" />
         </div>
         <div>
           <button type="submit">Pesquisar</button>
