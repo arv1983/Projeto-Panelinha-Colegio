@@ -1,29 +1,26 @@
 import GetOneCompany from "../../components/GetOneCompany";
 import Navegation from "../../components/Navegation";
-import GetAllDev from '../../components/GetAllUsersDev';
 import GetOneDev from "../../components/GetOneDev";
-import GetAllComp from "../../components/GetAllUsersCompany";
+import {useState} from 'react';
+
+import {DivTam} from './sytle';
+import {BtnAtt} from "../../stylesGlobal"
+
 const PagePesquisa = () =>{
+    const [estado ,setEstado] = useState(false);
+    
+    const AlterEstato = () =>{
+        setEstado(!estado);
+    }
     return(
         <div>
-            <Navegation/>
-            {/* 1 */}
-            {/* para que serve os componentes GetAllComp */}
-           {/* <GetAllComp/> */}
-           {/* 2 */}
-           {/* para que serve os componentes GetAllDev*/}
-           {/* <GetAllDev/> */}
-           3
-           <GetOneCompany/>
-           <br></br>
-           <br></br>
-           <br></br>
-           <br></br>
-           <br></br>
-           <br></br>
-           <br></br>
-           4
-           <GetOneDev/>
+            <DivTam>
+                <BtnAtt onClick={() => AlterEstato()} >{estado? "Pesquisa por Dev" : "Pesquisa por Empresaa"}</BtnAtt>
+            </DivTam>
+            {estado?
+                <GetOneCompany/> :
+                <GetOneDev/>
+            }
         </div>
     )
 }

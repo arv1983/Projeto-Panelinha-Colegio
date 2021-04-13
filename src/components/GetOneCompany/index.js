@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
 
-import {Input,BtnAtt} from "../../stylesGlobal";
+import {DivOption, BtnAtt} from "../../stylesGlobal";
+
+import { InputPesq, DivPesque, DivP, DivB } from './style'
+
 import CardUsers from "../CardUsers";
 import { Rotate } from "react-awesome-reveal";
+import CardCompany from "../CardCompany/injex";
 
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);
@@ -34,29 +38,44 @@ const GetOneCompany = () => {
 
 
   return (
-    <>
-      <h2>Pesquisar uma Empresa pelo(a):</h2>
+    <div>
+      <div style={{textAlign: "center", padding: "10px"}}>
+        <h2>Pesquisar uma Empresa:</h2>
+      </div>
       <form onSubmit={handleSubmit(getCompany)}>
-        <input placeholder="Companhia" {...register("company")}></input>
-        <input {...register("have_vacancies")} type="radio" value="true" />
-          <label>Há Vagas</label>
-          <input {...register("have_vacancies")} type="radio" value="false" />
-          <label>Não Há vagas</label>
+        <div>
+        <DivOption>
+          <h3>Status de vaga de emprego:</h3>
+          <input {...register("have_vacancies")} type="radio" value={true}  checked={true}/>
+          <label>Vagas abertas</label>
+          <input {...register("have_vacancies")} type="radio" value={false} />
+          <label>Vagas não abertas</label>
+        </DivOption>
 
-        <input placeholder="Cidade" {...register("city")}></input>
-        <button type="submit">Pesquisar</button>
+    <DivPesque>
+        <DivP>
+          <InputPesq placeholder="Nome da Empresa" {...register("name")}></InputPesq>
+        </DivP>
+        <DivP>
+          <InputPesq {...register("city")} placeholder="Cidade" />
+        </DivP> 
+        </DivPesque>
+        <DivB>
+          <BtnAtt type="submit">Pesquisar</BtnAtt>
+        </DivB>
+        </div>
       </form>
       <div style={{display: "flex", flexWrap: "wrap"}}>
 
       {companie.map((comp, i) => (
         <div key={i} >
           <Rotate direction="bottom-left" cascade="true">
-            <CardUsers user={comp}/>
+            <CardCompany  devs={comp}/>
           </Rotate>
           </div>
       ))}
       </div>
-    </>
+      </div>
   );
 };
 

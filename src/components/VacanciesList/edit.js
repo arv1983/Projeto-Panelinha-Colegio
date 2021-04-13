@@ -1,9 +1,9 @@
-import { Hidden, Modal } from "@material-ui/core";
+import {  Modal } from "@material-ui/core";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { User } from "../../providers/UserProvider";
 
@@ -147,7 +147,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.reactjs}
+                checked={props.dados.reactjs === true && <>checked</>}
                 name="reactjs"
                 value="true"
                 {...register("reactjs")}
@@ -158,7 +158,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.reactnative}
+                checked={props.dados.reactnative === true && <>checked</>}
                 name="reactjs"
                 value="true"
                 {...register("reactnative")}
@@ -169,7 +169,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.flutter}
+                checked={props.dados.flutter === true && <>checked</>}
                 name="flutter"
                 value="true"
                 {...register("flutter")}
@@ -180,7 +180,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.python}
+                checked={props.dados.python === true && <>checked</>}
                 name="python"
                 value="true"
                 {...register("python")}
@@ -191,7 +191,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.javascript}
+                checked={props.dados.javascript === true && <>checked</>}
                 name="javascript"
                 value="true"
                 {...register("javascript")}
@@ -202,18 +202,18 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.sql}
+                checked={props.dados.sql === true && <>checked</>}
                 name="sql"
                 value="true"
                 {...register("sql")}
               />
-              <label for="sql">sql</label>
+              <label for="sql">Sql</label>
             </div>
 
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.typescript}
+                checked={props.dados.typescript === true && <>checked</>}
                 name="typescript"
                 value="true"
                 {...register("typescript")}
@@ -224,7 +224,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.nodejs}
+                checked={props.dados.nodejs === true && <>checked</>}
                 name="nodejs"
                 value="true"
                 {...register("nodejs")}
@@ -235,7 +235,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.dart}
+                checked={props.dados.dart === true && <>checked</>}
                 name="dart"
                 value="true"
                 {...register("dart")}
@@ -246,67 +246,67 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.ruby_on_rails}
+                checked={props.dados.ruby_on_rails === true && <>checked</>}
                 name="ruby_on_rails"
                 value="true"
                 {...register("dados.ruby_on_rails")}
               />
-              <label for="ruby_on_rails">ruby_on_rails</label>
+              <label for="ruby_on_rails">Ruby on rails</label>
             </div>
 
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.objective_c}
+                checked={props.dados.objective_c === true && <>checked</>}
                 name="objective_c"
                 value="true"
                 {...register("dados.objective_c")}
               />
-              <label for="objective_c">objective_c</label>
+              <label for="objective_c">Objective C</label>
             </div>
 
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.go}
+                checked={props.dados.go === true && <>checked</>}
                 name="go"
                 value="true"
                 {...register("dados.go")}
               />
-              <label for="go">go</label>
+              <label for="go">Go</label>
             </div>
 
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.html5}
+                checked={props.dados.html5 === true && <>checked</>}
                 name="html5"
                 value="true"
                 {...register("dados.html5")}
               />
-              <label for="html5">html5</label>
+              <label for="html5">Html5</label>
             </div>
 
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.bootstrap}
+                checked={props.dados.bootstrap === true && <>checked</>}
                 name="bootstrap"
                 value="true"
                 {...register("dados.bootstrap")}
               />
-              <label for="bootstrap">bootstrap</label>
+              <label for="bootstrap">Bootstrap</label>
             </div>
 
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.php}
+                checked={props.dados.php === true && <>checked</>}
                 name="php"
                 value="true"
                 {...register("dados.php")}
               />
-              <label for="php">php</label>
+              <label for="php">Php</label>
             </div>
 
             <div>

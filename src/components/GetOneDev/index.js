@@ -1,8 +1,13 @@
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import api from "../../services/api";
 import { Rotate } from "react-awesome-reveal";
 import CardCompany from "../CardCompany/injex";
+import {} from '../../stylesGlobal'
+
+import {DivOption, BtnAtt} from "../../stylesGlobal";
+import {InputPesq, DivP, DivB, DivPesque} from './style';
+import CardUsers from "../CardUsers";
 
 const GetOneDev = () => {
   const [devs, setDevs] = useState([]);
@@ -34,65 +39,74 @@ const GetOneDev = () => {
   };
 
   return (
-    <>
-      <h2>Pesquise um Dev</h2>
+      <>
+      <div style={{textAlign: "center", padding: "10px"}}>
+        <h1>Pesquise um Dev</h1>
+      </div>
       <form onSubmit={handleSubmit(getDev)}>
-        <div>
-          <input {...register("name")} placeholder="Nome do dev" />
-        </div>
-
-        <div>
-          <span>O Dev possui emprego?</span>
-          <input {...register("have_job")} type="radio" value="Empregado" />
-          <label>Empregado</label>
-          <input {...register("have_job")} type="radio" value="Desempregado" />
-          <label>Desempregado</label>
-        </div>
-
-        <div>
-          <span>O Dev está disponível para trabalhar?</span>
-          <input
-            {...register("avaliable_job")}
-            type="radio"
-            value="Disponivel"
-          />
-          <label>Disponível</label>
-          <input
-            {...register("avaliable_job")}
-            type="radio"
-            value="NaoDisponivel"
-          />
-          <label>Não Disponível</label>
-        </div>
-
-        <div>
-          <input {...register("quarter")} placeholder="Período" />
-        </div>
-
-        <div>
-          <input {...register("softSkills")} placeholder="SoftSkills" />
-        </div>
-
-        <div>
-          <span>O Dev é coach?</span>
-          <input {...register("is_coach")} type="radio" value={true} />
-          <label>Sou coach</label>
-          <input {...register("is_coach")} type="radio" value={false} />
-          <label>Não sou coach</label>
-        </div>
-
-        <div>
-          <button type="submit">Pesquisar </button>
-        </div>
-      </form>
-      {devs.map((devs, i) => (
-        <div key={i}>
-          
-          <Rotate direction="bottom-left" cascade="true">
-            <CardCompany devs={devs}/>
-          </Rotate>
+        <DivOption>
+          <div>
+            <h3>O Dev possui emprego?</h3>
+            <input {...register("have_job")} type="radio" 
+            value="Empregado"  
+            checked={true}
+            />
+            <label>Empregado</label>
+            <input {...register("have_job")} type="radio"  value="Desempregado" />
+            <label>Desempregado</label>
           </div>
+
+          <div>
+            <h3>O Dev está disponível para trabalhar?</h3>
+            <input
+              {...register("avaliable_job")}
+              type="radio"
+              value="Disponivel"
+              checked={true}
+              />
+            <label>Disponível</label>
+            <input
+              {...register("avaliable_job")}
+              type="radio"
+              value="NaoDisponivel"
+              />
+            <label>Não Disponível</label>
+          </div>
+          <div>
+            <h3>O Dev é coach?</h3>
+            <input {...register("is_coach")} type="radio" value={true}   checked={true}/>
+            <label>Sou coach</label>
+            <input {...register("is_coach")} type="radio" value={false} />
+            <label>Não sou coach</label>
+          </div>
+        </DivOption>
+        <DivPesque>
+
+          <DivP>
+            <InputPesq {...register("name")} placeholder="Nome do dev" />
+          </DivP>
+
+          <DivP>
+            <InputPesq {...register("quarter")} placeholder="Período" />
+          </DivP>
+
+          <DivP>
+            <InputPesq {...register("softSkills")} placeholder="SoftSkills" />
+          </DivP>
+        </DivPesque>
+          <DivB>
+            <BtnAtt type="submit">Pesquisar </BtnAtt>
+          </DivB>
+      </form>
+      <div style={{display: "flex", flexWrap: "wrap"}}>      {devs.map((devs, i) => (
+        <div key={i}>
+          <Rotate direction="bottom-left" cascade="true">
+            <CardUsers user={devs}/>
+          </Rotate>
+        </div>
       ))}
+      </div>
+
     </>
   );
 };
