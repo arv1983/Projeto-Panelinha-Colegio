@@ -115,6 +115,7 @@ const UpProfileDev = () => {
     loggedUser.html5,
     loggedUser.bootstrap,
     loggedUser.php,
+    loggedUser.reactnative,
   ]);
 
   const {
