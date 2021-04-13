@@ -257,7 +257,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.objective_c}
+                checked={props.dados.objective_c === true && <>checked</>}
                 name="objective_c"
                 value="true"
                 {...register("dados.objective_c")}
@@ -268,7 +268,7 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                defaultValue={props.dados.go}
+                checked={props.dados.go === true && <>checked</>}
                 name="go"
                 value="true"
                 {...register("dados.go")}
