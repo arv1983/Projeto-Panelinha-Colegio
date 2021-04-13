@@ -1,14 +1,12 @@
-import GetOneCompany from "../../components/GetOneCompany";
 import Navegation from "../../components/Navegation";
 import UpProfileDev from "../../components/UpProfileDev";
-import GetAllComp from '../../components/GetAllUsersCompany'
 
 import {DivComp, DivAvatar, DivProfile} from '../../stylesGlobal'
 
 const PageProfileUsers = ()=>{    
     return (
         <div>
-            {/* <Navegation/> */}
+            <Navegation/>
             <DivProfile>
                 <DivAvatar>
                     <img src="" alt=""></img>
@@ -20,7 +18,6 @@ const PageProfileUsers = ()=>{
             <div  style={{ border:"1px solid white", width: "99%", height: "auto", margin: "30px auto" , textAlign: "center"}}>
                 <h1>Tecnologias</h1>
             </div>
-            <GetOneCompany/>
         </div>
         )
     }
