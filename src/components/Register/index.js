@@ -4,8 +4,24 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Input, Seletor } from "../../stylesGlobal";
 import { Boxes, Content } from "./styled";
+import { LogReg } from "../../providers/LogRegProvider";
+import { useState } from "react";
 
 const Register = () => {
+  const { setStatus } = LogReg();
+
+  const [message, setMessage] = useState(<div></div>);
+
+  const handleMessage = () => {
+    setTimeout(() => {
+      setMessage(<div>Cadastrado com sucesso!</div>);
+    }, 1000);
+    setTimeout(() => {
+      setMessage(<div></div>);
+      setStatus(false);
+    }, 4000);
+  };
+
   const handleData = (dados) => {
     console.log(dados);
 
@@ -27,6 +43,7 @@ const Register = () => {
           is_coach: "",
         })
         .then((response) => {
+          handleMessage();
           console.log(response);
         })
         .catch((e) => {
@@ -46,6 +63,7 @@ const Register = () => {
           vacancies:"",
         })
         .then((response) => {
+          handleMessage();
           console.log(response);
         })
         .catch((e) => {
@@ -97,6 +115,7 @@ const Register = () => {
             </Seletor>
           </div>
           <Button type="submit">cadastro</Button>
+          {message}
         </form>
       </Content>
     </Boxes>

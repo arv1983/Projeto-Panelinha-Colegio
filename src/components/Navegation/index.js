@@ -7,13 +7,17 @@ const Navegation = () => {
   const { loggedUser } = User();
 
   return (
-    <Head>
-      <Link to="/home">Principal</Link>
-      {loggedUser.type === "pj" && <Link to="/users/comp">Empresa</Link>}
-      {loggedUser.type === "pf" && <Link to="/users/dev">Usuário</Link>}
-      <Link to="/pesquisa">Pesquisa</Link>
-      <Logout />
-    </Head>
+    <>
+      {localStorage.getItem("token") && (
+        <Head>
+          <Link to="/home">Principal</Link>
+          {loggedUser.type === "pj" && <Link to="/users/comp">Empresa</Link>}
+          {loggedUser.type === "pf" && <Link to="/users/dev">Usuário</Link>}
+          <Link to="/pesquisa">Pesquisa</Link>
+          <Logout />
+        </Head>
+      )}
+    </>
   );
 };
 
