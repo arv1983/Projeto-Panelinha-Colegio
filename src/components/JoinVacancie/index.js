@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useCallback } from "react";
 import { useEffect } from "react";
 import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
@@ -28,7 +27,7 @@ const JoinVancacie = () => {
     api
       .patch(
         `/vacancies/${vac_id}`,
-        { cadId: id},
+        { cadId:""},
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -41,49 +40,54 @@ const JoinVancacie = () => {
   };
 
 
-
-
-
-
-
-
-
   return (
-      <>
-    <div>
+    <>
+  
     {vacancies &&
-      vacancies.map((vac) => (
-        <>
+      vacancies.map((vac) => {
         
-          <h1>{vac.nome}</h1>
-          <h2>{vac.cadId}</h2>
-          <button onClick={() => show(vac.id)}>Candidatar</button>
-        </>
-        
-      ))}
-     
-      
-  </div>
-
-
-
-
-    {/* <div>
-      {vacancies &&
-        vacancies.filter(item=>item.cadId === id).map((vac) => (
+        return(
           <>
-          
-            <h1>{vac.nome}</h1>
-            <h2>{vac.cadId}</h2>
-            <button onClick={() => show(vac.id)}>Remover</button>
+          <h1>nome vaga: {vac.nome}</h1>
+          <h2>id vaga:{vac.id}</h2>
+          <button onClick={() => show(vac.id)}>Candidatar</button>
           </>
-          
-        ))}
-       
-        
-    </div> */}
-    </>
-  );
-};
+        )
+})}
+
+
+{vacancies && vacancies.filter(item=>item.cadId === id).map(item=>(
+  <>
+  <h1>{item.nome}</h1>
+  </>
+
+
+))
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+  </>  
+  
+)
+
+}
 
 export default JoinVancacie;
