@@ -22,7 +22,7 @@ const VacanciesList = (props) => {
       {props.lista &&
         props.lista.map((item, i) => (
           <div key={i}>
-            id: {item.id} vaga: {item.nome}
+            id: {item.id} vagas: {item.nome}
             <button onClick={() => props.deleta(item.id)}> Delete</button>
             <VacanciesListEdit dados={item} setLista={props.setLista} />
           </div>
