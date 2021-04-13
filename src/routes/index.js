@@ -6,6 +6,7 @@ import PageProfileComp from "../pages/PageProfileCompany";
 import PageProfileUsers from "../pages/PageProfileUsers";
 import Vacancies from "../components/Vacancies";
 import JoinVancacie from "../components/JoinVacancie";
+import Error404 from "../pages/Error";
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
 
       <Route exact path="/vagas">
         <Vacancies />
+        <JoinVancacie/>
       </Route>
 
       <Route exact path="/users/dev">
@@ -30,10 +32,10 @@ const Routes = () => {
       <Route exact path="/pesquisa">
         <PagePesquisa />
       </Route>
-      <Route exact path="/vacancies">
-        <JoinVancacie/>
-      </Route>
-    
+      
+      <Route>
+        <Error404/>      
+        </Route>
     
     </Switch>
   );

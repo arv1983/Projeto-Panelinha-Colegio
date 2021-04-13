@@ -6,10 +6,11 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 
 import { User } from "../../providers/UserProvider";
+import { Vac } from "../../providers/VacancieProvider";
 
 const VacanciesListEdit = (props) => {
   const { id } = User();
-
+   const {vacCountClick, setVacCountClick} = Vac();
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -62,11 +63,13 @@ const VacanciesListEdit = (props) => {
         }
       )
       .then((response) => {
+        setVacCountClick(vacCountClick + 1)
         if (response.status === 200) {
           api
             .get(`/vacancies?idUser=${id}`)
             .then((response) => {
               props.setLista(response.data);
+              setVacCountClick(vacCountClick + 1)
             })
             .catch((e) => console.log(e));
         }
