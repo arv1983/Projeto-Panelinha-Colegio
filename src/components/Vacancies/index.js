@@ -77,7 +77,7 @@ const Vacancies = () => {
   };
 
   const schema = yup.object().shape({
-    nome: yup.string().required("Campo obrigatorio"),
+    nome: yup.string().required("Campoobrigatorio"),
     descricao: yup.string().required("Campo obrigatorio"),
     presencial: yup.string().required("Campo obrigatorio"),
     beneficios: yup.string().required("Campo obrigatorio"),

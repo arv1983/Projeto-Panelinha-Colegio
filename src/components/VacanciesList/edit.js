@@ -9,7 +9,6 @@ import { User } from "../../providers/UserProvider";
 
 const VacanciesListEdit = (props) => {
   console.log(props);
-
   const { id } = User();
 
   const [token] = useState(() => {
@@ -34,7 +33,7 @@ const VacanciesListEdit = (props) => {
     descricao: yup.string().required("Campo obrigatorio"),
     presencial: yup.string().required("Campo obrigatorio"),
     beneficios: yup.string().required("Campo obrigatorio"),
-    local: yup.string().required("Campo obrigatorio"),
+    local: yup.string().required("Campo obrigatori"),
     reactjs: yup.boolean(),
     reactNative: yup.boolean(),
     flutter: yup.boolean(),
@@ -116,7 +115,7 @@ const VacanciesListEdit = (props) => {
       <Modal open={open} onClose={handleClose}>
         <>
           <div>id: {props.dados.id}</div>
-          <div>vaga: </div>
+          <div>vaga:</div>
           <div>index:</div>
 
           <form onSubmit={handleSubmit(handleData)}>
