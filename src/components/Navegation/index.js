@@ -11,8 +11,9 @@ const Navegation = () => {
       {localStorage.getItem("token") && (
         <Head>
           <Link to="/home">Principal</Link>
-          {loggedUser.type === "pj" && <Link to="/users/comp">Empresa</Link>}
-          {loggedUser.type === "pf" && <Link to="/users/dev">Usuário</Link>}
+          {loggedUser.type === "pf"?<Link to="/users/dev">Usuário</Link> : <Link to="/users/comp">Empresa</Link>}
+          {/* {loggedUser.type === "pj" && }
+          {loggedUser.type === "pf" && } */}
           <Link to="/pesquisa">Pesquisa</Link>
           <Logout />
         </Head>

@@ -14,6 +14,7 @@ const PagePesquisa = () =>{
     }
     return(
         <div>
+            <Navegation/>
             <DivTam>
                 <BtnAtt onClick={() => AlterEstato()} >{estado? "Pesquisa por Dev" : "Pesquisa por Empresaa"}</BtnAtt>
             </DivTam>

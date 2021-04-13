@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 import { User } from "../../providers/UserProvider";
+import {DivPrincipal, DivChecked, Btn} from "./style"
+import {InputProfile} from '../../stylesGlobal'
 
 const VacanciesListEdit = (props) => {
   console.log(props);
@@ -113,14 +115,10 @@ const VacanciesListEdit = (props) => {
       <button onClick={handleOpen}>Editar vaga</button>
 
       <Modal open={open} onClose={handleClose}>
-        <>
-          <div>id: {props.dados.id}</div>
-          <div>vaga:</div>
-          <div>index:</div>
-
+        <DivPrincipal>
           <form onSubmit={handleSubmit(handleData)}>
             <div>
-              <input
+              <InputProfile
                 type="text"
                 defaultValue={props.dados.nome}
                 placeholder="nome"
@@ -128,7 +126,7 @@ const VacanciesListEdit = (props) => {
               />
             </div>
             <div>
-              <input
+              <InputProfile
                 type="text"
                 defaultValue={props.dados.descricao}
                 placeholder="descricao"
@@ -136,14 +134,39 @@ const VacanciesListEdit = (props) => {
               />
             </div>
             <div>
-              <input
+              <InputProfile
                 type="text"
                 defaultValue={props.dados.presencial}
                 placeholder="presencial"
                 {...register("presencial")}
               />
             </div>
+            <div>
+              <InputProfile
+                type="text"
+                defaultValue={props.dados.beneficios}
+                placeholder="beneficios"
+                {...register("beneficios")}
+              />
+            </div>
+            <div>
+              <InputProfile
+                type="text"
+                defaultValue={props.dados.local}
+                placeholder="local"
+                {...register("local")}
+              />
+            </div>
+            <div>
+              <InputProfile
+                type="text"
+                defaultValue={props.dados.data}
+                placeholder="data"
+                {...register("data")}
+              />
+            </div>
 
+            <DivChecked>
             <div>
               <input
                 type="checkbox"
@@ -308,36 +331,10 @@ const VacanciesListEdit = (props) => {
               />
               <label for="php">Php</label>
             </div>
-
-            <div>
-              <input
-                type="text"
-                defaultValue={props.dados.beneficios}
-                placeholder="beneficios"
-                {...register("beneficios")}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                defaultValue={props.dados.local}
-                placeholder="local"
-                {...register("local")}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                defaultValue={props.dados.data}
-                placeholder="data"
-                {...register("data")}
-              />
-            </div>
-            <div>
-              <button type="submit">editar</button>
-            </div>
+            </DivChecked>
+            <Btn type="submit">Editar</Btn>
           </form>
-        </>
+        </DivPrincipal>
       </Modal>
     </>
   );

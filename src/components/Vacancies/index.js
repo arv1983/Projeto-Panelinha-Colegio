@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import VacanciesList from "../VacanciesList";
 
 import {InputProfile, BtnAtt} from '../../stylesGlobal'
-import {DivChecked, DivCampos} from './style';
+import {DivChecked, DivCampos, DivBotao} from './style';
 
 const Vacancies = () => {
   const [lista, setLista] = useState();
@@ -303,9 +303,9 @@ const Vacancies = () => {
           </div>
         </DivChecked>
 
-        <div>
+        <DivBotao>
           <BtnAtt type="submit">Anunciar vaga</BtnAtt>
-        </div>
+        </DivBotao>
       </form>
 
       <VacanciesList lista={lista} setLista={setLista} deleta={deleta} />

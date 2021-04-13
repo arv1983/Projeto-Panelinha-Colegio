@@ -4,9 +4,8 @@ import { useForm } from "react-hook-form";
 
 import {DivOption, BtnAtt} from "../../stylesGlobal";
 
-import { InputPesq, DivPesque, DivP, DivB } from './style'
+import { InputPesq, DivPesque, DivP, DivB } from './style';
 
-import CardUsers from "../CardUsers";
 import { Rotate } from "react-awesome-reveal";
 import CardCompany from "../CardCompany/injex";
 
@@ -35,7 +34,6 @@ const GetOneCompany = () => {
       })
       .catch((e) => console.log(e));
   };
-
 
   return (
     <div>
