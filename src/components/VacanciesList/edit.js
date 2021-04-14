@@ -6,16 +6,13 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 import { User } from "../../providers/UserProvider";
-
-import { Vac } from "../../providers/VacancieProvider";
-
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
 
 const VacanciesListEdit = (props) => {
   console.log(props.dados.flutter);
   const { id } = User();
-  const { vacCountClick, setVacCountClick } = Vac();
+
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -99,13 +96,11 @@ const VacanciesListEdit = (props) => {
         }
       )
       .then((response) => {
-        setVacCountClick(vacCountClick + 1);
         if (response.status === 200) {
           api
             .get(`/vacancies?idUser=${id}`)
             .then((response) => {
               props.setLista(response.data);
-              setVacCountClick(vacCountClick + 1);
             })
             .catch((e) => console.log(e));
         }
