@@ -26,10 +26,6 @@ const Vacancies = () => {
     history.push("/home");
   }
 
-  if (!token) {
-    history.push("/");
-  }
-
   useEffect(() => {
     api
       .get(`/vacancies?idUser=${id}`)
