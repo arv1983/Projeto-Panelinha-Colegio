@@ -101,7 +101,6 @@ const UpProfileDev = () => {
     loggedUser.social_medias,
     loggedUser.softSkills,
     loggedUser.reactjs,
-    loggedUser.reactNative,
     loggedUser.flutter,
     loggedUser.python,
     loggedUser.javascript,
