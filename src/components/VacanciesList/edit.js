@@ -170,9 +170,10 @@ const VacanciesListEdit = (props) => {
             <div>
               <input
                 type="checkbox"
-                checked={props.dados.reactjs === true && <>checked</>}
+                // checked={props.dados.reactjs}
                 name="reactjs"
                 value="true"
+                onChange={(e) => e.target.checked}
                 {...register("reactjs")}
               />
               <label for="ReactJs">ReactJs</label>

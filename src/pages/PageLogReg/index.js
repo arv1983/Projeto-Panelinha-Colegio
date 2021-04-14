@@ -8,12 +8,12 @@ import { Rotate } from "react-awesome-reveal";
 import Navegation from "../../components/Navegation";
 
 import { LogReg } from "../../providers/LogRegProvider";
+import HeadMobile from "../../components/NavegationMob";
 
 const PageLogReg = () => {
   const { status, setStatus } = LogReg();
   return (
-    <>
-      <Navegation />
+    <>      
       <DivPai>
         <div className="divHead">aaaaaaa</div>
         <div className="divContent">
@@ -34,7 +34,7 @@ const PageLogReg = () => {
           <TextContent>
             <h3>Bem - Vindo</h3>
             <p>
-              Ao Kenzi Recrutamento, onde voce podera encontrar as Empresas
+              Ao Kenzie Recrutamento, onde voce podera encontrar as Empresas
               Parceiras e nossos Devs.
             </p>
             <p>

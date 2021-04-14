@@ -5,6 +5,7 @@ import {useState} from 'react';
 
 import {DivTam} from './sytle';
 import {BtnAtt} from "../../stylesGlobal"
+import NavegationMob from "../../components/NavegationMob";
 
 const PagePesquisa = () =>{
     const [estado ,setEstado] = useState(false);
@@ -12,9 +13,10 @@ const PagePesquisa = () =>{
     const AlterEstato = () =>{
         setEstado(!estado);
     }
+    console.log( window.screen.width )
     return(
         <div>
-            <Navegation/>
+             {window.screen.width >= 600 ? <Navegation /> : <NavegationMob/>}
             <DivTam>
                 <BtnAtt onClick={() => AlterEstato()} >{estado? "Pesquisa por Dev" : "Pesquisa por Empresaa"}</BtnAtt>
             </DivTam>

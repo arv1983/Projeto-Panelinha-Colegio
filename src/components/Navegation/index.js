@@ -1,22 +1,30 @@
 import { Link } from "react-router-dom";
 import { User } from "../../providers/UserProvider";
-import Logout from "../Logout";
-import { Head } from "./style";
+import { Div} from './style';
+import { useHistory } from "react-router-dom";
 
 const Navegation = () => {
   const { loggedUser } = User();
+  const { setId } = User();
+
+  const logoutUser = () => {
+    localStorage.removeItem("token");
+    setId(false);
+  };
 
   return (
     <>
       {localStorage.getItem("token") && (
-        <Head>
-          <Link to="/home">Principal</Link>
-          {loggedUser.type === "pf"?<Link to="/users/dev">Usuário</Link> : <Link to="/users/comp">Empresa</Link>}
-          {/* {loggedUser.type === "pj" && }
-          {loggedUser.type === "pf" && } */}
-          <Link to="/pesquisa">Pesquisa</Link>
-          <Logout />
-        </Head>
+        <Div>
+          <button><Link to="/home">Principal</Link></button>
+          <button>
+          {loggedUser.type === "pf"?
+                <Link to="/users/dev">Usuário</Link>
+                : <Link to="/users/comp">Empresa</Link>}
+          </button>
+          <button><Link to="/pesquisa">Pesquisa</Link></button>
+          <button onClick={logoutUser}><Link to="/">Sair</Link></button>
+        </Div>
       )}
     </>
   );
