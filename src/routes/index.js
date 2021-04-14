@@ -7,24 +7,9 @@ import PageProfileUsers from "../pages/PageProfileUsers";
 import Vacancies from "../components/Vacancies";
 import JoinVancacie from "../components/JoinVacancie";
 import Error404 from "../pages/Error";
-import { Token } from "../providers/TokenProvider";
-import { User } from "../providers/UserProvider";
+import GetVacanciesComp from "../components/GetVacanciesComp";
 
 const Routes = () => {
-  const { id, loggedUser } = User();
-
-  const { token } = Token();
-
-  const history = useHistory();
-
-  if (loggedUser.type === "pj") {
-    history.push("/home");
-  }
-
-  if (!token) {
-    history.push("/");
-  }
-
   return (
     <Switch>
       <Route exact path="/">
@@ -45,9 +30,14 @@ const Routes = () => {
       <Route exact path="/users/dev">
         <PageProfileUsers />
       </Route>
-      <Route exact path="/pesquisa">
+      {/* <Route exact path="/pesquisa">
         <PagePesquisa />
+        <GetVacanciesComp />
       </Route>
+
+      <Route exact path="/pesqvaga">
+        <GetVacanciesComp />
+      </Route> */}
 
       <Route>
         <Error404 />

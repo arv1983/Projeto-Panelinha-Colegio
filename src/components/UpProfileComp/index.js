@@ -16,8 +16,12 @@ const UpProfileComp = () => {
   const { token } = Token();
 
   const history = useHistory();
-  if (loggedUser.type === "pj") {
+  if (loggedUser.type === "pf") {
     history.push("/home");
+  }
+
+  if (!token) {
+    history.push("/");
   }
 
   const [nameInput, setNameInput] = useState("");

@@ -8,11 +8,21 @@ import { useEffect } from "react";
 
 import { InputProfile, BtnAtt, Label, DivOption } from "../../stylesGlobal";
 import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const UpProfileDev = () => {
   const { id, loggedUser } = User();
 
+  const history = useHistory();
+  if (loggedUser.type === "pj") {
+    history.push("/home");
+  }
+
   const { token } = Token();
+
+  if (!token) {
+    history.push("/");
+  }
 
   const [nameInput, setNameInput] = useState("");
 
