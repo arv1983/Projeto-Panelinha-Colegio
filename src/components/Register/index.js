@@ -38,7 +38,6 @@ const Register = () => {
           quarter: "",
           social_medias: "",
           cellPhone: "",
-          softSkills: "",
           description: "",
           is_coach: "",
         })
@@ -59,8 +58,6 @@ const Register = () => {
           city: "",
           social_medias: "",
           description: "",
-          have_vacancies:false,
-          vacancies:"",
         })
         .then((response) => {
           handleMessage();

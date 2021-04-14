@@ -1,4 +1,4 @@
-import {DivPai} from './syle'
+import { DivPai } from "./syle";
 
 const ModalCompanay = ({user}) =>{
    
@@ -12,4 +12,4 @@ const ModalCompanay = ({user}) =>{
     )
 }
 
-export default ModalCompanay
+export default ModalCompanay;

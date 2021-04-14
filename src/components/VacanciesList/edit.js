@@ -4,15 +4,13 @@ import * as yup from "yup";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-
 import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
 import {Vac} from "../../providers/VacancieProvider"
 const VacanciesListEdit = (props) => {
-  console.log(props.dados.flutter);
+  console.log(props);
   const { id } = User();
-   const {vacCountClick, setVacCountClick} = Vac();
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -20,16 +18,13 @@ const VacanciesListEdit = (props) => {
     }
     return JSON.parse(localToken);
   });
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const schema = yup.object().shape({
     nome: yup.string().required("Campo obrigatorio"),
     descricao: yup.string().required("Campo obrigatorio"),
@@ -60,9 +55,8 @@ const VacanciesListEdit = (props) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
   const handleData = (dados) => {
-    console.log(token);
+    console.log(dados.ruby_on_rails);
     api
       .patch(
         `/vacancies/${props.dados.id}`,
@@ -96,13 +90,11 @@ const VacanciesListEdit = (props) => {
         }
       )
       .then((response) => {
-        setVacCountClick(vacCountClick + 1)
         if (response.status === 200) {
           api
             .get(`/vacancies?idUser=${id}`)
             .then((response) => {
               props.setLista(response.data);
-              setVacCountClick(vacCountClick + 1)
             })
             .catch((e) => console.log(e));
         }
@@ -111,11 +103,9 @@ const VacanciesListEdit = (props) => {
         console.log(e);
       });
   };
-
   return (
     <>
       <button onClick={handleOpen}>Editar vaga</button>
-
       <Modal open={open} onClose={handleClose}>
         <DivPrincipal>
           <form onSubmit={handleSubmit(handleData)}>
@@ -167,168 +157,142 @@ const VacanciesListEdit = (props) => {
                 {...register("data")}
               />
             </div>
+            {console.log("teste")}
+            {console.log(props.dados.reactjs)}
             <DivChecked>
               <div>
                 <input
+                  {...register("reactjs")}
                   type="checkbox"
                   name="reactjs"
-                  value="true"
-                  {...register("reactjs")}
-                  onChange={(e) => e.target.checked}
+                  defaultChecked={props.dados.reactjs}
                 />
                 <label for="ReactJs">ReactJs</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="reactnative"
-                  value="true"
+                  defaultChecked={props.dados.reactnative}
                   {...register("reactnative")}
                 />
                 <label for="ReactNative">React Native</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="flutter"
-                  value="true"
+                  defaultChecked={props.dados.flutter}
                   {...register("flutter")}
                 />
                 <label for="flutter">Flutter</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="python"
-                  value="true"
+                  defaultChecked={props.dados.python}
                   {...register("python")}
                 />
                 <label for="python">Python</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="javascript"
-                  value="true"
+                  defaultChecked={props.dados.javascript}
                   {...register("javascript")}
                 />
                 <label for="python">JavaScript</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="sql"
-                  value="true"
+                  defaultChecked={props.dados.sql}
                   {...register("sql")}
                 />
                 <label for="sql">Sql</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="typescript"
-                  value="true"
+                  defaultChecked={props.dados.typescript}
                   {...register("typescript")}
                 />
                 <label for="typeScript">TypeScript</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="nodejs"
-                  value="true"
+                  defaultChecked={props.dados.nodejs}
                   {...register("nodejs")}
                 />
                 <label for="nodejs">NodeJs</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="dart"
-                  value="true"
+                  defaultChecked={props.dados.dart}
                   {...register("dart")}
                 />
                 <label for="dart">Dart</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="ruby_on_rails"
-                  value="true"
-                  {...register("dados.ruby_on_rails")}
+                  defaultChecked={props.dados.ruby_on_rails}
+                  {...register("ruby_on_rails")}
                 />
                 <label for="ruby_on_rails">Ruby on rails</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="objective_c"
-                  value="true"
-                  {...register("dados.objective_c")}
+                  defaultChecked={props.dados.objective_c}
+                  {...register("objective_c")}
                 />
                 <label for="objective_c">Objective C</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
                   onChange={(e) => e.target.checked}
                   name="go"
-                  value="true"
-                  {...register("dados.go")}
+                  defaultChecked={props.dados.go}
+                  {...register("go")}
                 />
                 <label for="go">Go</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="html5"
-                  value="true"
-                  {...register("dados.html5")}
+                  defaultChecked={props.dados.html5}
+                  {...register("html5")}
                 />
                 <label for="html5">Html5</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="bootstrap"
-                  value="true"
-                  {...register("dados.bootstrap")}
+                  defaultChecked={props.dados.bootstrap}
+                  {...register("bootstrap")}
                 />
                 <label for="bootstrap">Bootstrap</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
-                  onChange={(e) => e.target.checked}
                   name="php"
-                  value="true"
-                  {...register("dados.php")}
+                  defaultChecked={props.dados.php}
+                  {...register("php")}
                 />
                 <label for="php">Php</label>
               </div>
@@ -340,5 +304,4 @@ const VacanciesListEdit = (props) => {
     </>
   );
 };
-
 export default VacanciesListEdit;

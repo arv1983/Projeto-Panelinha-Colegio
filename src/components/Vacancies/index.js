@@ -7,35 +7,33 @@ import { useState, useEffect } from "react";
 import VacanciesList from "../VacanciesList";
 import { Vac } from "../../providers/VacancieProvider";
 
-import {InputProfile, BtnAtt} from '../../stylesGlobal'
-import {DivChecked, DivCampos, DivBotao} from './style';
+import { InputProfile, BtnAtt } from "../../stylesGlobal";
+import { DivChecked, DivCampos, DivBotao } from "./style";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const Vacancies = () => {
   const [lista, setLista] = useState();
-  const{vacCountClick, setVacCountClick}= Vac();
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
 
-  const { id } = User();
+  const { vacCountClick, setVacCountClick } = Vac();
 
-  const pegaLista = () => {
-    setVacCountClick(vacCountClick + 1)
+  const { token } = Token();
+
+  const { loggedUser, id } = User();
+
+  const history = useHistory();
+  if (loggedUser.type === "pf") {
+    history.push("/home");
+  }
+
+  useEffect(() => {
     api
       .get(`/vacancies?idUser=${id}`)
       .then((response) => {
         setLista(response.data);
       })
       .catch((e) => console.log(e));
-  };
-
-  useEffect(() => {
-    pegaLista();
-  }, [id]);
+  }, [id, vacCountClick]);
 
   const handleData = (dados) => {
     console.log(dados);
@@ -72,11 +70,8 @@ const Vacancies = () => {
           },
         }
       )
-      .then((response) => {
-        setVacCountClick(vacCountClick + 1)
-        if (response.status === 201) {
-          pegaLista();
-        }
+      .then(() => {
+        setVacCountClick(vacCountClick + 1);
       })
       .catch((e) => {
         console.log(e);
@@ -115,7 +110,7 @@ const Vacancies = () => {
   });
 
   function deleta(numero) {
-    setVacCountClick(vacCountClick + 1)
+    setVacCountClick(vacCountClick + 1);
 
     api
       .delete(`/vacancies/${numero}`, {
@@ -123,12 +118,8 @@ const Vacancies = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => {
-        console.log(response);
-        console.log(response.status);
-        if (response.status === 200) {
-          pegaLista();
-        }
+      .then(() => {
+        setVacCountClick(vacCountClick + 1);
       })
       .catch((e) => console.log(e));
   }
@@ -138,38 +129,50 @@ const Vacancies = () => {
       <form onSubmit={handleSubmit(handleData)}>
         <DivCampos>
           <div>
-            <InputProfile type="text" placeholder="nome" {...register("nome")} />
+            <InputProfile
+              type="text"
+              placeholder="nome"
+              {...register("nome")}
+            />
           </div>
           <div>
             <InputProfile
               type="text"
               placeholder="descricao"
               {...register("descricao")}
-              />
+            />
           </div>
           <div>
             <InputProfile
               type="text"
               placeholder="presencial"
               {...register("presencial")}
-              />
+            />
           </div>
-          
+
           <div>
             <InputProfile
               type="text"
               placeholder="beneficios"
               {...register("beneficios")}
-              />
+            />
           </div>
 
           <div>
-            <InputProfile type="text" placeholder="local" {...register("local")} />
+            <InputProfile
+              type="text"
+              placeholder="local"
+              {...register("local")}
+            />
           </div>
           <div>
-            <InputProfile type="text" placeholder="data" {...register("data")} />
+            <InputProfile
+              type="text"
+              placeholder="data"
+              {...register("data")}
+            />
           </div>
-        </DivCampos>        
+        </DivCampos>
         <DivChecked>
           <div>
             <input
@@ -177,7 +180,7 @@ const Vacancies = () => {
               name="reactjs"
               value="true"
               {...register("reactjs")}
-              />
+            />
             <label for="ReactJs">ReactJs</label>
           </div>
 
@@ -187,7 +190,7 @@ const Vacancies = () => {
               name="reactnative"
               value="true"
               {...register("reactnative")}
-              />
+            />
             <label for="ReactJs">React Native</label>
           </div>
 
@@ -195,9 +198,9 @@ const Vacancies = () => {
             <input
               type="checkbox"
               name="flutter"
-              value="true"
+              value={true}
               {...register("flutter")}
-              />
+            />
             <label for="flutter">Flutter</label>
           </div>
 
@@ -205,9 +208,9 @@ const Vacancies = () => {
             <input
               type="checkbox"
               name="python"
-              value="true"
+              value={true}
               {...register("python")}
-              />
+            />
             <label for="python">Python</label>
           </div>
 
@@ -217,12 +220,17 @@ const Vacancies = () => {
               name="javascript"
               value="true"
               {...register("javascript")}
-              />
+            />
             <label for="javascript">JavaScript</label>
           </div>
 
           <div>
-            <input type="checkbox" name="sql" value="true" {...register("sql")} />
+            <input
+              type="checkbox"
+              name="sql"
+              value="true"
+              {...register("sql")}
+            />
             <label for="sql">SQL</label>
           </div>
 
@@ -232,7 +240,7 @@ const Vacancies = () => {
               name="typescript"
               value="true"
               {...register("typescript")}
-              />
+            />
             <label for="typescript">Type scriṕt</label>
           </div>
 
@@ -242,7 +250,7 @@ const Vacancies = () => {
               name="nodejs"
               value="true"
               {...register("nodejs")}
-              />
+            />
             <label for="nodejs">NodeJs</label>
           </div>
 
@@ -252,7 +260,7 @@ const Vacancies = () => {
               name="dart"
               value="true"
               {...register("dart")}
-              />
+            />
             <label for="dart">Dart</label>
           </div>
 
@@ -262,7 +270,7 @@ const Vacancies = () => {
               name="ruby_on_rails"
               value="true"
               {...register("ruby_on_rails")}
-              />
+            />
             <label for="ruby_on_rails">Ruby on rails</label>
           </div>
 
@@ -272,7 +280,7 @@ const Vacancies = () => {
               name="objective_c"
               value="true"
               {...register("objective_c")}
-              />
+            />
             <label for="objective_c">Objective C</label>
           </div>
 
@@ -287,7 +295,7 @@ const Vacancies = () => {
               name="html5"
               value="true"
               {...register("html5")}
-              />
+            />
             <label for="html5">Html5</label>
           </div>
 
@@ -297,12 +305,17 @@ const Vacancies = () => {
               name="bootstrap"
               value="true"
               {...register("bootstrap")}
-              />
+            />
             <label for="bootstrap">Bootstrap</label>
           </div>
 
           <div>
-            <input type="checkbox" name="php" value="true" {...register("php")} />
+            <input
+              type="checkbox"
+              name="php"
+              value="true"
+              {...register("php")}
+            />
             <label for="php">Php</label>
           </div>
         </DivChecked>

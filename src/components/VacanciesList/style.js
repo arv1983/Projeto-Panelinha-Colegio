@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { COLORS } from '../../stylesGlobal';
+import Rotate from 'react-awesome-reveal';
+
+export const Animation = styled(Rotate)`
+    z-index: 1;
+`
 
 export const DivPrincipal = styled.div`
      background-color: ${COLORS.cinza};

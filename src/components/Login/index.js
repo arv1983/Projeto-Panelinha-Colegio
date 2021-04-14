@@ -8,12 +8,13 @@ import { User } from "../../providers/UserProvider";
 
 import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
+import { Token } from "../../providers/TokenProvider";
 
 const Login = () => {
   const { id, setId, loggedUser, userCountClick, setUserCountClick } = User();
 
   const history = useHistory();
-
+  const { token } = Token();
   const handleData = (dados) => {
     console.log(dados);
     setUserCountClick(userCountClick + 1);
@@ -27,7 +28,7 @@ const Login = () => {
           JSON.stringify(response.data.accessToken)
         );
         setId(jwt_decode(localStorage.getItem("token")).sub);
-        history.push("/pesquisa");
+        history.push("/home");
       })
       .catch((e) => {
         console.log(e);
@@ -46,6 +47,10 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  if (token) {
+    history.push("/home");
+  }
 
   return (
     <div>

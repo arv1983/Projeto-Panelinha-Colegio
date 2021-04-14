@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import PageHome from "../pages/PageHome";
 import PageLogReg from "../pages/PageLogReg";
 import PagePesquisa from "../pages/PagePesquisa";
@@ -24,14 +24,15 @@ const Routes = () => {
 
       <Route exact path="/vagas">
         <Vacancies />
-        <JoinVancacie/>
+        <JoinVancacie />
       </Route>
 
       <Route exact path="/users/dev">
         <PageProfileUsers />
       </Route>
       <Route exact path="/pesquisa">
-        <PagePesquisa />
+        <PagePesquisa /> 
+        <GetVacanciesComp/>
       </Route>
       <Route exact path="/teste">
         <GetVacanciesComp/>
@@ -39,9 +40,8 @@ const Routes = () => {
         <JoinVancacie/>
       </Route>
       <Route>
-        <Error404/>      
-        </Route>
-    
+        <Error404 />
+      </Route>
     </Switch>
   );
 };
