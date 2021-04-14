@@ -20,10 +20,6 @@ const UpProfileComp = () => {
     history.push("/home");
   }
 
-  if (!token) {
-    history.push("/");
-  }
-
   const [nameInput, setNameInput] = useState("");
 
   const [cityInput, setCityInput] = useState("");
