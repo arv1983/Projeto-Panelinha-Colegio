@@ -7,7 +7,6 @@ import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
-import {Vac} from "../../providers/VacancieProvider"
 const VacanciesListEdit = (props) => {
   console.log(props);
   const { id } = User();

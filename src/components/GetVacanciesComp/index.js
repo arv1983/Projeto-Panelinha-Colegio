@@ -4,7 +4,7 @@ import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
 
 const GetVacanciesComp = () => {
-   const { id } = User();
+  const { id } = User();
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {

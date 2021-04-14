@@ -7,7 +7,7 @@ import PageProfileUsers from "../pages/PageProfileUsers";
 import Vacancies from "../components/Vacancies";
 import JoinVancacie from "../components/JoinVacancie";
 import Error404 from "../pages/Error";
-import GetVacanciesComp from "../components/GetVancaciesComp";
+import GetVacanciesComp from "../components/GetVacanciesComp";
 
 const Routes = () => {
   return (
@@ -33,11 +33,6 @@ const Routes = () => {
       <Route exact path="/pesquisa">
         <PagePesquisa /> 
         <GetVacanciesComp/>
-      </Route>
-      <Route exact path="/teste">
-        <GetVacanciesComp/>
-      
-        <JoinVancacie/>
       </Route>
       <Route>
         <Error404 />
