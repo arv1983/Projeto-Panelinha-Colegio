@@ -1,10 +1,10 @@
 import GetOneCompany from "../../components/GetOneCompany";
-import Navegation from "../../components/Navegation";
 import GetOneDev from "../../components/GetOneDev";
 import {useState} from 'react';
 
 import {DivTam} from './sytle';
 import {BtnAtt} from "../../stylesGlobal"
+import AlteraHead from "../../components/AlterHead";
 
 const PagePesquisa = () =>{
     const [estado ,setEstado] = useState(false);
@@ -12,9 +12,10 @@ const PagePesquisa = () =>{
     const AlterEstato = () =>{
         setEstado(!estado);
     }
+    console.log( window.screen.width )
     return(
         <div>
-            <Navegation/>
+            <AlteraHead/>
             <DivTam>
                 <BtnAtt onClick={() => AlterEstato()} >{estado? "Pesquisa por Dev" : "Pesquisa por Empresaa"}</BtnAtt>
             </DivTam>

@@ -8,9 +8,19 @@ import {} from "../../stylesGlobal";
 import { DivOption, BtnAtt } from "../../stylesGlobal";
 import { InputPesq, DivP, DivB, DivPesque } from "./style";
 import CardUsers from "../CardUsers";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const GetOneDev = () => {
   const [devs, setDevs] = useState([]);
+
+  const { token } = Token();
+
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
 
   const {
     register,

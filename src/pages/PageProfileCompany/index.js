@@ -1,3 +1,4 @@
+import AlteraHead from "../../components/AlterHead";
 import Navegation from "../../components/Navegation";
 import UpProfileComp from "../../components/UpProfileComp";
 import Vacancies from "../../components/Vacancies";
@@ -7,7 +8,7 @@ import {DivComp, DivAvatar, DivProfile} from '../../stylesGlobal'
 const PageProfileComp = ()=>{    
     return (
         <>
-            <Navegation/>
+            <AlteraHead/>
             <DivProfile>
                 <DivAvatar>
                     <img src="" alt=""></img>

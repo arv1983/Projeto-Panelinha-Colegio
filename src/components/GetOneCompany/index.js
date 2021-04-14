@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 import { DivOption, BtnAtt } from "../../stylesGlobal";
 
@@ -11,6 +13,14 @@ import CardCompany from "../CardCompany/";
 
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);
+
+  const { token } = Token();
+
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
 
   const {
     register,
