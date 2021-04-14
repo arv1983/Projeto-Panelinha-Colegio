@@ -30,14 +30,14 @@ const Routes = () => {
       <Route exact path="/users/dev">
         <PageProfileUsers />
       </Route>
-      {/* <Route exact path="/pesquisa">
+      <Route exact path="/pesquisa">
         <PagePesquisa />
         <GetVacanciesComp />
       </Route>
 
       <Route exact path="/pesqvaga">
         <GetVacanciesComp />
-      </Route> */}
+      </Route>
 
       <Route>
         <Error404 />
