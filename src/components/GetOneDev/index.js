@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import {  useState } from "react";
+import { useState } from "react";
 import api from "../../services/api";
 import { Rotate } from "react-awesome-reveal";
-import CardCompany from "../CardCompany/injex";
-import {} from '../../stylesGlobal'
+import CardCompany from "../CardCompany/";
+import {} from "../../stylesGlobal";
 
-import {DivOption, BtnAtt} from "../../stylesGlobal";
-import {InputPesq, DivP, DivB, DivPesque} from './style';
+import { DivOption, BtnAtt } from "../../stylesGlobal";
+import { InputPesq, DivP, DivB, DivPesque } from "./style";
 import CardUsers from "../CardUsers";
 
 const GetOneDev = () => {
@@ -39,20 +39,26 @@ const GetOneDev = () => {
   };
 
   return (
-      <>
-      <div style={{textAlign: "center", padding: "10px"}}>
+    <>
+      <div style={{ textAlign: "center", padding: "10px" }}>
         <h1>Pesquise um Dev</h1>
       </div>
       <form onSubmit={handleSubmit(getDev)}>
         <DivOption>
           <div>
             <h3>O Dev possui emprego?</h3>
-            <input {...register("have_job")} type="radio" 
-            value="Empregado"  
-            checked={true}
+            <input
+              {...register("have_job")}
+              type="radio"
+              value="Empregado"
+              checked={true}
             />
             <label>Empregado</label>
-            <input {...register("have_job")} type="radio"  value="Desempregado" />
+            <input
+              {...register("have_job")}
+              type="radio"
+              value="Desempregado"
+            />
             <label>Desempregado</label>
           </div>
 
@@ -63,25 +69,29 @@ const GetOneDev = () => {
               type="radio"
               value="Disponivel"
               checked={true}
-              />
+            />
             <label>Disponível</label>
             <input
               {...register("avaliable_job")}
               type="radio"
               value="NaoDisponivel"
-              />
+            />
             <label>Não Disponível</label>
           </div>
           <div>
             <h3>O Dev é coach?</h3>
-            <input {...register("is_coach")} type="radio" value={true}   checked={true}/>
+            <input
+              {...register("is_coach")}
+              type="radio"
+              value={true}
+              checked={true}
+            />
             <label>Sou coach</label>
             <input {...register("is_coach")} type="radio" value={false} />
             <label>Não sou coach</label>
           </div>
         </DivOption>
         <DivPesque>
-
           <DivP>
             <InputPesq {...register("name")} placeholder="Nome do dev" />
           </DivP>
@@ -94,19 +104,20 @@ const GetOneDev = () => {
             <InputPesq {...register("softSkills")} placeholder="SoftSkills" />
           </DivP>
         </DivPesque>
-          <DivB>
-            <BtnAtt type="submit">Pesquisar </BtnAtt>
-          </DivB>
+        <DivB>
+          <BtnAtt type="submit">Pesquisar </BtnAtt>
+        </DivB>
       </form>
-      <div style={{display: "flex", flexWrap: "wrap"}}>      {devs.map((devs, i) => (
-        <div key={i}>
-          <Rotate direction="bottom-left" cascade="true">
-            <CardUsers user={devs}/>
-          </Rotate>
-        </div>
-      ))}
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {" "}
+        {devs.map((devs, i) => (
+          <div key={i}>
+            <Rotate direction="bottom-left" cascade="true">
+              <CardUsers user={devs} />
+            </Rotate>
+          </div>
+        ))}
       </div>
-
     </>
   );
 };

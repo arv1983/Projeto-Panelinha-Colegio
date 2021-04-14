@@ -70,10 +70,10 @@ const Register = () => {
   };
 
   const schema = yup.object().shape({
-    name: yup.string().required("Field Required"),
-    email: yup.string().required("Field Required"),
-    password: yup.string().required("Field Required"),
-    type: yup.string().required("Field Required"),
+    name: yup.string().required("Campo obrigatório"),
+    email: yup.string().required("Campo obrigatório"),
+    password: yup.string().required("Campo obrigatório"),
+    type: yup.string().required("Campo obrigatório"),
   });
   const {
     register,
@@ -89,7 +89,7 @@ const Register = () => {
       <Content>
         <form onSubmit={handleSubmit(handleData)}>
           <div>
-            <Input type="text" placeholder="Name" {...register("name")} />
+            <Input type="text" placeholder="Nome" {...register("name")} />
             <p style={{ color: "red" }}>{errors.name?.message}</p>
           </div>
           <div>
@@ -97,11 +97,7 @@ const Register = () => {
             <p style={{ color: "red" }}>{errors.email?.message}</p>
           </div>
           <div>
-            <Input
-              type="text"
-              placeholder="Password"
-              {...register("password")}
-            />
+            <Input type="text" placeholder="Senha" {...register("password")} />
             <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <div>

@@ -35,8 +35,8 @@ const Login = () => {
   };
 
   const schema = yup.object().shape({
-    email: yup.string().required("Required"),
-    password: yup.string().required("Field Required"),
+    email: yup.string().required("Campo obrigatório"),
+    password: yup.string().required("Campo obrigatório"),
   });
 
   const {
@@ -68,7 +68,7 @@ const Login = () => {
             <div>
               <Input
                 {...register("password")}
-                placeholder="Password"
+                placeholder="Senha"
                 error={!!errors.password}
               />
             </div>
