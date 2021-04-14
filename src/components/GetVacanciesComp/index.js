@@ -1,27 +1,14 @@
 import { Checkbox } from "@material-ui/core";
 import { useEffect, useState } from "react";
+import { Token } from "../../providers/TokenProvider";
 import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
 
 const GetVacanciesComp = () => {
   const { id } = User();
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  const { token } = Token();
   const [vacancies, setVacancies] = useState([]);
   const [users, setUsers] = useState([]);
-
-  // meu codigo
-
-  const handleData = (e) => {
-    setVacancies([]);
-    e.preventDefault();
-    console.log(e.target.busca.value);
-    console.log("presencial" + e.target.python.checked);
 
     api
       .get(

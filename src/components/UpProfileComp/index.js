@@ -6,18 +6,23 @@ import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 
-import {InputProfile, BtnAtt, DivOption} from '../../stylesGlobal'
+import { InputProfile, BtnAtt, DivOption } from "../../stylesGlobal";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const UpProfileComp = () => {
   const { id, loggedUser } = User();
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  const { token } = Token();
+
+  const history = useHistory();
+  if (loggedUser.type === "pf") {
+    history.push("/home");
+  }
+
+  if (!token) {
+    history.push("/");
+  }
 
   const [nameInput, setNameInput] = useState("");
 

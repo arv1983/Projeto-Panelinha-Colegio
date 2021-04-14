@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import PageHome from "../pages/PageHome";
 import PageLogReg from "../pages/PageLogReg";
 import PagePesquisa from "../pages/PagePesquisa";

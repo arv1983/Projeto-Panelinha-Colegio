@@ -8,12 +8,13 @@ import { User } from "../../providers/UserProvider";
 
 import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
+import { Token } from "../../providers/TokenProvider";
 
 const Login = () => {
   const { id, setId, loggedUser, userCountClick, setUserCountClick } = User();
 
   const history = useHistory();
-
+  const { token } = Token();
   const handleData = (dados) => {
     console.log(dados);
     setUserCountClick(userCountClick + 1);
@@ -47,7 +48,7 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  if (localStorage.getItem("token")) {
+  if (token) {
     history.push("/home");
   }
 

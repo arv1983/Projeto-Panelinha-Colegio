@@ -8,18 +8,14 @@ import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const VacanciesListEdit = (props) => {
   console.log(props.dados.flutter);
   const { id } = User();
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  const { token } = Token();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
