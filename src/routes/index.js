@@ -31,13 +31,8 @@ const Routes = () => {
         <PageProfileUsers />
       </Route>
       <Route exact path="/pesquisa">
-        <PagePesquisa />
+        <PagePesquisa /> 
       </Route>
-
-      <Route exact path="/pesqvaga">
-        <GetVacanciesComp />
-      </Route>
-
       <Route>
         <Error404 />
       </Route>
