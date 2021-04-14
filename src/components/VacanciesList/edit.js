@@ -6,13 +6,9 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 import { User } from "../../providers/UserProvider";
-<<<<<<< HEAD
-import { Vac } from "../../providers/VacancieProvider";
-=======
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
->>>>>>> development
-
+import {Vac} from "../../providers/VacancieProvider"
 const VacanciesListEdit = (props) => {
   console.log(props.dados.flutter);
   const { id } = User();
