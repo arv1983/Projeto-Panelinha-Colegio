@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import { Token } from "../../providers/TokenProvider";
 import { User } from "../../providers/UserProvider";
 import { Vac } from "../../providers/VacancieProvider";
 import api from "../../services/api";
@@ -9,15 +10,13 @@ const JoinVancacie = () => {
   const { id, loggedUser } = User();
   const history = useHistory();
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  const { token } = Token();
   const [vacancies, setVacancies] = useState([]);
   const { vacCountClick, setVacCountClick } = Vac();
+
+  if (loggedUser.type === "pj") {
+    history.push("/home");
+  }
 
   useEffect(() => {
     api

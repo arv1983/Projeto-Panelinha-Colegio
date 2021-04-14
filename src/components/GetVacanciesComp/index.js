@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
+import { Token } from "../../providers/TokenProvider";
 import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
 
 const GetVacanciesComp = () => {
   const { id } = User();
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
-  const [vacancies, setVacancies]= useState([]);
-  const [users, setUsers]=useState([]);
+  const { token } = Token();
+  const [vacancies, setVacancies] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     api
@@ -23,8 +18,8 @@ const GetVacanciesComp = () => {
       })
       .then((res) => setVacancies(res.data))
       .catch((e) => console.log(e));
-       
-      api
+
+    api
       .get(`/users?type=pf`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -32,47 +27,41 @@ const GetVacanciesComp = () => {
       })
       .then((res) => setUsers(res.data))
       .catch((e) => console.log(e));
+  }, []);
 
-      
-  },[]);
+  return (
+    <>
+      <div>
+        {vacancies &&
+          vacancies.map((item) => (
+            <>
+              <div>
+                <h1>nome:{item.nome}</h1>
+                <h2>presencial:{item.presencial}</h2>
+                <h2>local:{item.local}</h2>
+                <h2>beneficios:{item.beneficios}</h2>
+                <h2>cadId:{item.cadId}</h2>
+              </div>
+            </>
+          ))}
+      </div>
+      <br></br>
+      <br></br>
+      <br></br>
 
-
-
-  return (<>
-   <div>
-     {vacancies && vacancies.map(item=>(
-        <>
-        <div> 
-         <h1>nome:{item.nome}</h1>
-         <h2>presencial:{item.presencial}</h2> 
-         <h2>local:{item.local}</h2>
-         <h2>beneficios:{item.beneficios}</h2>
-         <h2>cadId:{item.cadId}</h2>
-         </div>
-         
-        </>
-     ))}
-     </div>
-<br></br>
-<br></br>
-<br></br>
-
-<div>
-{users && users.map(item=>(
-        <>
-        <div> 
-         <h1>{item.name}</h1>
-         <h2>{item.id}</h2>
-         </div>
-         
-        </>
-     ))}
-      
-
-  </div>
-  </>
-  )
-  
+      <div>
+        {users &&
+          users.map((item) => (
+            <>
+              <div>
+                <h1>{item.name}</h1>
+                <h2>{item.id}</h2>
+              </div>
+            </>
+          ))}
+      </div>
+    </>
+  );
 };
 
 export default GetVacanciesComp;

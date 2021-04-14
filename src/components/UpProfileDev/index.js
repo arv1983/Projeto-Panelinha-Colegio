@@ -7,17 +7,12 @@ import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 
 import { InputProfile, BtnAtt, Label, DivOption } from "../../stylesGlobal";
+import { Token } from "../../providers/TokenProvider";
 
 const UpProfileDev = () => {
   const { id, loggedUser } = User();
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  const { token } = Token();
 
   const [nameInput, setNameInput] = useState("");
 
