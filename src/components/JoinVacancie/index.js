@@ -6,7 +6,8 @@ import { Vac } from "../../providers/VacancieProvider";
 import api from "../../services/api";
 
 const JoinVancacie = () => {
-  const { id } = User();
+  const { id, loggedUser } = User();
+  const history = useHistory();
 
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
@@ -36,10 +37,7 @@ const JoinVancacie = () => {
           },
         }
       )
-      .then((res) => {
-        setVacCountClick(vacCountClick + 1);
-        console.log(res);
-      })
+      .then((res) => setVacCountClick(vacCountClick + 1))
       .catch((e) => console.log(e));
   };
 
@@ -54,10 +52,7 @@ const JoinVancacie = () => {
           },
         }
       )
-      .then((res) => {
-        setVacCountClick(vacCountClick + 1);
-        console.log(res);
-      })
+      .then((res) => setVacCountClick(vacCountClick + 1))
       .catch((e) => console.log(e));
   };
 
