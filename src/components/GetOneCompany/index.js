@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import api from "../../services/api";
 import { useForm } from "react-hook-form";
 
 import { DivOption, BtnAtt } from "../../stylesGlobal";
