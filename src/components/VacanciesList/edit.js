@@ -4,28 +4,26 @@ import * as yup from "yup";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-
 import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
-import { Token } from "../../providers/TokenProvider";
-import { useHistory } from "react-router-dom";
-
 const VacanciesListEdit = (props) => {
   console.log(props);
   const { id } = User();
-
-  const { token } = Token();
-
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const schema = yup.object().shape({
     nome: yup.string().required("Campo obrigatorio"),
     descricao: yup.string().required("Campo obrigatorio"),
@@ -56,7 +54,6 @@ const VacanciesListEdit = (props) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
   const handleData = (dados) => {
     console.log(dados.ruby_on_rails);
     api
@@ -105,11 +102,9 @@ const VacanciesListEdit = (props) => {
         console.log(e);
       });
   };
-
   return (
     <>
       <button onClick={handleOpen}>Editar vaga</button>
-
       <Modal open={open} onClose={handleClose}>
         <DivPrincipal>
           <form onSubmit={handleSubmit(handleData)}>
@@ -173,7 +168,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="ReactJs">ReactJs</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -183,7 +177,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="ReactNative">React Native</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -193,7 +186,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="flutter">Flutter</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -203,7 +195,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="python">Python</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -213,7 +204,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="python">JavaScript</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -223,7 +213,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="sql">Sql</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -233,7 +222,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="typeScript">TypeScript</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -243,7 +231,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="nodejs">NodeJs</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -253,7 +240,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="dart">Dart</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -263,7 +249,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="ruby_on_rails">Ruby on rails</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -273,7 +258,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="objective_c">Objective C</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -284,7 +268,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="go">Go</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -294,7 +277,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="html5">Html5</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -304,7 +286,6 @@ const VacanciesListEdit = (props) => {
                 />
                 <label for="bootstrap">Bootstrap</label>
               </div>
-
               <div>
                 <input
                   type="checkbox"
@@ -322,5 +303,4 @@ const VacanciesListEdit = (props) => {
     </>
   );
 };
-
 export default VacanciesListEdit;
