@@ -4,11 +4,9 @@ import { useHistory } from "react-router";
 import { User } from "../../providers/UserProvider";
 import { Vac } from "../../providers/VacancieProvider";
 import api from "../../services/api";
-
 const JoinVancacie = () => {
   const { id, loggedUser } = User();
   const history = useHistory();
-
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -18,7 +16,7 @@ const JoinVancacie = () => {
   });
   const [vacancies, setVacancies] = useState([]);
   const { vacCountClick, setVacCountClick } = Vac();
-
+  const [cad, setCad] = useState([]);
   useEffect(() => {
     api
       .get(`/vacancies`)
@@ -27,10 +25,13 @@ const JoinVancacie = () => {
   }, [vacCountClick]);
 
   const subscribe = (vac_id) => {
+    console.log(vac_id);
+    console.log("teste");
+    // setCad([...3])
     api
       .patch(
-        `/vacancies/${vac_id}`,
-        { cadId: id },
+        `/vacancies/1`,
+        { cadId: [1, 3] },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,12 +41,11 @@ const JoinVancacie = () => {
       .then((res) => setVacCountClick(vacCountClick + 1))
       .catch((e) => console.log(e));
   };
-
   const unSubscribe = (vac_id) => {
     api
       .patch(
         `/vacancies/${vac_id}`,
-        { cadId: "" },
+        { cadId: [] },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,30 +55,30 @@ const JoinVancacie = () => {
       .then((res) => setVacCountClick(vacCountClick + 1))
       .catch((e) => console.log(e));
   };
-
   return (
     <>
-      {vacancies.map((vac) => {
-        return (
-          <>
-            <h1>nome vaga: {vac.nome}</h1>
-            <h2>id vaga:{vac.id}</h2>
-            <button onClick={() => subscribe(vac.id)}>Candidatar</button>
-          </>
-        );
-      })}
-
-      {vacancies
-        .filter((item) => item.cadId === id)
-        .map((item) => (
-          <>
-            <h1>{item.nome}</h1>
-            <h2>{item.id}</h2>
-            <button onClick={() => unSubscribe(item.id)}>remover</button>
-          </>
-        ))}
+      {vacancies &&
+        vacancies.map((vac) => {
+          return (
+            <>
+              <h1>nome vaga: {vac.nome}</h1>
+              <h2>id vaga:{vac.id}</h2>
+              <button onClick={() => subscribe(vac.id)}>Candidatar</button>
+            </>
+          );
+        })}
+      {console.log(cad)}
+      {vacancies &&
+        vacancies
+          .filter((item) => item.cadId[0] === id)
+          .map((item) => (
+            <>
+              <h1>{item.nome}</h1>
+              <h2>{item.id}</h2>
+              <button onClick={() => unSubscribe(item.id)}>remover</button>
+            </>
+          ))}
     </>
   );
 };
-
 export default JoinVancacie;
