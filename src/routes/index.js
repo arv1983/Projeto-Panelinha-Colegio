@@ -32,7 +32,6 @@ const Routes = () => {
       </Route>
       <Route exact path="/pesquisa">
         <PagePesquisa />
-        <GetVacanciesComp />
       </Route>
 
       <Route exact path="/pesqvaga">

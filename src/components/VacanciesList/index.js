@@ -8,13 +8,8 @@ import { DivVaga } from "./style";
 const VacanciesList = (props) => {
   return (
     <div>
-<<<<<<< HEAD
       <h1 style={{margin: "10px", padding: "20px"}}>Vagas Cadastradas</h1>
       <div style={{display:  "flex", flexWrap: "wrap"}}>
-=======
-      <h1 style={{ margin: "10px" }}>Vagas Cadastradas</h1>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
->>>>>>> 62214db504dd999daa1ef871cde484459b63d371
         {props.lista &&
           props.lista.map((item, i) => (
             <div key={i}>
