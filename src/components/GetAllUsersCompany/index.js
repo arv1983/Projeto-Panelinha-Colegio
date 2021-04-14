@@ -1,8 +1,18 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Token } from "../../providers/TokenProvider";
 import api from "../../services/api";
 
 const GetAllComp = () => {
   const [dados, setDados] = useState([]);
+
+  const { token } = Token();
+
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
 
   useEffect(() => {
     api
