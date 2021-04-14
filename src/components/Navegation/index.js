@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { User } from "../../providers/UserProvider";
 import { Div} from './style';
-import { useHistory } from "react-router-dom";
 
 const Navegation = () => {
   const { loggedUser } = User();

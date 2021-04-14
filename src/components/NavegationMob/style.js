@@ -3,6 +3,7 @@ import { COLORS } from "../../stylesGlobal";
 
 export const HeadMob = styled.div`
   background-color: ${COLORS.cinza};
+  z-index: 10;
 
   position: fixed;
   top: 92vh;

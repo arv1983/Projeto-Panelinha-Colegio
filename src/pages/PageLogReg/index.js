@@ -5,15 +5,15 @@ import Register from "../../components/Register";
 import { DivPai, TextForm, TextContent } from "./style";
 
 import { Rotate } from "react-awesome-reveal";
-import Navegation from "../../components/Navegation";
 
 import { LogReg } from "../../providers/LogRegProvider";
-import HeadMobile from "../../components/NavegationMob";
+import AlteraHead from '../../components/AlterHead'
 
 const PageLogReg = () => {
   const { status, setStatus } = LogReg();
   return (
     <>      
+    <AlteraHead/>
       <DivPai>
         <div className="divHead">aaaaaaa</div>
         <div className="divContent">

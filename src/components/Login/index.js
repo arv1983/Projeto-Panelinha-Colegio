@@ -27,7 +27,7 @@ const Login = () => {
           JSON.stringify(response.data.accessToken)
         );
         setId(jwt_decode(localStorage.getItem("token")).sub);
-        history.push("/pesquisa");
+        history.push("/home");
       })
       .catch((e) => {
         console.log(e);
@@ -46,6 +46,10 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  if (localStorage.getItem("token")) {
+    history.push("/home");
+  }
 
   return (
     <div>
