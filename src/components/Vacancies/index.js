@@ -9,21 +9,22 @@ import { Vac } from "../../providers/VacancieProvider";
 
 import { InputProfile, BtnAtt } from "../../stylesGlobal";
 import { DivChecked, DivCampos, DivBotao } from "./style";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const Vacancies = () => {
   const [lista, setLista] = useState();
 
   const { vacCountClick, setVacCountClick } = Vac();
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  const { token } = Token();
 
-  const { id } = User();
+  const { loggedUser, id } = User();
+
+  const history = useHistory();
+  if (loggedUser.type === "pf") {
+    history.push("/home");
+  }
 
   useEffect(() => {
     api

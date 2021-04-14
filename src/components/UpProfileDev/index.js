@@ -7,17 +7,17 @@ import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 
 import { InputProfile, BtnAtt, Label, DivOption } from "../../stylesGlobal";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const UpProfileDev = () => {
   const { id, loggedUser } = User();
+  const history = useHistory();
+  const { token } = Token();
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  if (loggedUser.type === "pj") {
+    history.push("/home");
+  }
 
   const [nameInput, setNameInput] = useState("");
 

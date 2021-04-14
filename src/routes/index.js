@@ -1,4 +1,4 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import PageHome from "../pages/PageHome";
 import PageLogReg from "../pages/PageLogReg";
 import PagePesquisa from "../pages/PagePesquisa";
@@ -7,6 +7,7 @@ import PageProfileUsers from "../pages/PageProfileUsers";
 import Vacancies from "../components/Vacancies";
 import JoinVancacie from "../components/JoinVacancie";
 import Error404 from "../pages/Error";
+import GetVacanciesComp from "../components/GetVacanciesComp";
 
 const Routes = () => {
   return (
@@ -23,7 +24,7 @@ const Routes = () => {
 
       <Route exact path="/vagas">
         <Vacancies />
-        <JoinVancacie/>
+        <JoinVancacie />
       </Route>
 
       <Route exact path="/users/dev">
@@ -31,12 +32,16 @@ const Routes = () => {
       </Route>
       <Route exact path="/pesquisa">
         <PagePesquisa />
+        <GetVacanciesComp />
       </Route>
-      
+
+      <Route exact path="/pesqvaga">
+        <GetVacanciesComp />
+      </Route>
+
       <Route>
-        <Error404/>      
-        </Route>
-    
+        <Error404 />
+      </Route>
     </Switch>
   );
 };
