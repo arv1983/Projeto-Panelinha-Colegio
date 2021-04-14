@@ -9,7 +9,7 @@ import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
 const VacanciesListEdit = (props) => {
-  console.log(props);
+  console.log(props.dados.flutter);
   const { id } = User();
 
   const [token] = useState(() => {
@@ -164,15 +164,14 @@ const VacanciesListEdit = (props) => {
                 {...register("data")}
               />
             </div>
-
             <DivChecked>
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.reactjs === true && <>checked</>}
                   name="reactjs"
                   value="true"
                   {...register("reactjs")}
+                  onChange={(e) => e.target.checked}
                 />
                 <label for="ReactJs">ReactJs</label>
               </div>
@@ -180,8 +179,8 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.reactnative === true && <>checked</>}
-                  name="reactjs"
+                  onChange={(e) => e.target.checked}
+                  name="reactnative"
                   value="true"
                   {...register("reactnative")}
                 />
@@ -191,7 +190,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.flutter === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="flutter"
                   value="true"
                   {...register("flutter")}
@@ -202,7 +201,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.python === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="python"
                   value="true"
                   {...register("python")}
@@ -213,7 +212,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.javascript === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="javascript"
                   value="true"
                   {...register("javascript")}
@@ -224,7 +223,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.sql === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="sql"
                   value="true"
                   {...register("sql")}
@@ -235,7 +234,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.typescript === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="typescript"
                   value="true"
                   {...register("typescript")}
@@ -246,7 +245,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.nodejs === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="nodejs"
                   value="true"
                   {...register("nodejs")}
@@ -257,7 +256,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.dart === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="dart"
                   value="true"
                   {...register("dart")}
@@ -268,7 +267,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.ruby_on_rails === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="ruby_on_rails"
                   value="true"
                   {...register("dados.ruby_on_rails")}
@@ -279,7 +278,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.objective_c === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="objective_c"
                   value="true"
                   {...register("dados.objective_c")}
@@ -290,7 +289,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.go === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="go"
                   value="true"
                   {...register("dados.go")}
@@ -301,7 +300,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.html5 === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="html5"
                   value="true"
                   {...register("dados.html5")}
@@ -312,7 +311,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.bootstrap === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="bootstrap"
                   value="true"
                   {...register("dados.bootstrap")}
@@ -323,7 +322,7 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  checked={props.dados.php === true && <>checked</>}
+                  onChange={(e) => e.target.checked}
                   name="php"
                   value="true"
                   {...register("dados.php")}
