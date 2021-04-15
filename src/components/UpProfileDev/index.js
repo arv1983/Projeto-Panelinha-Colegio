@@ -3,8 +3,15 @@ import { useState } from "react";
 import api from "../../services/api";
 import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-import { InputProfile, BtnAtt, DivCheckeBox, DivOption } from "../../stylesGlobal";
+import {
+  InputProfile,
+  BtnAtt,
+  DivCheckeBox,
+  DivOption,
+} from "../../stylesGlobal";
 import { useHistory } from "react-router-dom";
 
 const UpProfileDev = () => {
@@ -19,7 +26,7 @@ const UpProfileDev = () => {
     return JSON.parse(localToken);
   });
 
-  if (loggedUser.type === "pj" && token) {
+  if (loggedUser.type === "pj") {
     history.push("/home");
   }
 
@@ -44,6 +51,32 @@ const UpProfileDev = () => {
   const [is_coachInput, setIs_coachInput] = useState("");
 
   // começa putaria
+
+  const schema = yup.object().shape({
+    nome: yup.string(),
+    city: yup.string(),
+    is_coach: yup.boolean().nullable(),
+    quarter: yup.string().nullable(),
+    social_medias: yup.string(),
+    cellPhone: yup.string(),
+    description: yup.string(),
+    reactNative: yup.boolean(),
+    flutter: yup.boolean(),
+    python: yup.boolean(),
+    javascript: yup.boolean(),
+    sql: yup.boolean(),
+    typescript: yup.boolean(),
+    nodejs: yup.boolean(),
+    dart: yup.boolean(),
+    ruby_on_rails: yup.boolean(),
+    objective_c: yup.boolean(),
+    go: yup.boolean(),
+    html5: yup.boolean(),
+    bootstrap: yup.boolean(),
+    php: yup.boolean(),
+    avaliable_job: yup.boolean().nullable(),
+    have_job: yup.boolean().nullable(),
+  });
 
   const [reactjsInput, setReactjsInput] = useState(false);
   const [reactNativeInput, setReactNativeInput] = useState(false);
@@ -124,9 +157,11 @@ const UpProfileDev = () => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
-    // reset,
-  } = useForm({});
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleUpdate = (data) => {
     api
@@ -140,7 +175,6 @@ const UpProfileDev = () => {
           quarter: quarterInput,
           social_medias: social_mediasInput,
           cellPhone: cellPhoneInput,
-          // softSkills: softSkillsInput,
           description: descriptionInput,
           is_coach: is_coachInput,
           reactjs: reactjsInput,
@@ -192,13 +226,43 @@ const UpProfileDev = () => {
           />
         </div>
         <div>
-          <InputProfile
+          <span>Quarter</span>
+          <input
             {...register("quarter")}
-            placeholder="Período"
+            type="radio"
             value={quarterInput}
-            onChange={(e) => setQuarterInput(e.target.value)}
+            onChange={() => setQuarterInput("q1")}
+            checked={quarterInput === "q1"}
+            required="required"
           />
+          <label>Q1</label>
+          <input
+            {...register("quarter")}
+            type="radio"
+            value={quarterInput}
+            onChange={() => setQuarterInput("q2")}
+            checked={quarterInput === "q2"}
+          />
+          <label>Q2</label>
+          <input
+            {...register("quarter")}
+            type="radio"
+            value={quarterInput}
+            onChange={() => setQuarterInput("q3")}
+            checked={quarterInput === "q3"}
+          />
+          <label>Q3</label>
+          <input
+            {...register("quarter")}
+            type="radio"
+            value={quarterInput}
+            onChange={() => setQuarterInput("q4")}
+            checked={quarterInput === "q4"}
+          />
+          <label>Q4</label>
+          <p style={{ color: "red" }}>{errors.quarter?.message}</p>
         </div>
+
         <div>
           <InputProfile
             {...register("social_medias")}
@@ -212,7 +276,7 @@ const UpProfileDev = () => {
             {...register("cellPhone")}
             placeholder="Celular"
             value={cellPhoneInput}
-            onChange={(e) => cellPhoneInput(e.target.value)}
+            onChange={(e) => setCellPhoneInput(e.target.value)}
           />
         </div>
         {/* <div>
@@ -223,7 +287,7 @@ const UpProfileDev = () => {
             onChange={(e) => setSoftSkillsInput(e.target.value)}
           />
         </div> */}
-        
+
         <div>
           <InputProfile
             {...register("description")}
@@ -394,9 +458,9 @@ const UpProfileDev = () => {
               {...register("is_coach")}
               type="radio"
               value={is_coachInput}
-              checked={true}
               onChange={() => setIs_coachInput(true)}
               checked={is_coachInput === true}
+              required="required"
             />
             <label>Sou coach</label>
             <input
@@ -407,6 +471,7 @@ const UpProfileDev = () => {
               checked={is_coachInput === false}
             />
             <label>Não sou coach</label>
+            <p style={{ color: "red" }}>{errors.is_coach?.message}</p>
           </div>
           <div>
             <span>Você possui emprego?</span>
@@ -414,18 +479,20 @@ const UpProfileDev = () => {
               {...register("have_job")}
               type="radio"
               value={have_jobInput}
-              onChange={() => setHave_jobInput("Empregado")}
-              checked={have_jobInput === "Empregado"}
+              onChange={() => setHave_jobInput(true)}
+              checked={have_jobInput === true}
+              required="required"
             />
             <label>Empregado</label>
             <input
               {...register("have_job")}
               type="radio"
               value={have_jobInput}
-              onChange={() => setHave_jobInput("Desempregado")}
-              checked={have_jobInput === "Desempregado"}
+              onChange={() => setHave_jobInput(false)}
+              checked={have_jobInput === false}
             />
             <label>Desempregado</label>
+            <p style={{ color: "red" }}>{errors.have_job?.message}</p>
           </div>
 
           <div>
@@ -434,18 +501,20 @@ const UpProfileDev = () => {
               {...register("avaliable_job")}
               type="radio"
               value={avaliable_jobInput}
-              onChange={() => setAvaliable_jobInput("Disponivel")}
-              checked={avaliable_jobInput === "Disponivel"}
+              onChange={() => setAvaliable_jobInput(true)}
+              checked={avaliable_jobInput === true}
+              required="required"
             />
             <label>Disponível</label>
             <input
               {...register("avaliable_job")}
               type="radio"
               value={avaliable_jobInput}
-              onChange={() => setAvaliable_jobInput("NaoDisponivel")}
-              checked={avaliable_jobInput === "NaoDisponivel"}
+              onChange={() => setAvaliable_jobInput(false)}
+              checked={avaliable_jobInput === false}
             />
             <label>Não Disponível</label>
+            <p style={{ color: "red" }}>{errors.avaliable_job?.message}</p>
           </div>
         </DivOption>
         <div>
