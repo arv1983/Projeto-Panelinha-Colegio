@@ -1,11 +1,13 @@
-import Navegation from "../../components/Navegation"
 import AlteraHead from '../../components/AlterHead'
+import { User } from "../../providers/UserProvider";
 
 const PageHome = () =>{
+    const { loggedUser } = User();
+
     return(
         <>
             <AlteraHead/>
-            <h1>OI</h1>
+            {loggedUser.type === "pf"? "pessoa fisica" : "empresa"}
         </>
     )
 }
