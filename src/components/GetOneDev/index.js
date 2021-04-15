@@ -21,6 +21,7 @@ const GetOneDev = () => {
   if (!token) {
     history.push("/");
   }
+  
 
   const {
     register,
