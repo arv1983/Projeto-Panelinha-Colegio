@@ -19,7 +19,7 @@ export const HeadMob = styled.div`
 `;
 
 export const DivIcon = styled.div`
-  width: 25%;
+  width: 25%; 
   text-align: center;
 
   display: flex;

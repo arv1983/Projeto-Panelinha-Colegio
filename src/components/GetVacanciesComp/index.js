@@ -193,7 +193,7 @@ const GetVacanciesComp = () => {
               ) : (
                 <BtnAtt onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</BtnAtt>
               )}
-            </DivPrincipal>
+            </DivPrincipal> 
           ))}
       </div>
       <br></br>

@@ -136,6 +136,6 @@ const UpProfileComp = () => {
       </form>
     </div>
   );
-};
+}; 
 
 export default UpProfileComp;

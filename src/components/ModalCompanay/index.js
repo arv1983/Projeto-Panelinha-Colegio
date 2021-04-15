@@ -20,7 +20,7 @@ const ModalCompanay = ({ user }) => {
       })
       .catch((e) => console.log(e));
   }, []);
-
+ 
   console.log("props user" + JSON.stringify(user));
 
   return <>{dados && dados.map((vagas) => <>{vagas.nome}</>)}</>;

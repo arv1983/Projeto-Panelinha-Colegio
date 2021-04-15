@@ -95,7 +95,7 @@ const TabPesquisa = () => {
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <GetOneDev/>
-                </TabPanel>
+                </TabPanel> 
                 <TabPanel value={value} index={1}>
                     <GetVacanciesComp/>
                 </TabPanel>

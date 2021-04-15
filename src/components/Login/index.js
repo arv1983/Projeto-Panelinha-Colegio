@@ -26,7 +26,7 @@ const Login = () => {
         localStorage.setItem(
           "token",
           JSON.stringify(response.data.accessToken)
-        );
+        ); 
         setId(jwt_decode(localStorage.getItem("token")).sub);
         history.push("/home");
       })

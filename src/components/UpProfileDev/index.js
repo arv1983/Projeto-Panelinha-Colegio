@@ -408,7 +408,7 @@ const UpProfileDev = () => {
             />
             <label>Não sou coach</label>
           </div>
-          <div>
+          <div> 
             <span>Você possui emprego?</span>
             <input
               {...register("have_job")}

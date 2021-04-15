@@ -21,7 +21,7 @@
 //       return "";
 //     }
 //     return JSON.parse(localToken);
-//   });
+//   }); 
 //   const [vacancies, setVacancies] = useState([]);
 //   const { vacCountClick, setVacCountClick } = Vac();
 //   const [cad, setCad] = useState([]);

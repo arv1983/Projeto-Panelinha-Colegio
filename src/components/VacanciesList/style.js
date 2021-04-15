@@ -16,7 +16,7 @@ export const DivPrincipal = styled.div`
     height: auto;
     padding: 10px;
 
-    :hover{
+    :hover{ 
         box-shadow: 5px 5px 5px ${COLORS.branco};
     }
 `
