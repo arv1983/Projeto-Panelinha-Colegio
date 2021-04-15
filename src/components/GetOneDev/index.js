@@ -18,14 +18,6 @@ const GetOneDev = () => {
 
   const history = useHistory();
 
-<<<<<<< HEAD
-=======
-  if (!token) {
-    history.push("/");
-  }
-  
->>>>>>> 4a70c68cc5756cf5cf5ac99ccb266b6875a869aa
-
   const {
     register,
     handleSubmit,
