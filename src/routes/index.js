@@ -5,6 +5,9 @@ import PagePesquisa from "../pages/PagePesquisa";
 import PageProfileComp from "../pages/PageProfileCompany";
 import PageProfileUsers from "../pages/PageProfileUsers";
 import Error404 from "../pages/Error";
+import GetOneCompany from "../components/GetOneCompany";
+import GetOneDev from "../components/GetOneDev";
+import GetVacanciesComp from "../components/GetVacanciesComp";
 
 const Routes = () => {
   return (
@@ -23,9 +26,6 @@ const Routes = () => {
       </Route>
       <Route exact path="/pesquisa">
         <PagePesquisa /> 
-      </Route>
-      <Route>
-        <Error404 />
       </Route>
     </Switch>
   );

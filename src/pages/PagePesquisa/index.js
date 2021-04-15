@@ -19,7 +19,7 @@ const PagePesquisa = () =>{
         <div>
             <AlteraHead/>
             
-            {loggedUser.type === "pf"? 
+            {/* {loggedUser.type === "pf"? 
             <div>
                 <DivTam>
                     <BtnAtt onClick={() => AlterEstato()} >{estado? "Pesquisa por Dev" : "Pesquisa por Empresaa"}</BtnAtt>
@@ -27,19 +27,18 @@ const PagePesquisa = () =>{
                 {estado?
                     <GetOneCompany/> :
                     <div>
-                        <GetOneDev/>
+                        
                         <br></br>
                         <br></br>
                         <br></br>
                         <GetVacanciesComp/>
-                        
                     </div>
             }
             </div> :
             <div>
                 <GetOneDev/>
             </div> }
-            
+             */}
         </div>
         
     )

@@ -1,9 +1,10 @@
-// import { Checkbox } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
-// import JoinVancacie from "../JoinVacancie";
 import { Vac } from "../../providers/VacancieProvider";
+import { BtnAtt, DivCheckeBox } from "../../stylesGlobal";
+import { InputPesq, DivP, DivB , DivPesque } from "../GetOneDev/style"
+import { DivPrincipal} from '../VacanciesList/style'
 
 const GetVacanciesComp = () => {
   const { id } = User();
@@ -94,44 +95,88 @@ const GetVacanciesComp = () => {
 
   return (
     <>
+      <h1 style={{textAlign: "center"}}>Pesquisar Vagas</h1>
       <form onSubmit={(e) => handleData(e)}>
-        nome da vaga
-        <input name="busca" type="text"></input>
-        descricao da vaga
-        <input name="descr" type="text"></input>
-        presencial
-        <input type="checkbox" name="presencial"></input>
-        reactjs
-        <input type="checkbox" name="reactjs"></input>
-        reactnative
-        <input type="checkbox" name="reactnative"></input>
-        flutter
-        <input type="checkbox" name="flutter"></input>
-        python
-        <input type="checkbox" name="python"></input>
-        javascript
-        <input type="checkbox" name="javascript"></input>
-        sql
-        <input type="checkbox" name="sql"></input>
-        typescript
-        <input type="checkbox" name="typescript"></input>
-        nodejs
-        <input type="checkbox" name="nodejs"></input>
-        dart
-        <input type="checkbox" name="dart"></input>
-        ruby_on_rails
-        <input type="checkbox" name="ruby_on_rails"></input>
-        objective_c
-        <input type="checkbox" name="objective_c"></input>
-        go
-        <input type="checkbox" name="go"></input>
-        html5
-        <input type="checkbox" name="html5"></input>
-        bootstrap
-        <input type="checkbox" name="bootstrap"></input>
-        php
-        <input type="checkbox" name="php"></input>
-        <button type="submit">procurar</button>
+        <DivPesque>
+          <DivP>
+            <InputPesq name="busca" type="text" placeholder="Nome da vaga"></InputPesq>
+          </DivP>
+          <DivP>
+            <InputPesq name="descr" type="text" placeholder="Descrição"></InputPesq>
+          </DivP>
+        </DivPesque>
+        <DivCheckeBox>
+          <div>
+            <input type="checkbox" name="presencial"></input>
+            <label>Presencial</label>
+          </div>
+          
+          <div>
+            <input type="checkbox" name="reactjs"></input>
+            <label>Reactjs</label>
+          </div>
+          <div>
+            <input type="checkbox" name="reactnative"></input>
+            <label>React Native</label>
+          </div>
+          <div>
+            <input type="checkbox" name="flutter"></input>
+            <label>Flutter</label>
+          </div>
+          <div>
+            <input input type="checkbox" name="python"></input>
+            <label>Python</label>
+          </div>
+          <div>
+            <input type="checkbox" name="javascript"></input>
+            <label>Javascript</label>
+          </div>
+          <div>
+            <input type="checkbox" name="sql"></input>
+            <label>Sql</label>
+          </div>
+          <div>
+            <input type="checkbox" name="typescript"></input>
+            <label>Typescript</label>       
+          </div>
+          <div>
+            <input type="checkbox" name="nodejs"></input>
+            <label>Nodejs</label>
+          </div>
+          <div>
+            <input type="checkbox" name="dart"></input>
+            <label>dart</label>
+          </div>
+          <div>
+            <input type="checkbox" name="ruby_on_rails"></input>
+            <label>Ruby on rails</label>
+          </div>
+          <div>
+            <input type="checkbox" name="objective_c"></input>
+            <label>Objective c</label>
+          </div>
+          
+          <div>
+            <input type="checkbox" name="go"></input>
+            <label>Go</label>
+          </div>
+          
+          <div>
+            <input type="checkbox" name="html5"></input>
+            <label>Html5</label>
+          </div>
+          <div>
+            <input  type="checkbox" name="bootstrap"></input>
+            <label>Bootstrap</label>
+          </div>
+          <div>
+            <input type="checkbox" name="php"></input>
+            <label>Php</label>
+          </div>
+        </DivCheckeBox>
+        <DivB>
+          <BtnAtt type="submit">Procurar</BtnAtt>
+        </DivB>
       </form>
 
       <div>
@@ -139,16 +184,15 @@ const GetVacanciesComp = () => {
         {vacancies &&
         vacancies.map((vac) => {
           return (
-            <>
-              <h1>nome vaga: {vac.nome}</h1>
-              <h2>id vaga:{vac.id}</h2>
+            <DivPrincipal>
+              <h1>Vaga: {vac.nome}</h1>
               <button onClick={() => subscribe(vac.id, vac.cad)}>
                 Candidatar
               </button>
               <button onClick={() => unSubscribe(vac.id, vac.cad)}>
                 Descadastra
               </button>
-            </>
+            </DivPrincipal>
           );
         })}
   
