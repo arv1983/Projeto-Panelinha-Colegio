@@ -1,8 +1,5 @@
-// import { Checkbox } from "@material-ui/core";
-import { useEffect, useState } from "react";
 import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
-// import JoinVancacie from "../JoinVacancie";
 import { Vac } from "../../providers/VacancieProvider";
 
 const GetVacanciesComp = () => {
