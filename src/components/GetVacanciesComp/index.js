@@ -1,7 +1,9 @@
-import { Checkbox } from "@material-ui/core";
+// import { Checkbox } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { User } from "../../providers/UserProvider";
 import api from "../../services/api";
+// import JoinVancacie from "../JoinVacancie";
+import { Vac } from "../../providers/VacancieProvider";
 
 const GetVacanciesComp = () => {
   const { id } = User();
@@ -14,15 +16,12 @@ const GetVacanciesComp = () => {
   });
   const [vacancies, setVacancies] = useState([]);
   const [users, setUsers] = useState([]);
-
+  const { vacCountClick, setVacCountClick } = Vac();
   // meu codigo
 
   const handleData = (e) => {
     setVacancies([]);
     e.preventDefault();
-    console.log(e.target.busca.value);
-    console.log("presencial" + e.target.python.checked);
-
     api
       .get(
         `/vacancies?${
@@ -61,6 +60,37 @@ const GetVacanciesComp = () => {
   };
 
   // fim meu codigo
+  const subscribe = (vac_id, array_de_vagas) => {
+    array_de_vagas?.push(id);
+    api
+      .patch(
+        `/vacancies/${vac_id}`,
+        { cad: array_de_vagas },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => setVacCountClick(vacCountClick + 1))
+      .catch((e) => console.log(e));
+  };
+
+  const unSubscribe = (vac_id, array) => {
+    array?.splice(array.indexOf(id), 1);
+    api
+      .patch(
+        `/vacancies/${vac_id}`,
+        { cad: array },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => setVacCountClick(vacCountClick + 1))
+      .catch((e) => console.log(e));
+  };
 
   return (
     <>
@@ -106,15 +136,15 @@ const GetVacanciesComp = () => {
 
       <div>
         {vacancies &&
-          vacancies.map((item) => (
+          vacancies.map((vac) => (
             <>
-              <div>
-                <h1>nome:{item.nome}</h1>
-                <h2>presencial:{item.presencial}</h2>
-                <h2>local:{item.local}</h2>
-                <h2>beneficios:{item.beneficios}</h2>
-                <h2>cadId:{item.cadId}</h2>
-              </div>
+              <h1>nome vaga: {vac.nome}</h1>
+              <h2>id vaga:{vac.id}</h2>
+              {vac.cad?.indexOf(id) < 0 ? (
+                <button  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</button>
+              ) : (
+                <button onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</button>
+              )}
             </>
           ))}
       </div>
@@ -138,9 +168,3 @@ const GetVacanciesComp = () => {
 };
 
 export default GetVacanciesComp;
-
-
-
-
-
-
