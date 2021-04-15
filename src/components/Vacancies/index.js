@@ -22,9 +22,9 @@ const Vacancies = () => {
   const { loggedUser, id } = User();
 
   const history = useHistory();
-  if (loggedUser.type === "pf") {
-    history.push("/home");
-  }
+  // if (loggedUser.type === "pf") {
+  //   history.push("/home");
+  // }
 
   useEffect(() => {
     api
