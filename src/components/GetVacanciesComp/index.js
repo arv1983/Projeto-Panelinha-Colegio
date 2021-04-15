@@ -138,3 +138,9 @@ const GetVacanciesComp = () => {
 };
 
 export default GetVacanciesComp;
+
+
+
+
+
+
