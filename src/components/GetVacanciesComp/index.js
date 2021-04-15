@@ -54,7 +54,6 @@ const GetVacanciesComp = () => {
       )
       .then((res) => {
         console.log(res);
-
         setVacancies(res.data);
       })
       .catch((e) => console.log(e));
@@ -179,16 +178,20 @@ const GetVacanciesComp = () => {
         </DivB>
       </form>
 
-      <div>
+      <div style={{display:  "flex", flexWrap: "wrap"}}>
         {vacancies &&
           vacancies.map((vac) => (
             <DivPrincipal>
-              <h1>nome vaga: {vac.nome}</h1>
-              <h2>id vaga:{vac.id}</h2>
+              <h1>Vaga: {vac.nome}</h1>
+              <h4>{vac.data}</h4>
+              <h4 style={{display: "inline"}}>Modalidade: </h4><span>{vac.presencial? "Presencial": "Remota"}</span>
+              <p><h4 style={{display: "inline"}}>Descrição: {vac.descricao}</h4></p>
+              
+              <h2>{console.log(vac)}</h2>
               {vac.cad?.indexOf(id) < 0 ? (
-                <button  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</button>
+                <BtnAtt  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</BtnAtt>
               ) : (
-                <button onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</button>
+                <BtnAtt onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</BtnAtt>
               )}
             </DivPrincipal>
           ))}

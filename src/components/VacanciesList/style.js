@@ -15,6 +15,10 @@ export const DivPrincipal = styled.div`
     width: 250px;
     height: auto;
     padding: 10px;
+
+    :hover{
+        box-shadow: 5px 5px 5px ${COLORS.branco};
+    }
 `
 
 export const  DivChecked = styled.div`
