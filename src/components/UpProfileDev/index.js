@@ -21,7 +21,7 @@ const UpProfileDev = () => {
     return JSON.parse(localToken);
   });
 
-  if (loggedUser.type === "pj") {
+  if (loggedUser.type === "pj" && token) {
     history.push("/home");
   }
 

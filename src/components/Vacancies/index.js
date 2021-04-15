@@ -28,7 +28,7 @@ const Vacancies = () => {
   const { loggedUser, id } = User();
 
   const history = useHistory();
-  if (loggedUser.type === "pf") {
+  if (loggedUser.type === "pf" && token) {
     history.push("/home");
   }
 

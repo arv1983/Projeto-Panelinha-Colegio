@@ -8,9 +8,6 @@ import api from "../../services/api";
 const JoinVancacie = () => {
   const { id, loggedUser } = User();
   const history = useHistory();
-  if (loggedUser.type === "pj") {
-    history.push("/home");
-  }
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -18,6 +15,9 @@ const JoinVancacie = () => {
     }
     return JSON.parse(localToken);
   });
+  if (loggedUser.type === "pj" && token) {
+    history.push("/home");
+  }
   const [vacancies, setVacancies] = useState([]);
   const { vacCountClick, setVacCountClick } = Vac();
   const [cad, setCad] = useState([]);
