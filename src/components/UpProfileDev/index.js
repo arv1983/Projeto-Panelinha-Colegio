@@ -1,18 +1,16 @@
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import api from "../../services/api";
 import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 
-import { InputProfile, BtnAtt, Label, DivOption } from "../../stylesGlobal";
-import { Token } from "../../providers/TokenProvider";
+import { InputProfile, BtnAtt, DivCheckeBox, DivOption } from "../../stylesGlobal";
 import { useHistory } from "react-router-dom";
 
 const UpProfileDev = () => {
   const { id, loggedUser } = User();
   const history = useHistory();
+
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -39,7 +37,7 @@ const UpProfileDev = () => {
 
   const [cellPhoneInput, setCellPhoneInput] = useState("");
 
-  const [softSkillsInput, setSoftSkillsInput] = useState("");
+  // const [softSkillsInput, setSoftSkillsInput] = useState("");
 
   const [descriptionInput, setDescriptionInput] = useState("");
 
@@ -73,7 +71,7 @@ const UpProfileDev = () => {
     setQuarterInput(loggedUser.quarter);
     setSocial_mediasInput(loggedUser.social_medias);
     setCellPhoneInput(loggedUser.cellPhone);
-    setSoftSkillsInput(loggedUser.softSkills);
+    // setSoftSkillsInput(loggedUser.softSkills);
     // cameça putaria
 
     setReactjsInput(loggedUser.reactjs);
@@ -105,7 +103,7 @@ const UpProfileDev = () => {
     loggedUser.name,
     loggedUser.quarter,
     loggedUser.social_medias,
-    loggedUser.softSkills,
+    // loggedUser.softSkills,
     loggedUser.reactjs,
     loggedUser.flutter,
     loggedUser.python,
@@ -126,8 +124,8 @@ const UpProfileDev = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset,
+    // formState: { errors },
+    // reset,
   } = useForm({});
 
   const handleUpdate = (data) => {
@@ -142,7 +140,7 @@ const UpProfileDev = () => {
           quarter: quarterInput,
           social_medias: social_mediasInput,
           cellPhone: cellPhoneInput,
-          softSkills: softSkillsInput,
+          // softSkills: softSkillsInput,
           description: descriptionInput,
           is_coach: is_coachInput,
           reactjs: reactjsInput,
@@ -217,170 +215,15 @@ const UpProfileDev = () => {
             onChange={(e) => cellPhoneInput(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <InputProfile
             {...register("softSkills")}
             placeholder="SoftSkills"
             value={softSkillsInput}
             onChange={(e) => setSoftSkillsInput(e.target.value)}
           />
-        </div>
-        {/* comeca a putaria                        ass */}
-        {console.log("react js" + reactjsInput)}
-        <div>
-          <InputProfile
-            {...register("reactjs")}
-            type="checkbox"
-            checked={reactjsInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setReactjsInput(e.target.checked)}
-          />
-
-          <label for="ReactJs">ReactJs</label>
-        </div>
-        <div>
-          {console.log("react Native" + reactNativeInput)}
-          <InputProfile
-            {...register("reactnative")}
-            type="checkbox"
-            checked={reactNativeInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setReactNativeInput(e.target.checked)}
-          />
-          <label for="ReactJs">React Native</label>
-        </div>
-        <div>
-          {console.log("react flutter" + flutterInput)}
-          <InputProfile
-            {...register("flutter")}
-            type="checkbox"
-            checked={flutterInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setFlutterInput(e.target.checked)}
-          />
-          <label for="flutter">Flutter</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("python")}
-            type="checkbox"
-            checked={pythonInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setPythonInput(e.target.checked)}
-          />
-          <label for="python">Python</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("javascript")}
-            type="checkbox"
-            checked={javascriptInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setJavascriptInput(e.target.checked)}
-          />
-          <label for="javascript">JavaScript</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("sql")}
-            type="checkbox"
-            checked={sqlInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setSqlInput(e.target.checked)}
-          />
-          <label for="sql">SQL</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("typescript")}
-            type="checkbox"
-            checked={typescriptInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setTypeScriptInput(e.target.checked)}
-          />
-          <label for="typescript">Type scriṕt</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("nodejs")}
-            type="checkbox"
-            checked={nodejsInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setNodeJsInput(e.target.checked)}
-          />
-          <label for="nodejs">NodeJs</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("dart")}
-            type="checkbox"
-            checked={dartInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setDartInput(e.target.checked)}
-          />
-          <label for="dart">Dart</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("ruby_on_rails")}
-            type="checkbox"
-            checked={ruby_on_railsInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setRuby_on_railsInput(e.target.checked)}
-          />
-          <label for="ruby_on_rails">ruby_on_rails</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("objective_c")}
-            type="checkbox"
-            checked={objective_cInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setObjective_cInput(e.target.checked)}
-          />
-          <label for="objective_c">objective_c</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("go")}
-            type="checkbox"
-            checked={goInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setGoInput(e.target.checked)}
-          />
-          <label for="go">go</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("html5")}
-            type="checkbox"
-            checked={html5Input === true && <>checked</>}
-            value="true"
-            onChange={(e) => setHtml5Input(e.target.checked)}
-          />
-          <label for="html5">html5</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("bootstrap")}
-            type="checkbox"
-            checked={bootstrapInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setBootstrapInput(e.target.checked)}
-          />
-          <label for="bootstrap">bootstrap</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("php")}
-            type="checkbox"
-            checked={phpInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setPhpInput(e.target.checked)}
-          />
-          <label for="php">php</label>
-        </div>
-        {/* termina  a putaria                        ass */}
+        </div> */}
+        
         <div>
           <InputProfile
             {...register("description")}
@@ -389,6 +232,161 @@ const UpProfileDev = () => {
             onChange={(e) => setDescriptionInput(e.target.value)}
           />
         </div>
+        <DivCheckeBox>
+          <div>
+            <input
+              {...register("reactjs")}
+              type="checkbox"
+              checked={reactjsInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setReactjsInput(e.target.checked)}
+            />
+
+            <label for="ReactJs">ReactJs</label>
+          </div>
+          <div>
+            {console.log("react Native" + reactNativeInput)}
+            <input
+              {...register("reactnative")}
+              type="checkbox"
+              checked={reactNativeInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setReactNativeInput(e.target.checked)}
+            />
+            <label for="ReactJs">React Native</label>
+          </div>
+          <div>
+            {console.log("react flutter" + flutterInput)}
+            <input
+              {...register("flutter")}
+              type="checkbox"
+              checked={flutterInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setFlutterInput(e.target.checked)}
+            />
+            <label for="flutter">Flutter</label>
+          </div>
+          <div>
+            <input
+              {...register("python")}
+              type="checkbox"
+              checked={pythonInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setPythonInput(e.target.checked)}
+            />
+            <label for="python">Python</label>
+          </div>
+          <div>
+            <input
+              {...register("javascript")}
+              type="checkbox"
+              checked={javascriptInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setJavascriptInput(e.target.checked)}
+            />
+            <label for="javascript">JavaScript</label>
+          </div>
+          <div>
+            <input
+              {...register("sql")}
+              type="checkbox"
+              checked={sqlInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setSqlInput(e.target.checked)}
+            />
+            <label for="sql">SQL</label>
+          </div>
+          <div>
+            <input
+              {...register("typescript")}
+              type="checkbox"
+              checked={typescriptInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setTypeScriptInput(e.target.checked)}
+            />
+            <label for="typeScript">Typescriṕt</label>
+          </div>
+          <div>
+            <input
+              {...register("nodejs")}
+              type="checkbox"
+              checked={nodejsInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setNodeJsInput(e.target.checked)}
+            />
+            <label for="nodejs">NodeJs</label>
+          </div>
+          <div>
+            <input
+              {...register("dart")}
+              type="checkbox"
+              checked={dartInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setDartInput(e.target.checked)}
+            />
+            <label for="dart">Dart</label>
+          </div>
+          <div>
+            <input
+              {...register("ruby_on_rails")}
+              type="checkbox"
+              checked={ruby_on_railsInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setRuby_on_railsInput(e.target.checked)}
+            />
+            <label for="ruby_on_rails">Ruby on rails</label>
+          </div>
+          <div>
+            <input
+              {...register("objective_c")}
+              type="checkbox"
+              checked={objective_cInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setObjective_cInput(e.target.checked)}
+            />
+            <label for="objective_c">Objective c</label>
+          </div>
+          <div>
+            <input
+              {...register("go")}
+              type="checkbox"
+              checked={goInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setGoInput(e.target.checked)}
+            />
+            <label for="go">Go</label>
+          </div>
+          <div>
+            <input
+              {...register("html5")}
+              type="checkbox"
+              checked={html5Input === true && <>checked</>}
+              value="true"
+              onChange={(e) => setHtml5Input(e.target.checked)}
+            />
+            <label for="html5">Html5</label>
+          </div>
+          <div>
+            <input
+              {...register("bootstrap")}
+              type="checkbox"
+              checked={bootstrapInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setBootstrapInput(e.target.checked)}
+            />
+            <label for="bootstrap">Bootstrap</label>
+          </div>
+          <div>
+            <input
+              {...register("php")}
+              type="checkbox"
+              checked={phpInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setPhpInput(e.target.checked)}
+            />
+            <label for="php">Php</label>
+          </div>
+        </DivCheckeBox>
         <DivOption>
           <div>
             <span>Você é coach?</span>
