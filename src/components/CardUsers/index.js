@@ -13,7 +13,7 @@ const CardUsers = ({user}) =>{
       };
       const handleClose = (e) => {
         setOpen(false);
-      };
+      }; 
 
     return(
         <DivPai >

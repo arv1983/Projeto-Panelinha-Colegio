@@ -13,7 +13,7 @@ export const Div =  styled.div`
     border: none; 
     margin: 10px;
 
-    :focus{
+    :focus{ 
       outline: thin dotted;
       outline: 0px auto -webkit-focus-ring-color;
       outline-offset: 0px;

@@ -473,7 +473,7 @@ const UpProfileDev = () => {
             <label>Não sou coach</label>
             <p style={{ color: "red" }}>{errors.is_coach?.message}</p>
           </div>
-          <div>
+          <div> 
             <span>Você possui emprego?</span>
             <input
               {...register("have_job")}

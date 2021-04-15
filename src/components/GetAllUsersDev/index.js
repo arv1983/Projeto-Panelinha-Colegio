@@ -14,7 +14,7 @@ const GetAllDev = () => {
       })
       .catch((e) => console.log(e));
   }, []);
-
+ 
   return (
     <>
       <h2>Todos os Devs:</h2>

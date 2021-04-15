@@ -305,7 +305,7 @@ const Vacancies = () => {
             <label for="html5">Html5</label>
           </div>
 
-          <div>
+          <div> 
             <input
               type="checkbox"
               name="bootstrap"

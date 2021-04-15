@@ -24,7 +24,7 @@ const Login = ({ label }) => {
         localStorage.setItem(
           "token",
           JSON.stringify(response.data.accessToken)
-        );
+        ); 
         setId(jwt_decode(localStorage.getItem("token")).sub);
         if (loggedUser.type === "pf") {
           history.push("/users/dev");

@@ -27,4 +27,4 @@ const VacanciesList = (props) => {
   );
 };
 
-export default VacanciesList;
+export default VacanciesList; 

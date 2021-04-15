@@ -291,7 +291,7 @@ const VacanciesListEdit = (props) => {
                 <label for="bootstrap">Bootstrap</label>
               </div>
               <div>
-                <input
+                <input 
                   type="checkbox"
                   name="php"
                   defaultChecked={props.dados.php}

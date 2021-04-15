@@ -9,5 +9,5 @@ const AlteraHead = () =>{
         </div>
     )
 }
-
+ 
 export default AlteraHead;

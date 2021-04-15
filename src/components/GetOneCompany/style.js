@@ -19,7 +19,7 @@ export const InputPesq = styled.input`
   }
   @media (min-width: 600px){
     width: 99%;
-  }
+  } 
 `
 
 export const DivP  = styled.div`

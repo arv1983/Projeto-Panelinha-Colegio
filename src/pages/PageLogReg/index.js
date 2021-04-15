@@ -41,7 +41,7 @@ const PageLogReg = () => {
               Parceiras e nossos Devs.
             </p>
             <br></br>
-            <p>
+            <p> 
               As parceiras terão acesso as tecnologias, ideias, projetos e
               perfil dos Devs, já nos Devs terão acesso para conhecer um pouco
               das empresas, as vagas disponiveis das empresas, é melhor colocar
