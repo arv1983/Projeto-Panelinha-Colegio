@@ -17,14 +17,20 @@ const Vacancies = () => {
 
   const { vacCountClick, setVacCountClick } = Vac();
 
-  const { token } = Token();
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
 
   const { loggedUser, id } = User();
 
   const history = useHistory();
-  // if (loggedUser.type === "pf") {
-  //   history.push("/home");
-  // }
+  if (loggedUser.type === "pf") {
+    history.push("/home");
+  }
 
   useEffect(() => {
     api
