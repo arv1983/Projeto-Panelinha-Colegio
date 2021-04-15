@@ -1,14 +1,29 @@
-import { DivPai } from "./syle";
+import api from "../../services/api";
+import { useEffect, useState } from "react";
 
 const ModalCompanay = ({ user }) => {
-  console.log("props user" + user);
-  return (
-    <DivPai>
-      <h3>Empresa: {user.name}</h3>
-      <p>Vagas da empresa</p>
-      <p>Nome da vaga . . . ( + caditar) </p>
-    </DivPai>
-  );
+  const [dados, setDados] = useState();
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
+
+  useEffect(() => {
+    api
+      .get(`/vacancies/?idUser=${user.id}`)
+      .then((res) => {
+        console.log(res);
+        setDados(res.data);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  console.log("props user" + JSON.stringify(user));
+
+  return <>{dados && dados.map((vagas) => <>{vagas.nome}</>)}</>;
 };
 
 export default ModalCompanay;

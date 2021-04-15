@@ -64,21 +64,45 @@ export const DivPai = styled.div`
   }
 
   .divHead{
+    text-align: center;
+    color: ${COLORS.branco};
+    h1{
+        font-size: 50px;
+      }
+    img{
+        width:150px;
+      }
 
     @media(min-width: 860px){
       width: 99%;
-      height: 200px;
-      border: 1px solid ${COLORS.branco};
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img{
+        width:250px;
+      }
+      h1{
+        font-size: 50px;
+      }
     }
   }
 
   .divContent{
     display: flex;
     flex-direction: column;
+    h3{
+        font-size:40px;
+        text-align: center;
+      }
 
     @media(min-width: 860px){
       display: flex;
       flex-direction: row-reverse;
+      h3{
+        font-size:40px;
+        text-align: center;
+      }
     }
   }
 
