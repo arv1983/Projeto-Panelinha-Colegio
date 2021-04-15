@@ -22,17 +22,12 @@ const Routes = () => {
         <PageProfileComp />
       </Route>
 
-      <Route exact path="/vagas">
-        <Vacancies />
-        <JoinVancacie />
-      </Route>
-
       <Route exact path="/users/dev">
         <PageProfileUsers />
       </Route>
       <Route exact path="/pesquisa">
         <PagePesquisa /> 
-        <GetVacanciesComp/>
+        {/* <JoinVancacie /> */}
       </Route>
       <Route>
         <Error404 />
