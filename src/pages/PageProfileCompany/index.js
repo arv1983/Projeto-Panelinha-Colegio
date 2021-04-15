@@ -8,7 +8,7 @@ import {DivComp, DivAvatar, DivProfile} from '../../stylesGlobal'
 const PageProfileComp = ()=>{    
     return (
         <>
-            <AlteraHead/>
+            <AlteraHead/> 
             <DivProfile>
                 <DivAvatar>
                     <img src="" alt=""></img>

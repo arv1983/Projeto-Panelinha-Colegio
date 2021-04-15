@@ -203,7 +203,7 @@ const GetOneDev = () => {
             </Rotate>
           </div>
         ))}
-      </div>
+      </div> 
     </>
   );
 };

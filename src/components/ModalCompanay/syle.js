@@ -10,4 +10,4 @@ export const DivPai = styled.div`
     width: 250px;
     height: auto;
     padding: 10px;
-`
+` 

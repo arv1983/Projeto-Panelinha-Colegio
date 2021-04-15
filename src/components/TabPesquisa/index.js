@@ -70,8 +70,8 @@ const TabPesquisa = () => {
                 <div>
                     <AppBar  style={{background: "black"}} position="static">
                         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                            <Tab label="Empresa" {...a11yProps(0)} />
-                            <Tab label="Dev" {...a11yProps(1)} />
+                            <Tab label="Dev" {...a11yProps(0)} />
+                            <Tab label="Empresa" {...a11yProps(1)} />
                             <Tab label="Vagas" {...a11yProps(2)} /> 
                         </Tabs>
                     </AppBar>
@@ -89,14 +89,14 @@ const TabPesquisa = () => {
                 <div>
                 <AppBar  style={{background: "black"}} position="static">
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                        <Tab label="Empresa" {...a11yProps(0)} />
-                        <Tab label="Vagas" {...a11yProps(2)} /> 
+                        <Tab label="Dev" {...a11yProps(0)} />
+                        <Tab label="Vagas" {...a11yProps(1)} /> 
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
                     <GetOneDev/>
-                </TabPanel>
-                <TabPanel value={value} index={2}>
+                </TabPanel> 
+                <TabPanel value={value} index={1}>
                     <GetVacanciesComp/>
                 </TabPanel>
             </div>

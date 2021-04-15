@@ -12,7 +12,7 @@ const CardCompany = ({devs}) =>{
       const handleClose = (e) => {
         setOpen(false);
       };
-
+ 
     return(
         <DivPai>
              <div >

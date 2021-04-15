@@ -18,7 +18,7 @@ export const TokenProvider = (props) => {
       }}
     >
       {props.children}
-    </TokenContext.Provider>
+    </TokenContext.Provider> 
   );
 };
 

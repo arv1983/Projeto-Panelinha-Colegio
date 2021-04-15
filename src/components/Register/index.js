@@ -40,7 +40,7 @@ const Register = () => {
           cellPhone: "",
           description: "",
           is_coach: "",
-        })
+        }) 
         .then((response) => {
           handleMessage();
           console.log(response);

@@ -27,5 +27,5 @@ export const DivPai = styled.div`
 
     :hover{
         box-shadow: 5px 5px 5px ${COLORS.branco};
-    }
+    } 
 `

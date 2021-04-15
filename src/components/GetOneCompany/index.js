@@ -93,5 +93,5 @@ const GetOneCompany = () => {
     </div>
   );
 };
-
+ 
 export default GetOneCompany;

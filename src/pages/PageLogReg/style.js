@@ -104,6 +104,6 @@ export const DivPai = styled.div`
         text-align: center;
       }
     }
-  }
+  } 
 
 `

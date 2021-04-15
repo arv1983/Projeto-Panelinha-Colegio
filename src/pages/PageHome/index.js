@@ -10,4 +10,4 @@ const PageHome = () =>{
     )
 }
 
-export default PageHome;
+export default PageHome; 

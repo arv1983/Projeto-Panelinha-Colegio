@@ -23,7 +23,7 @@ const NavegationMob = () => {
         <HeadMob>
           <DivIcon>
             <Link>
-              <ImHome />
+              <ImHome /> 
             </Link>
           </DivIcon>
 
