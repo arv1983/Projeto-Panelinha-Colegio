@@ -19,12 +19,10 @@ const Register = () => {
     setTimeout(() => {
       setMessage(<div></div>);
       setStatus(false);
-    }, 4000);
+    }, 2000);
   };
 
   const handleData = (dados) => {
-    console.log(dados);
-
     if (dados.type === "pf") {
       api
         .post("/register", {
@@ -40,13 +38,10 @@ const Register = () => {
           cellPhone: "",
           description: "",
           is_coach: "",
-        }) 
-        .then((response) => {
-          handleMessage();
-          console.log(response);
         })
-        .catch((e) => {
-          console.log(e);
+        .then(handleMessage())
+        .catch(() => {
+          setError("password", { message: "Email já existente" });
         });
     } else if (dados.type === "pj") {
       api
@@ -59,12 +54,9 @@ const Register = () => {
           social_medias: "",
           description: "",
         })
-        .then((response) => {
-          handleMessage();
-          console.log(response);
-        })
-        .catch((e) => {
-          console.log(e);
+        .then(handleMessage())
+        .catch(() => {
+          setError("password", { message: "Email já existente" });
         });
     }
   };
@@ -79,6 +71,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -110,6 +103,7 @@ const Register = () => {
               <option value="pf">Dev</option>
               <option value="pj">Empresa</option>
             </Seletor>
+            <p></p>
           </div>
           <Button type="submit">cadastro</Button>
           {message}
