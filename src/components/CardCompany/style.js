@@ -9,7 +9,7 @@ export const DivPai = styled.div`
     border-radius: 15px;
     margin: 10px;
     padding: 15px;
- 
+  
     div{
         display: flex;
         align-items: center;

@@ -1,15 +1,13 @@
 import AlteraHead from '../../components/AlterHead'
-import { User } from "../../providers/UserProvider";
+import TabPesquisa from "../../components/TabPesquisa"
 
 const PageHome = () =>{
-    const { loggedUser } = User();
-
     return(
         <>
             <AlteraHead/>
-            {loggedUser.type === "pf"? "pessoa fisica" : "empresa"}
+            
         </>
     )
 }
 
-export default PageHome;
+export default PageHome; 

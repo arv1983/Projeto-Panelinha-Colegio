@@ -1,6 +1,4 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import api from "../../services/api";
 import { useState } from "react";
 import { User } from "../../providers/UserProvider";
@@ -138,6 +136,6 @@ const UpProfileComp = () => {
       </form>
     </div>
   );
-};
+}; 
 
 export default UpProfileComp;

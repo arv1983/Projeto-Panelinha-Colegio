@@ -13,7 +13,7 @@ const GetAllComp = () => {
         setDados(res.data);
       })
       .catch((e) => console.log(e));
-  }, []);
+  }, []); 
 
   return (
     <>

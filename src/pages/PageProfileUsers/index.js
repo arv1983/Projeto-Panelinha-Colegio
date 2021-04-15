@@ -14,7 +14,7 @@ const PageProfileUsers = ()=>{
                     <UpProfileDev/>
                 </DivComp>
             </DivProfile>
-        </div>
+        </div> 
         )
     }
     export default PageProfileUsers;

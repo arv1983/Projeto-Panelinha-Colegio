@@ -7,4 +7,4 @@ const CardVagas = ({item}) =>{
     )
 }
 
-export default CardVagas;
+export default CardVagas; 
