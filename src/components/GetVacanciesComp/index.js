@@ -180,22 +180,18 @@ const GetVacanciesComp = () => {
       </form>
 
       <div>
-        
         {vacancies &&
-        vacancies.map((vac) => {
-          return (
+          vacancies.map((vac) => (
             <DivPrincipal>
-              <h1>Vaga: {vac.nome}</h1>
-              <button onClick={() => subscribe(vac.id, vac.cad)}>
-                Candidatar
-              </button>
-              <button onClick={() => unSubscribe(vac.id, vac.cad)}>
-                Descadastra
-              </button>
+              <h1>nome vaga: {vac.nome}</h1>
+              <h2>id vaga:{vac.id}</h2>
+              {vac.cad?.indexOf(id) < 0 ? (
+                <button  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</button>
+              ) : (
+                <button onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</button>
+              )}
             </DivPrincipal>
-          );
-        })}
-  
+          ))}
       </div>
       <br></br>
       <br></br>
@@ -217,9 +213,3 @@ const GetVacanciesComp = () => {
 };
 
 export default GetVacanciesComp;
-
-
-
-
-
-

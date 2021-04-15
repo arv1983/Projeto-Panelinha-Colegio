@@ -1,7 +1,7 @@
 import {AppBar, } from '@material-ui/core';
 import {useHistory} from 'react-router-dom';
 import {useState} from 'react'
-
+import { User } from "../../providers/UserProvider";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -45,6 +45,7 @@ function TabPanel(props) {
   }
 
 const TabPesquisa = () => {
+    const { loggedUser } = User();
     const history = useHistory();
     const [value, setValue] = useState(0);
 
@@ -62,25 +63,44 @@ const TabPesquisa = () => {
           'aria-controls': `simple-tabpanel-${index}`,
         };
       }
-    
+    //disabled
     return (
         <div>
-            <AppBar  style={{background: "black"}} position="static">
-                <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                    <Tab label="Empresa" {...a11yProps(0)} />
-                    <Tab label="Dev" {...a11yProps(1)} />
-                    <Tab label="Vagas" {...a11yProps(2)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0}>
-                <GetOneDev/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <GetOneCompany/>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <GetVacanciesComp/>
-            </TabPanel>
+            {loggedUser.type === "pf"?
+                <div>
+                    <AppBar  style={{background: "black"}} position="static">
+                        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                            <Tab label="Empresa" {...a11yProps(0)} />
+                            <Tab label="Dev" {...a11yProps(1)} />
+                            <Tab label="Vagas" {...a11yProps(2)} /> 
+                        </Tabs>
+                    </AppBar>
+                    <TabPanel value={value} index={0}>
+                        <GetOneDev/>
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                        <GetOneCompany/>
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                        <GetVacanciesComp/>
+                    </TabPanel>
+                </div>
+                :
+                <div>
+                <AppBar  style={{background: "black"}} position="static">
+                    <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                        <Tab label="Empresa" {...a11yProps(0)} />
+                        <Tab label="Vagas" {...a11yProps(2)} /> 
+                    </Tabs>
+                </AppBar>
+                <TabPanel value={value} index={0}>
+                    <GetOneDev/>
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                    <GetVacanciesComp/>
+                </TabPanel>
+            </div>
+            }     
         </div>
     )
 }

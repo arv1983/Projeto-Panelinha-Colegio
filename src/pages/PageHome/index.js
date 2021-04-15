@@ -5,7 +5,7 @@ const PageHome = () =>{
     return(
         <>
             <AlteraHead/>
-            <TabPesquisa/>
+            
         </>
     )
 }
