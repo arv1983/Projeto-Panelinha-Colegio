@@ -1,4 +1,6 @@
 import { User } from "../../providers/UserProvider";
+import {useState} from "react"
+import {Mybutton} from "./styles"
 import api from "../../services/api";
 import { Vac } from "../../providers/VacancieProvider";
 
@@ -138,9 +140,9 @@ const GetVacanciesComp = () => {
               <h1>nome vaga: {vac.nome}</h1>
               <h2>id vaga:{vac.id}</h2>
               {vac.cad?.indexOf(id) < 0 ? (
-                <button  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</button>
+                <Mybutton  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</Mybutton>
               ) : (
-                <button onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</button>
+                <Mybutton onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</Mybutton>
               )}
             </>
           ))}
