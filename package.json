@@ -44,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "git@gitlab.com:Dev_Marques/capstone.git",
+  "author": "Andre Marques <simple_single@protonmail.com>",
+  "license": "MIT"
 }
