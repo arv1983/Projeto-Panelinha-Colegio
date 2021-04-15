@@ -17,7 +17,13 @@ const Vacancies = () => {
 
   const { vacCountClick, setVacCountClick } = Vac();
 
-  const { token } = Token();
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
 
   const { loggedUser, id } = User();
 

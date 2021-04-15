@@ -13,7 +13,13 @@ import { useHistory } from "react-router-dom";
 const UpProfileComp = () => {
   const { id, loggedUser } = User();
 
-  const { token } = Token();
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
 
   const history = useHistory();
   if (loggedUser.type === "pf") {
