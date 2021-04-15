@@ -20,7 +20,7 @@ const UpProfileComp = () => {
   });
 
   const history = useHistory();
-  if (loggedUser.type === "pf") {
+  if (loggedUser.type === "pf" && token) {
     history.push("/home");
   }
 
