@@ -1,3 +1,5 @@
+//Gianine
+
 import { Modal } from "@material-ui/core";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -7,7 +9,9 @@ import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
+
 const VacanciesListEdit = (props) => {
+
   console.log(props);
   const { id } = User();
   const [token] = useState(() => {

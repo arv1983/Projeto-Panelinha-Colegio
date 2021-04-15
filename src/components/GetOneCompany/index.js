@@ -18,6 +18,10 @@ const GetOneCompany = () => {
 
   const history = useHistory();
 
+  // if (!token) {
+  //   history.push("/");
+  // }
+
   const {
     register,
     handleSubmit,

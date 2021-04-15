@@ -10,7 +10,7 @@ import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
 import { Token } from "../../providers/TokenProvider";
 
-const Login = () => {
+const Login = ({ label }) => {
   const { id, setId, loggedUser, userCountClick, setUserCountClick } = User();
 
   const history = useHistory();
@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   const schema = yup.object().shape({
-    email: yup.string().required("Required"),
+    email: yup.string().required("Field Required"),
     password: yup.string().required("Field Required"),
   });
 
@@ -60,6 +60,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(handleData)}>
             <div>
               <Input
+                className="email"
                 {...register("email")}
                 placeholder="E-mail"
                 error={!!errors.email}
@@ -68,6 +69,7 @@ const Login = () => {
             </div>
             <div>
               <Input
+                className="password"
                 {...register("password")}
                 placeholder="Password"
                 error={!!errors.password}
