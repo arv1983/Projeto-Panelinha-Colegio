@@ -8,6 +8,9 @@ import api from "../../services/api";
 const JoinVancacie = () => {
   const { id, loggedUser } = User();
   const history = useHistory();
+  if (loggedUser.type === "pj") {
+    history.push("/home");
+  }
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
