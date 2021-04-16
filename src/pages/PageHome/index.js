@@ -1,8 +1,9 @@
 import AlteraHead from "../../components/AlterHead";
-import TabPesquisa from "../../components/TabPesquisa";
 import { User } from "../../providers/UserProvider";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
+
+import { Div} from './style'
 
 const PageHome = () => {
   const { id } = User();
@@ -39,36 +40,38 @@ const PageHome = () => {
   return (
     <>
       <AlteraHead />
-      id: {id}
-      Voce tem {vagas.length} anunciada
-      {vagas &&
-        vagas.map((dados) => (
-          <h1>
-            {dados.nome}
-            {dados.cad.length === 0 ? (
-              <>Essa vaga não tem candidato</>
-            ) : dados.cad.length === 1 ? (
-              <>Essa vaga tem um candidato</>
-            ) : (
-              <>Essa vaga tem {dados.cad.length} candidatos</>
-            )}
-            yarn
-            <br />
-            {dados.cad &&
-              dados.cad.map((candidatos, i) => (
-                <>
-                  nomes
-                  <br />
-                  {candidatos}
-                  {
-                    candi.find((element) => element.id === Number(candidatos))
-                      ?.name
-                  }{" "}
-                  AQUI VEM LINK PARA VER PERFIL
-                </>
-              ))}
-          </h1>
-        ))}
+      <div>
+        <h1 style={{textAlign: "center", margin: "5px auto"}}>Voce tem: {vagas.length} Anunciada</h1>
+        <div style={{display: "flex", flexWrap: "wrap" ,height: "auto"}}>
+
+          {vagas &&
+            vagas.map((dados) => (
+              <Div>
+                <h1 >Nome: {dados.nome}</h1>
+                  {dados.cad.length === 0 ? (
+                    <h3>Essa vaga não tem candidato</h3>
+                    ) : dados.cad.length === 1 ? (
+                      <h3>Essa vaga tem um candidato</h3>
+                      ) : (
+                        <h3>Essa vaga tem {dados.cad.length} candidatos</h3>
+                        )}
+                <br />
+                <div style={{border: "1px double white"}}>
+                  {dados.cad &&
+                    dados.cad.map((candidatos, i) => (
+                      <div>
+                        <h2>Candidato</h2>
+                        <br />
+                        <h3>Nome:</h3>{candi.find((element) => element.id === Number(candidatos))?.name}
+                        AQUI VEM LINK PARA VER PERFIL
+                      </div>
+                  ))}
+                </div>
+              
+            </Div>
+          ))}
+          </div>
+      </div>
     </>
   );
 };
