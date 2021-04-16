@@ -2,13 +2,9 @@ import React, { useState, useEffect } from "react";
 export const TokenContext = React.createContext({});
 
 export const TokenProvider = (props) => {
-  const [token, setToken] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
+  const [token, setToken] = useState();
+
+  console.log(token);
 
   return (
     <TokenContext.Provider
@@ -18,7 +14,7 @@ export const TokenProvider = (props) => {
       }}
     >
       {props.children}
-    </TokenContext.Provider> 
+    </TokenContext.Provider>
   );
 };
 

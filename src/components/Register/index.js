@@ -39,9 +39,13 @@ const Register = () => {
           description: "",
           is_coach: "",
         })
-        .then(handleMessage())
+        .then((response) => {
+          if (response.status === 200) {
+            handleMessage();
+          }
+        })
         .catch(() => {
-          setError("password", { message: "Email já existente" });
+          setError("type", { message: "Email já existente" });
         });
     } else if (dados.type === "pj") {
       api
@@ -95,7 +99,6 @@ const Register = () => {
               placeholder="Password"
               {...register("password")}
             />
-            <p style={{ color: "red" }}>{errors.password?.message}</p>
           </div>
           <div>
             <label>Tipo de Pessoa</label>
@@ -103,6 +106,7 @@ const Register = () => {
               <option value="pf">Dev</option>
               <option value="pj">Empresa</option>
             </Seletor>
+            <p style={{ color: "red" }}>{errors.type?.message}</p>
             <p></p>
           </div>
           <Button type="submit">cadastro</Button>

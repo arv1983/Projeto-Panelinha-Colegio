@@ -11,7 +11,6 @@ import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
 
 const VacanciesListEdit = (props) => {
-
   console.log(props);
   const { id } = User();
   const [token] = useState(() => {
@@ -291,7 +290,7 @@ const VacanciesListEdit = (props) => {
                 <label for="bootstrap">Bootstrap</label>
               </div>
               <div>
-                <input 
+                <input
                   type="checkbox"
                   name="php"
                   defaultChecked={props.dados.php}
