@@ -16,7 +16,7 @@ const Navegation = () => {
 
   return (
     <>
-      {token && (
+      {localStorage.getItem("token") && (
         <Div>
           <button>
             <Link to="/home">Principal</Link>

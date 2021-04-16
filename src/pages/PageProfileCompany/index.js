@@ -4,6 +4,8 @@ import Navegation from "../../components/Navegation";
 import UpProfileComp from "../../components/UpProfileComp";
 import Vacancies from "../../components/Vacancies";
 import { User } from "../../providers/UserProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { DivComp, DivAvatar, DivProfile } from "../../stylesGlobal";
 
@@ -15,6 +17,12 @@ const PageProfileComp = () => {
     history.push("/users/dev");
   }
 
+  const notifyUpProfComp = () => toast("Atualizado com sucesso!");
+
+  const notifyCreateVacancies = () => toast("Vaga anunciada com sucesso!");
+
+  const notifyUpVacancies = () => toast("Vaga editada com sucesso!");
+
   return (
     <>
       <AlteraHead />
@@ -23,7 +31,7 @@ const PageProfileComp = () => {
           <img src="" alt=""></img>
         </DivAvatar>
         <DivComp className="divCOmp">
-          <UpProfileComp />
+          <UpProfileComp notifyUpProfComp={notifyUpProfComp} />
         </DivComp>
       </DivProfile>
       <div
@@ -36,8 +44,22 @@ const PageProfileComp = () => {
         }}
       >
         <h1> Anuncia Vagas</h1>
-        <Vacancies />
+        <Vacancies
+          notifyCreateVacancies={notifyCreateVacancies}
+          notifyUpVacancies={notifyUpVacancies}
+        />
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };
