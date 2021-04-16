@@ -5,8 +5,10 @@ export const TokenProvider = (props) => {
   const [token, setToken] = useState();
 
   useEffect(() => {
-    setToken(JSON.parse(localStorage.getItem("token")));
-  }, []);
+    if (token) {
+      setToken(JSON.parse(localStorage.getItem("token")));
+    }
+  }, [token]);
 
   return (
     <TokenContext.Provider
