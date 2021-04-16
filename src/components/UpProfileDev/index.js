@@ -5,6 +5,8 @@ import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   InputProfile,
@@ -15,7 +17,7 @@ import {
 import { useHistory } from "react-router-dom";
 import { Token } from "../../providers/TokenProvider";
 
-const UpProfileDev = () => {
+const UpProfileDev = ({ notifyUpProfDev }) => {
   const { id, loggedUser } = User();
 
   const { token } = Token();
@@ -191,6 +193,7 @@ const UpProfileDev = () => {
       )
       .then((res) => {
         console.log("Patch", res.data);
+        notifyUpProfDev();
       })
       .catch((e) => console.log(e));
   };

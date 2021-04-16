@@ -12,7 +12,7 @@ import { DivChecked, DivCampos, DivBotao } from "./style";
 import { Token } from "../../providers/TokenProvider";
 import { useHistory } from "react-router-dom";
 
-const Vacancies = () => {
+const Vacancies = ({ notifyCreateVacancies, notifyUpVacancies }) => {
   const [lista, setLista] = useState();
 
   const { vacCountClick, setVacCountClick } = Vac();
@@ -79,6 +79,7 @@ const Vacancies = () => {
         }
       )
       .then((res) => {
+        notifyCreateVacancies();
         setVacCountClick(vacCountClick + 1);
         console.log(res);
       })
@@ -346,7 +347,12 @@ const Vacancies = () => {
         </DivBotao>
       </form>
 
-      <VacanciesList lista={lista} setLista={setLista} deleta={deleta} />
+      <VacanciesList
+        lista={lista}
+        setLista={setLista}
+        deleta={deleta}
+        notifyUpVacancies={notifyUpVacancies}
+      />
     </>
   );
 };

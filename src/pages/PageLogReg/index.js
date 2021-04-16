@@ -10,6 +10,8 @@ import { LogReg } from "../../providers/LogRegProvider";
 import AlteraHead from "../../components/AlterHead";
 import { Token } from "../../providers/TokenProvider";
 import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const PageLogReg = () => {
   const { status, setStatus } = LogReg();
@@ -17,6 +19,10 @@ const PageLogReg = () => {
   const { token } = Token();
 
   const history = useHistory();
+
+  const notifyReg = () => toast("Cadastrado com sucesso");
+
+  const notifyLog = () => toast("Logado com sucesso");
 
   if (token) {
     history.push("/home");
@@ -33,11 +39,11 @@ const PageLogReg = () => {
           <TextForm>
             {status ? (
               <Rotate direction="bottom-left">
-                <Register />
+                <Register notifyReg={notifyReg} />
               </Rotate>
             ) : (
               <Rotate direction="bottom-right">
-                <Login />
+                <Login notifyLog={notifyLog} />
               </Rotate>
             )}
             <button className="btn-Comp" onClick={() => setStatus(!status)}>
@@ -60,6 +66,17 @@ const PageLogReg = () => {
           </TextContent>
         </div>
       </DivPai>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

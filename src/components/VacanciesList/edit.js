@@ -94,6 +94,7 @@ const VacanciesListEdit = (props) => {
       )
       .then((response) => {
         if (response.status === 200) {
+          props.notifyUpVacancies();
           api
             .get(`/vacancies?idUser=${id}`)
             .then((response) => {
@@ -101,6 +102,9 @@ const VacanciesListEdit = (props) => {
             })
             .catch((e) => console.log(e));
         }
+        setTimeout(() => {
+          handleClose();
+        }, 2000);
       })
       .catch((e) => {
         console.log(e);

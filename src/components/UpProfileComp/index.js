@@ -8,7 +8,7 @@ import { InputProfile, BtnAtt, DivOption } from "../../stylesGlobal";
 import { Token } from "../../providers/TokenProvider";
 import { useHistory } from "react-router-dom";
 
-const UpProfileComp = () => {
+const UpProfileComp = ({ notifyUpProfComp }) => {
   const { id, loggedUser } = User();
 
   const [token] = useState(() => {
@@ -61,7 +61,7 @@ const UpProfileComp = () => {
           },
         }
       )
-      .then((res) => console.log(res))
+      .then(notifyUpProfComp())
       .catch((e) => console.log(e));
   };
 
