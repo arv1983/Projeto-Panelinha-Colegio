@@ -71,7 +71,7 @@ const VacanciesListEdit = (props) => {
           local: dados.local,
           data: dados.data,
           reactjs: dados.reactjs,
-          reactnative: dados.reactnative,
+          reactNative: dados.reactNative,
           flutter: dados.flutter,
           python: dados.python,
           javascript: dados.javascript,
