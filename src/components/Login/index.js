@@ -13,8 +13,10 @@ import { Token } from "../../providers/TokenProvider";
 const Login = ({ label }) => {
   const { setId, loggedUser, userCountClick, setUserCountClick } = User();
 
+  const { token, setToken } = Token();
+
   const history = useHistory();
-  const { token } = Token();
+
   const handleData = (dados) => {
     setUserCountClick(userCountClick + 1);
     api
@@ -24,7 +26,8 @@ const Login = ({ label }) => {
         localStorage.setItem(
           "token",
           JSON.stringify(response.data.accessToken)
-        ); 
+        );
+        setToken(JSON.parse(localStorage.getItem("token")));
         setId(jwt_decode(localStorage.getItem("token")).sub);
         if (loggedUser.type === "pf") {
           history.push("/users/dev");
@@ -50,10 +53,6 @@ const Login = ({ label }) => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  if (token) {
-    history.push("/home");
-  }
 
   return (
     <div>

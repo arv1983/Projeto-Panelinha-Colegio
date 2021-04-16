@@ -13,22 +13,12 @@ import {
   DivOption,
 } from "../../stylesGlobal";
 import { useHistory } from "react-router-dom";
+import { Token } from "../../providers/TokenProvider";
 
 const UpProfileDev = () => {
   const { id, loggedUser } = User();
-  const history = useHistory();
 
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
-
-  if (loggedUser.type === "pj") {
-    history.push("/home");
-  }
+  const { token } = Token();
 
   const [nameInput, setNameInput] = useState("");
 
@@ -473,7 +463,7 @@ const UpProfileDev = () => {
             <label>Não sou coach</label>
             <p style={{ color: "red" }}>{errors.is_coach?.message}</p>
           </div>
-          <div> 
+          <div>
             <span>Você possui emprego?</span>
             <input
               {...register("have_job")}

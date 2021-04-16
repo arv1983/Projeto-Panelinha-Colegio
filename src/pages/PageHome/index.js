@@ -1,13 +1,12 @@
-import AlteraHead from '../../components/AlterHead'
-import TabPesquisa from "../../components/TabPesquisa"
+import AlteraHead from "../../components/AlterHead";
+import TabPesquisa from "../../components/TabPesquisa";
 
-const PageHome = () =>{
-    return(
-        <>
-            <AlteraHead/>
-            
-        </>
-    )
-}
+const PageHome = () => {
+  return (
+    <>
+      <AlteraHead />
+    </>
+  );
+};
 
-export default PageHome; 
+export default PageHome;

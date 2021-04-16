@@ -27,11 +27,6 @@ const Vacancies = () => {
 
   const { loggedUser, id } = User();
 
-  const history = useHistory();
-  if (loggedUser.type === "pf" && token) {
-    history.push("/home");
-  }
-
   useEffect(() => {
     api
       .get(`/vacancies?idUser=${id}`)
@@ -69,6 +64,7 @@ const Vacancies = () => {
           html5: dados.html5,
           bootstrap: dados.bootstrap,
           php: dados.php,
+          cad: [],
         },
         {
           headers: {
@@ -193,11 +189,11 @@ const Vacancies = () => {
           <div>
             <input
               type="checkbox"
-              name="reactnative"
+              name="reactNative"
               value="true"
-              {...register("reactnative")}
+              {...register("reactNative")}
             />
-            <label for="ReactJs">React Native</label>
+            <label for="ReactNative">React Native</label>
           </div>
 
           <div>
@@ -305,7 +301,7 @@ const Vacancies = () => {
             <label for="html5">Html5</label>
           </div>
 
-          <div> 
+          <div>
             <input
               type="checkbox"
               name="bootstrap"
