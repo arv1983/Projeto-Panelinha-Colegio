@@ -10,33 +10,42 @@ import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
 import { Token } from "../../providers/TokenProvider";
 
-const Login = () => {
-  const { id, setId, loggedUser, userCountClick, setUserCountClick } = User();
+const Login = ({ notifyLog }) => {
+  const { setId, loggedUser, userCountClick, setUserCountClick } = User();
+
+  const { token, setToken } = Token();
 
   const history = useHistory();
-  const { token } = Token();
+
   const handleData = (dados) => {
-    console.log(dados);
-    setUserCountClick(userCountClick + 1);
     api
       .post("/login", dados)
-      .then((response) => {
-        console.log(response);
-        localStorage.clear();
-        localStorage.setItem(
-          "token",
-          JSON.stringify(response.data.accessToken)
-        );
-        setId(jwt_decode(localStorage.getItem("token")).sub);
-        history.push("/home");
-      })
-      .catch((e) => {
-        console.log(e);
+      .then(
+        (response) =>
+          notifyLog() &&
+          setTimeout(() => {
+            console.log("entrei aqui");
+            localStorage.clear();
+            localStorage.setItem(
+              "token",
+              JSON.stringify(response.data.accessToken)
+            );
+            setToken(JSON.parse(localStorage.getItem("token")));
+            setId(jwt_decode(localStorage.getItem("token")).sub);
+            if (loggedUser.type === "pf") {
+              history.push("/users/dev");
+            } else {
+              history.push("/users/comp");
+            }
+          }, 3000)
+      )
+      .catch(() => {
+        setError("password", { message: "Conta não existente" });
       });
   };
 
   const schema = yup.object().shape({
-    email: yup.string().required("Required"),
+    email: yup.string().required("Campo requerido"),
     password: yup.string().required("Field Required"),
   });
 
@@ -44,13 +53,10 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  if (token) {
-    history.push("/home");
-  }
 
   return (
     <div>
@@ -60,6 +66,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(handleData)}>
             <div>
               <Input
+                className="email"
                 {...register("email")}
                 placeholder="E-mail"
                 error={!!errors.email}
@@ -68,6 +75,7 @@ const Login = () => {
             </div>
             <div>
               <Input
+                className="password"
                 {...register("password")}
                 placeholder="Password"
                 error={!!errors.password}

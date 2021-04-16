@@ -6,14 +6,6 @@ import api from "../../services/api";
 const GetAllComp = () => {
   const [dados, setDados] = useState([]);
 
-  const { token } = Token();
-
-  const history = useHistory();
-
-  if (!token) {
-    history.push("/");
-  }
-
   useEffect(() => {
     api
       .get(`/users?type=pj`)
@@ -21,7 +13,7 @@ const GetAllComp = () => {
         setDados(res.data);
       })
       .catch((e) => console.log(e));
-  }, []);
+  }, []); 
 
   return (
     <>

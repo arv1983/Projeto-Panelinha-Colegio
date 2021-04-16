@@ -1,23 +1,26 @@
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import api from "../../services/api";
 import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { InputProfile, BtnAtt, Label, DivOption } from "../../stylesGlobal";
-import { Token } from "../../providers/TokenProvider";
+import {
+  InputProfile,
+  BtnAtt,
+  DivCheckeBox,
+  DivOption,
+} from "../../stylesGlobal";
 import { useHistory } from "react-router-dom";
+import { Token } from "../../providers/TokenProvider";
 
-const UpProfileDev = () => {
+const UpProfileDev = ({ notifyUpProfDev }) => {
   const { id, loggedUser } = User();
-  const history = useHistory();
-  const { token } = Token();
 
-  if (loggedUser.type === "pj") {
-    history.push("/home");
-  }
+  const { token } = Token();
 
   const [nameInput, setNameInput] = useState("");
 
@@ -33,13 +36,39 @@ const UpProfileDev = () => {
 
   const [cellPhoneInput, setCellPhoneInput] = useState("");
 
-  const [softSkillsInput, setSoftSkillsInput] = useState("");
+  // const [softSkillsInput, setSoftSkillsInput] = useState("");
 
   const [descriptionInput, setDescriptionInput] = useState("");
 
   const [is_coachInput, setIs_coachInput] = useState("");
 
   // começa putaria
+
+  const schema = yup.object().shape({
+    nome: yup.string(),
+    city: yup.string(),
+    is_coach: yup.boolean().nullable(),
+    quarter: yup.string().nullable(),
+    social_medias: yup.string(),
+    cellPhone: yup.string(),
+    description: yup.string(),
+    reactNative: yup.boolean(),
+    flutter: yup.boolean(),
+    python: yup.boolean(),
+    javascript: yup.boolean(),
+    sql: yup.boolean(),
+    typescript: yup.boolean(),
+    nodejs: yup.boolean(),
+    dart: yup.boolean(),
+    ruby_on_rails: yup.boolean(),
+    objective_c: yup.boolean(),
+    go: yup.boolean(),
+    html5: yup.boolean(),
+    bootstrap: yup.boolean(),
+    php: yup.boolean(),
+    avaliable_job: yup.boolean().nullable(),
+    have_job: yup.boolean().nullable(),
+  });
 
   const [reactjsInput, setReactjsInput] = useState(false);
   const [reactNativeInput, setReactNativeInput] = useState(false);
@@ -67,7 +96,7 @@ const UpProfileDev = () => {
     setQuarterInput(loggedUser.quarter);
     setSocial_mediasInput(loggedUser.social_medias);
     setCellPhoneInput(loggedUser.cellPhone);
-    setSoftSkillsInput(loggedUser.softSkills);
+    // setSoftSkillsInput(loggedUser.softSkills);
     // cameça putaria
 
     setReactjsInput(loggedUser.reactjs);
@@ -99,7 +128,7 @@ const UpProfileDev = () => {
     loggedUser.name,
     loggedUser.quarter,
     loggedUser.social_medias,
-    loggedUser.softSkills,
+    // loggedUser.softSkills,
     loggedUser.reactjs,
     loggedUser.flutter,
     loggedUser.python,
@@ -122,7 +151,9 @@ const UpProfileDev = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({});
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleUpdate = (data) => {
     api
@@ -136,7 +167,6 @@ const UpProfileDev = () => {
           quarter: quarterInput,
           social_medias: social_mediasInput,
           cellPhone: cellPhoneInput,
-          softSkills: softSkillsInput,
           description: descriptionInput,
           is_coach: is_coachInput,
           reactjs: reactjsInput,
@@ -163,6 +193,7 @@ const UpProfileDev = () => {
       )
       .then((res) => {
         console.log("Patch", res.data);
+        notifyUpProfDev();
       })
       .catch((e) => console.log(e));
   };
@@ -188,13 +219,43 @@ const UpProfileDev = () => {
           />
         </div>
         <div>
-          <InputProfile
+          <span>Quarter</span>
+          <input
             {...register("quarter")}
-            placeholder="Período"
+            type="radio"
             value={quarterInput}
-            onChange={(e) => setQuarterInput(e.target.value)}
+            onChange={() => setQuarterInput("q1")}
+            checked={quarterInput === "q1"}
+            required="required"
           />
+          <label>Q1</label>
+          <input
+            {...register("quarter")}
+            type="radio"
+            value={quarterInput}
+            onChange={() => setQuarterInput("q2")}
+            checked={quarterInput === "q2"}
+          />
+          <label>Q2</label>
+          <input
+            {...register("quarter")}
+            type="radio"
+            value={quarterInput}
+            onChange={() => setQuarterInput("q3")}
+            checked={quarterInput === "q3"}
+          />
+          <label>Q3</label>
+          <input
+            {...register("quarter")}
+            type="radio"
+            value={quarterInput}
+            onChange={() => setQuarterInput("q4")}
+            checked={quarterInput === "q4"}
+          />
+          <label>Q4</label>
+          <p style={{ color: "red" }}>{errors.quarter?.message}</p>
         </div>
+
         <div>
           <InputProfile
             {...register("social_medias")}
@@ -208,173 +269,18 @@ const UpProfileDev = () => {
             {...register("cellPhone")}
             placeholder="Celular"
             value={cellPhoneInput}
-            onChange={(e) => cellPhoneInput(e.target.value)}
+            onChange={(e) => setCellPhoneInput(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <InputProfile
             {...register("softSkills")}
             placeholder="SoftSkills"
             value={softSkillsInput}
             onChange={(e) => setSoftSkillsInput(e.target.value)}
           />
-        </div>
-        {/* comeca a putaria                        ass */}
-        {console.log("react js" + reactjsInput)}
-        <div>
-          <InputProfile
-            {...register("reactjs")}
-            type="checkbox"
-            checked={reactjsInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setReactjsInput(e.target.checked)}
-          />
+        </div> */}
 
-          <label for="ReactJs">ReactJs</label>
-        </div>
-        <div>
-          {console.log("react Native" + reactNativeInput)}
-          <InputProfile
-            {...register("reactnative")}
-            type="checkbox"
-            checked={reactNativeInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setReactNativeInput(e.target.checked)}
-          />
-          <label for="ReactJs">React Native</label>
-        </div>
-        <div>
-          {console.log("react flutter" + flutterInput)}
-          <InputProfile
-            {...register("flutter")}
-            type="checkbox"
-            checked={flutterInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setFlutterInput(e.target.checked)}
-          />
-          <label for="flutter">Flutter</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("python")}
-            type="checkbox"
-            checked={pythonInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setPythonInput(e.target.checked)}
-          />
-          <label for="python">Python</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("javascript")}
-            type="checkbox"
-            checked={javascriptInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setJavascriptInput(e.target.checked)}
-          />
-          <label for="javascript">JavaScript</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("sql")}
-            type="checkbox"
-            checked={sqlInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setSqlInput(e.target.checked)}
-          />
-          <label for="sql">SQL</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("typescript")}
-            type="checkbox"
-            checked={typescriptInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setTypeScriptInput(e.target.checked)}
-          />
-          <label for="typescript">Type scriṕt</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("nodejs")}
-            type="checkbox"
-            checked={nodejsInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setNodeJsInput(e.target.checked)}
-          />
-          <label for="nodejs">NodeJs</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("dart")}
-            type="checkbox"
-            checked={dartInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setDartInput(e.target.checked)}
-          />
-          <label for="dart">Dart</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("ruby_on_rails")}
-            type="checkbox"
-            checked={ruby_on_railsInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setRuby_on_railsInput(e.target.checked)}
-          />
-          <label for="ruby_on_rails">ruby_on_rails</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("objective_c")}
-            type="checkbox"
-            checked={objective_cInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setObjective_cInput(e.target.checked)}
-          />
-          <label for="objective_c">objective_c</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("go")}
-            type="checkbox"
-            checked={goInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setGoInput(e.target.checked)}
-          />
-          <label for="go">go</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("html5")}
-            type="checkbox"
-            checked={html5Input === true && <>checked</>}
-            value="true"
-            onChange={(e) => setHtml5Input(e.target.checked)}
-          />
-          <label for="html5">html5</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("bootstrap")}
-            type="checkbox"
-            checked={bootstrapInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setBootstrapInput(e.target.checked)}
-          />
-          <label for="bootstrap">bootstrap</label>
-        </div>
-        <div>
-          <InputProfile
-            {...register("php")}
-            type="checkbox"
-            checked={phpInput === true && <>checked</>}
-            value="true"
-            onChange={(e) => setPhpInput(e.target.checked)}
-          />
-          <label for="php">php</label>
-        </div>
-        {/* termina  a putaria                        ass */}
         <div>
           <InputProfile
             {...register("description")}
@@ -383,6 +289,161 @@ const UpProfileDev = () => {
             onChange={(e) => setDescriptionInput(e.target.value)}
           />
         </div>
+        <DivCheckeBox>
+          <div>
+            <input
+              {...register("reactjs")}
+              type="checkbox"
+              checked={reactjsInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setReactjsInput(e.target.checked)}
+            />
+
+            <label for="ReactJs">ReactJs</label>
+          </div>
+          <div>
+            {console.log("react Native" + reactNativeInput)}
+            <input
+              {...register("reactnative")}
+              type="checkbox"
+              checked={reactNativeInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setReactNativeInput(e.target.checked)}
+            />
+            <label for="ReactJs">React Native</label>
+          </div>
+          <div>
+            {console.log("react flutter" + flutterInput)}
+            <input
+              {...register("flutter")}
+              type="checkbox"
+              checked={flutterInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setFlutterInput(e.target.checked)}
+            />
+            <label for="flutter">Flutter</label>
+          </div>
+          <div>
+            <input
+              {...register("python")}
+              type="checkbox"
+              checked={pythonInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setPythonInput(e.target.checked)}
+            />
+            <label for="python">Python</label>
+          </div>
+          <div>
+            <input
+              {...register("javascript")}
+              type="checkbox"
+              checked={javascriptInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setJavascriptInput(e.target.checked)}
+            />
+            <label for="javascript">JavaScript</label>
+          </div>
+          <div>
+            <input
+              {...register("sql")}
+              type="checkbox"
+              checked={sqlInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setSqlInput(e.target.checked)}
+            />
+            <label for="sql">SQL</label>
+          </div>
+          <div>
+            <input
+              {...register("typescript")}
+              type="checkbox"
+              checked={typescriptInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setTypeScriptInput(e.target.checked)}
+            />
+            <label for="typeScript">Typescriṕt</label>
+          </div>
+          <div>
+            <input
+              {...register("nodejs")}
+              type="checkbox"
+              checked={nodejsInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setNodeJsInput(e.target.checked)}
+            />
+            <label for="nodejs">NodeJs</label>
+          </div>
+          <div>
+            <input
+              {...register("dart")}
+              type="checkbox"
+              checked={dartInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setDartInput(e.target.checked)}
+            />
+            <label for="dart">Dart</label>
+          </div>
+          <div>
+            <input
+              {...register("ruby_on_rails")}
+              type="checkbox"
+              checked={ruby_on_railsInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setRuby_on_railsInput(e.target.checked)}
+            />
+            <label for="ruby_on_rails">Ruby on rails</label>
+          </div>
+          <div>
+            <input
+              {...register("objective_c")}
+              type="checkbox"
+              checked={objective_cInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setObjective_cInput(e.target.checked)}
+            />
+            <label for="objective_c">Objective c</label>
+          </div>
+          <div>
+            <input
+              {...register("go")}
+              type="checkbox"
+              checked={goInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setGoInput(e.target.checked)}
+            />
+            <label for="go">Go</label>
+          </div>
+          <div>
+            <input
+              {...register("html5")}
+              type="checkbox"
+              checked={html5Input === true && <>checked</>}
+              value="true"
+              onChange={(e) => setHtml5Input(e.target.checked)}
+            />
+            <label for="html5">Html5</label>
+          </div>
+          <div>
+            <input
+              {...register("bootstrap")}
+              type="checkbox"
+              checked={bootstrapInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setBootstrapInput(e.target.checked)}
+            />
+            <label for="bootstrap">Bootstrap</label>
+          </div>
+          <div>
+            <input
+              {...register("php")}
+              type="checkbox"
+              checked={phpInput === true && <>checked</>}
+              value="true"
+              onChange={(e) => setPhpInput(e.target.checked)}
+            />
+            <label for="php">Php</label>
+          </div>
+        </DivCheckeBox>
         <DivOption>
           <div>
             <span>Você é coach?</span>
@@ -390,9 +451,9 @@ const UpProfileDev = () => {
               {...register("is_coach")}
               type="radio"
               value={is_coachInput}
-              checked={true}
               onChange={() => setIs_coachInput(true)}
               checked={is_coachInput === true}
+              required="required"
             />
             <label>Sou coach</label>
             <input
@@ -403,6 +464,7 @@ const UpProfileDev = () => {
               checked={is_coachInput === false}
             />
             <label>Não sou coach</label>
+            <p style={{ color: "red" }}>{errors.is_coach?.message}</p>
           </div>
           <div>
             <span>Você possui emprego?</span>
@@ -410,18 +472,20 @@ const UpProfileDev = () => {
               {...register("have_job")}
               type="radio"
               value={have_jobInput}
-              onChange={() => setHave_jobInput("Empregado")}
-              checked={have_jobInput === "Empregado"}
+              onChange={() => setHave_jobInput(true)}
+              checked={have_jobInput === true}
+              required="required"
             />
             <label>Empregado</label>
             <input
               {...register("have_job")}
               type="radio"
               value={have_jobInput}
-              onChange={() => setHave_jobInput("Desempregado")}
-              checked={have_jobInput === "Desempregado"}
+              onChange={() => setHave_jobInput(false)}
+              checked={have_jobInput === false}
             />
             <label>Desempregado</label>
+            <p style={{ color: "red" }}>{errors.have_job?.message}</p>
           </div>
 
           <div>
@@ -430,18 +494,20 @@ const UpProfileDev = () => {
               {...register("avaliable_job")}
               type="radio"
               value={avaliable_jobInput}
-              onChange={() => setAvaliable_jobInput("Disponivel")}
-              checked={avaliable_jobInput === "Disponivel"}
+              onChange={() => setAvaliable_jobInput(true)}
+              checked={avaliable_jobInput === true}
+              required="required"
             />
             <label>Disponível</label>
             <input
               {...register("avaliable_job")}
               type="radio"
               value={avaliable_jobInput}
-              onChange={() => setAvaliable_jobInput("NaoDisponivel")}
-              checked={avaliable_jobInput === "NaoDisponivel"}
+              onChange={() => setAvaliable_jobInput(false)}
+              checked={avaliable_jobInput === false}
             />
             <label>Não Disponível</label>
+            <p style={{ color: "red" }}>{errors.avaliable_job?.message}</p>
           </div>
         </DivOption>
         <div>

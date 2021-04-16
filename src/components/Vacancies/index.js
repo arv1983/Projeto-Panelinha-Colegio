@@ -12,19 +12,20 @@ import { DivChecked, DivCampos, DivBotao } from "./style";
 import { Token } from "../../providers/TokenProvider";
 import { useHistory } from "react-router-dom";
 
-const Vacancies = () => {
+const Vacancies = ({ notifyCreateVacancies, notifyUpVacancies }) => {
   const [lista, setLista] = useState();
 
   const { vacCountClick, setVacCountClick } = Vac();
 
-  const { token } = Token();
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
 
   const { loggedUser, id } = User();
-
-  const history = useHistory();
-  // if (loggedUser.type === "pf") {
-  //   history.push("/home");
-  // }
 
   useEffect(() => {
     api
@@ -37,6 +38,12 @@ const Vacancies = () => {
 
   const handleData = (dados) => {
     console.log(dados);
+    if (dados.presencial === "true") {
+      dados.presencial = true;
+    }
+    if (dados.presencial === "false") {
+      dados.presencial = false;
+    }
     api
       .post(
         "/vacancies",
@@ -49,7 +56,7 @@ const Vacancies = () => {
           local: dados.local,
           data: dados.data,
           reactjs: dados.reactjs,
-          reactnative: dados.reactnative,
+          reactNative: dados.reactNative,
           flutter: dados.flutter,
           python: dados.python,
           javascript: dados.javascript,
@@ -63,6 +70,7 @@ const Vacancies = () => {
           html5: dados.html5,
           bootstrap: dados.bootstrap,
           php: dados.php,
+          cad: [],
         },
         {
           headers: {
@@ -70,8 +78,10 @@ const Vacancies = () => {
           },
         }
       )
-      .then(() => {
+      .then((res) => {
+        notifyCreateVacancies();
         setVacCountClick(vacCountClick + 1);
+        console.log(res);
       })
       .catch((e) => {
         console.log(e);
@@ -79,12 +89,10 @@ const Vacancies = () => {
   };
 
   const schema = yup.object().shape({
-    nome: yup.string().required("Campoobrigatorio"),
-    descricao: yup.string().required("Campo obrigatorio"),
-    presencial: yup.string().required("Campo obrigatorio"),
-    beneficios: yup.string().required("Campo obrigatorio"),
-    local: yup.string().required("Campo obrigatorio"),
-    reactjs: yup.boolean(),
+    nome: yup.string().required("Campo obrigatório"),
+    descricao: yup.string().required("Campo obrigatório"),
+    beneficios: yup.string().required("Campo obrigatório"),
+    local: yup.string().required("Campo obrigatório"),
     reactNative: yup.boolean(),
     flutter: yup.boolean(),
     python: yup.boolean(),
@@ -99,7 +107,6 @@ const Vacancies = () => {
     html5: yup.boolean(),
     bootstrap: yup.boolean(),
     php: yup.boolean(),
-    data: yup.string().required("Campo obrigatorio"),
   });
   const {
     register,
@@ -110,8 +117,6 @@ const Vacancies = () => {
   });
 
   function deleta(numero) {
-    setVacCountClick(vacCountClick + 1);
-
     api
       .delete(`/vacancies/${numero}`, {
         headers: {
@@ -124,6 +129,13 @@ const Vacancies = () => {
       .catch((e) => console.log(e));
   }
 
+  const convertDate = () => {
+    let newDate = new Date();
+    return `${newDate.getDate()}/${
+      newDate.getMonth() + 1
+    }/${newDate.getFullYear()} ${newDate.getHours()}h:${newDate.getMinutes()}min`;
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit(handleData)}>
@@ -134,6 +146,7 @@ const Vacancies = () => {
               placeholder="nome"
               {...register("nome")}
             />
+            <p style={{ color: "red" }}>{errors.nome?.message}</p>
           </div>
           <div>
             <InputProfile
@@ -141,13 +154,19 @@ const Vacancies = () => {
               placeholder="descricao"
               {...register("descricao")}
             />
+            <p style={{ color: "red" }}>{errors.descricao?.message}</p>
           </div>
           <div>
-            <InputProfile
-              type="text"
-              placeholder="presencial"
+            <span>É presencial?</span>
+            <input
               {...register("presencial")}
+              type="radio"
+              value={true}
+              required="required"
             />
+            <label>Sim</label>
+            <input {...register("presencial")} type="radio" value={false} />
+            <label>Não</label>
           </div>
 
           <div>
@@ -156,6 +175,7 @@ const Vacancies = () => {
               placeholder="beneficios"
               {...register("beneficios")}
             />
+            <p style={{ color: "red" }}>{errors.beneficios?.message}</p>
           </div>
 
           <div>
@@ -164,10 +184,12 @@ const Vacancies = () => {
               placeholder="local"
               {...register("local")}
             />
+            <p style={{ color: "red" }}>{errors.local?.message}</p>
           </div>
           <div>
             <InputProfile
-              type="text"
+              type="hidden"
+              value={convertDate()}
               placeholder="data"
               {...register("data")}
             />
@@ -187,11 +209,11 @@ const Vacancies = () => {
           <div>
             <input
               type="checkbox"
-              name="reactnative"
+              name="reactNative"
               value="true"
-              {...register("reactnative")}
+              {...register("reactNative")}
             />
-            <label for="ReactJs">React Native</label>
+            <label for="ReactNative">React Native</label>
           </div>
 
           <div>
@@ -325,7 +347,12 @@ const Vacancies = () => {
         </DivBotao>
       </form>
 
-      <VacanciesList lista={lista} setLista={setLista} deleta={deleta} />
+      <VacanciesList
+        lista={lista}
+        setLista={setLista}
+        deleta={deleta}
+        notifyUpVacancies={notifyUpVacancies}
+      />
     </>
   );
 };

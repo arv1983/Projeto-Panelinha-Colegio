@@ -8,8 +8,8 @@ import { DivVaga } from "./style";
 const VacanciesList = (props) => {
   return (
     <div>
-      <h1 style={{margin: "10px", padding: "20px"}}>Vagas Cadastradas</h1>
-      <div style={{display:  "flex", flexWrap: "wrap"}}>
+      <h1 style={{ margin: "10px", padding: "20px" }}>Vagas Cadastradas</h1>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
         {props.lista &&
           props.lista.map((item, i) => (
             <div key={i}>
@@ -17,7 +17,11 @@ const VacanciesList = (props) => {
                 <DivVaga>
                   <CardVagas item={item} />
                   <button onClick={() => props.deleta(item.id)}> Delete</button>
-                  <VacanciesListEdit dados={item} setLista={props.setLista} />
+                  <VacanciesListEdit
+                    dados={item}
+                    setLista={props.setLista}
+                    notifyUpVacancies={props.notifyUpVacancies}
+                  />
                 </DivVaga>
               </Rotate>
             </div>

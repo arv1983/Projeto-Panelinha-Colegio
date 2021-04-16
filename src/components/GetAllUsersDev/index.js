@@ -6,14 +6,6 @@ import api from "../../services/api";
 const GetAllDev = () => {
   const [dados, setDados] = useState([]);
 
-  const { token } = Token();
-
-  const history = useHistory();
-
-  if (!token) {
-    history.push("/");
-  }
-
   useEffect(() => {
     api
       .get(`/users?type=pf`)
@@ -22,7 +14,7 @@ const GetAllDev = () => {
       })
       .catch((e) => console.log(e));
   }, []);
-
+ 
   return (
     <>
       <h2>Todos os Devs:</h2>

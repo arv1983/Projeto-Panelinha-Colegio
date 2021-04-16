@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 export const TokenContext = React.createContext({});
 
 export const TokenProvider = (props) => {
-  const [token, setToken] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
+  const [token, setToken] = useState();
+
+  console.log(token);
+
+  useEffect(() => {
+    if (token) {
+      setToken(JSON.parse(localStorage.getItem("token")));
     }
-    return JSON.parse(localToken);
-  });
+  }, [token]);
 
   return (
     <TokenContext.Provider

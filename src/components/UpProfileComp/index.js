@@ -1,6 +1,4 @@
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import api from "../../services/api";
 import { useState } from "react";
 import { User } from "../../providers/UserProvider";
@@ -10,15 +8,16 @@ import { InputProfile, BtnAtt, DivOption } from "../../stylesGlobal";
 import { Token } from "../../providers/TokenProvider";
 import { useHistory } from "react-router-dom";
 
-const UpProfileComp = () => {
+const UpProfileComp = ({ notifyUpProfComp }) => {
   const { id, loggedUser } = User();
 
-  const { token } = Token();
-
-  const history = useHistory();
-  if (loggedUser.type === "pf") {
-    history.push("/home");
-  }
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
 
   const [nameInput, setNameInput] = useState("");
 
@@ -53,7 +52,6 @@ const UpProfileComp = () => {
         {
           name: nameInput,
           city: cityInput,
-          have_vacancies: false,
           social_medias: social_mediasInput,
           description: descriptionInput,
         },
@@ -63,7 +61,7 @@ const UpProfileComp = () => {
           },
         }
       )
-      .then((res) => console.log(res))
+      .then(notifyUpProfComp())
       .catch((e) => console.log(e));
   };
 
@@ -107,27 +105,6 @@ const UpProfileComp = () => {
             onChange={(e) => setDescriptionInput(e.target.value)}
           />
         </div>
-
-        <DivOption>
-          <p>Está aceitando vagas?</p>
-          <input
-            type="radio"
-            {...register("have_vacancies")}
-            value={have_vacanciesInput}
-            onChange={() => setHave_vacanciesInput(true)}
-            checked={have_vacanciesInput === true}
-          />
-          <label>Sim!</label>
-          <input
-            {...register("have_vacancies")}
-            type="radio"
-            value={have_vacanciesInput}
-            onChange={() => setHave_vacanciesInput(false)}
-            checked={have_vacanciesInput === false}
-          />
-          <label>Não!</label>
-        </DivOption>
-
         <BtnAtt type="submit">Atualizar</BtnAtt>
       </form>
     </div>

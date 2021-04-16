@@ -8,19 +8,11 @@ import { InputPesq, DivPesque, DivP, DivB } from "./style";
 
 import { Rotate } from "react-awesome-reveal";
 import CardCompany from "../CardCompany/injex";
-import { Token } from "../../providers/TokenProvider";
-import { useHistory } from "react-router-dom";
+// import { Token } from "../../providers/TokenProvider";
+// import { useHistory } from "react-router-dom";
 
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);
-
-  const { token } = Token();
-
-  const history = useHistory();
-
-  if (!token) {
-    history.push("/");
-  }
 
   const {
     register,
@@ -93,5 +85,5 @@ const GetOneCompany = () => {
     </div>
   );
 };
-
+ 
 export default GetOneCompany;

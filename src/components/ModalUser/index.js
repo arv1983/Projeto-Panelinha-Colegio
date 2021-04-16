@@ -9,4 +9,4 @@ const ModalUser = ({user}) =>{
     )
 }
 
-export default ModalUser
+export default ModalUser 

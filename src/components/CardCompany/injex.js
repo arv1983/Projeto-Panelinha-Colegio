@@ -1,7 +1,8 @@
 import { Modal } from "@material-ui/core";
 import {useState} from "react";
 import ModalCompanay from "../ModalCompanay";
-import{ DivPai} from './style'
+import{ DivPai} from './style';
+import {BtnAtt} from '../../stylesGlobal'
 
 const CardCompany = ({devs}) =>{
     const [open, setOpen] = useState(false);
@@ -12,7 +13,7 @@ const CardCompany = ({devs}) =>{
       const handleClose = (e) => {
         setOpen(false);
       };
-
+ 
     return(
         <DivPai>
              <div >
@@ -21,10 +22,9 @@ const CardCompany = ({devs}) =>{
                 </div>
                 <h2>{devs.name}</h2>
             </div>
-
-            <button onClick={handleOpen}>Perfil Empresa</button>
+            <BtnAtt onClick={handleOpen}>Perfil Empresa</BtnAtt>
             <Modal open={open} onClose={handleClose}>
-                <ModalCompanay user={devs}/>
+                <ModalCompanay user={devs}/>                
             </Modal>
         </DivPai>
     )

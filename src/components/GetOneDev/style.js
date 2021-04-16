@@ -48,7 +48,7 @@ export const DivPesque = styled.div`
 
     @media (min-width: 600px){
         display:flex;
-        flex-direction: row;
+        flex-direction: row; 
         flex-wrap: wrap;
     }
 `

@@ -18,7 +18,7 @@ export const UserProvider = (props) => {
 
   useEffect(() => {
     if (id) {
-      api
+      api 
         .get(`/users/${id}`)
         .then((response) => {
           setLoggedUser(response.data);

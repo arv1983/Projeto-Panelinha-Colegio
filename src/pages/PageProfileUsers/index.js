@@ -1,25 +1,45 @@
+import { useHistory } from "react-router-dom";
 import AlteraHead from "../../components/AlterHead";
-import Navegation from "../../components/Navegation";
 import UpProfileDev from "../../components/UpProfileDev";
+import { User } from "../../providers/UserProvider";
+import { DivComp, DivAvatar, DivProfile } from "../../stylesGlobal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import {DivComp, DivAvatar, DivProfile} from '../../stylesGlobal'
+const PageProfileUsers = () => {
+  const history = useHistory();
 
-const PageProfileUsers = ()=>{    
-    return (
-        <div>
-            <AlteraHead/>
-            <DivProfile>
-                <DivAvatar>
-                    <img src="" alt=""></img>
-                </DivAvatar>
-                <DivComp >
-                    <UpProfileDev/>
-                </DivComp>
-            </DivProfile>
-            <div  style={{ border:"1px solid white", width: "99%", height: "auto", margin: "30px auto" , textAlign: "center"}}>
-                <h1>Tecnologias</h1>
-            </div>
-        </div>
-        )
-    }
-    export default PageProfileUsers;
+  const { loggedUser } = User();
+
+  if (loggedUser.type === "pj") {
+    history.push("/users/comp");
+  }
+
+  const notifyUpProfDev = () => toast("Atualizado com sucesso!");
+
+  return (
+    <div>
+      <AlteraHead />
+      <DivProfile>
+        <DivAvatar>
+          <img src="" alt=""></img>
+        </DivAvatar>
+        <DivComp>
+          <UpProfileDev notifyUpProfDev={notifyUpProfDev} />
+        </DivComp>
+      </DivProfile>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </div>
+  );
+};
+export default PageProfileUsers;
