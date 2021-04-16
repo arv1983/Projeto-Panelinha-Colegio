@@ -69,6 +69,7 @@ const Vacancies = () => {
           html5: dados.html5,
           bootstrap: dados.bootstrap,
           php: dados.php,
+          cad: [],
         },
         {
           headers: {
@@ -195,7 +196,7 @@ const Vacancies = () => {
               type="checkbox"
               name="reactnative"
               value="true"
-              {...register("reactnative")}
+              {...register("reactNative")}
             />
             <label for="ReactJs">React Native</label>
           </div>
@@ -305,7 +306,7 @@ const Vacancies = () => {
             <label for="html5">Html5</label>
           </div>
 
-          <div> 
+          <div>
             <input
               type="checkbox"
               name="bootstrap"
