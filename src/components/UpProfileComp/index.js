@@ -52,7 +52,6 @@ const UpProfileComp = () => {
         {
           name: nameInput,
           city: cityInput,
-          have_vacancies: false,
           social_medias: social_mediasInput,
           description: descriptionInput,
         },
@@ -106,27 +105,6 @@ const UpProfileComp = () => {
             onChange={(e) => setDescriptionInput(e.target.value)}
           />
         </div>
-
-        <DivOption>
-          <p>Está aceitando vagas?</p>
-          <input
-            type="radio"
-            {...register("have_vacancies")}
-            value={have_vacanciesInput}
-            onChange={() => setHave_vacanciesInput(true)}
-            checked={have_vacanciesInput === true}
-          />
-          <label>Sim!</label>
-          <input
-            {...register("have_vacancies")}
-            type="radio"
-            value={have_vacanciesInput}
-            onChange={() => setHave_vacanciesInput(false)}
-            checked={have_vacanciesInput === false}
-          />
-          <label>Não!</label>
-        </DivOption>
-
         <BtnAtt type="submit">Atualizar</BtnAtt>
       </form>
     </div>
