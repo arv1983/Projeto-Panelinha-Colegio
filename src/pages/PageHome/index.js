@@ -19,7 +19,7 @@ const PageHome = () => {
       .get(`/vacancies?idUsers=${id}`)
       .then((res) => {
         setVagas(res.data);
-        console.log("comeca");
+
         let arr = [];
         res.data.map((pesq_id) =>
           pesq_id.cad.map((add) => arr.push("&id=" + add))
