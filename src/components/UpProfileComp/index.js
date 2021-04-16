@@ -19,11 +19,6 @@ const UpProfileComp = () => {
     return JSON.parse(localToken);
   });
 
-  const history = useHistory();
-  if (loggedUser.type === "pf" && token) {
-    history.push("/home");
-  }
-
   const [nameInput, setNameInput] = useState("");
 
   const [cityInput, setCityInput] = useState("");
@@ -136,6 +131,6 @@ const UpProfileComp = () => {
       </form>
     </div>
   );
-}; 
+};
 
 export default UpProfileComp;

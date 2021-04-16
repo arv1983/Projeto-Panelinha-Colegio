@@ -1,22 +1,32 @@
 import Login from "../../components/Login";
 import Register from "../../components/Register";
-import kenzie from "../../img/kenzie.png"
+import kenzie from "../../img/kenzie.png";
 
 import { DivPai, TextForm, TextContent } from "./style";
 
 import { Rotate } from "react-awesome-reveal";
 
 import { LogReg } from "../../providers/LogRegProvider";
-import AlteraHead from '../../components/AlterHead'
+import AlteraHead from "../../components/AlterHead";
+import { Token } from "../../providers/TokenProvider";
+import { useHistory } from "react-router-dom";
 
 const PageLogReg = () => {
   const { status, setStatus } = LogReg();
+
+  const { token } = Token();
+
+  const history = useHistory();
+
+  if (token) {
+    history.push("/home");
+  }
   return (
-    <>      
-    <AlteraHead/>
+    <>
+      <AlteraHead />
       <DivPai>
         <div className="divHead">
-          <img src={kenzie} alt="kenzie"/>
+          <img src={kenzie} alt="kenzie" />
           <h1>Recrutamento</h1>
         </div>
         <div className="divContent">
@@ -41,7 +51,7 @@ const PageLogReg = () => {
               Parceiras e nossos Devs.
             </p>
             <br></br>
-            <p> 
+            <p>
               As parceiras terão acesso as tecnologias, ideias, projetos e
               perfil dos Devs, já nos Devs terão acesso para conhecer um pouco
               das empresas, as vagas disponiveis das empresas, é melhor colocar
