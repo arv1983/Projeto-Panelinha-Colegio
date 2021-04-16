@@ -3,6 +3,7 @@ import TabPesquisa from "../../components/TabPesquisa";
 import { User } from "../../providers/UserProvider";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
+import PerfilDev from "../../components/PerfilDev";
 
 const PageHome = () => {
   const { id } = User();
@@ -64,7 +65,7 @@ const PageHome = () => {
                     candi.find((element) => element.id === Number(candidatos))
                       ?.name
                   }{" "}
-                  AQUI VEM LINK PARA VER PERFIL
+                  <PerfilDev dados={dados} />
                 </>
               ))}
           </h1>
