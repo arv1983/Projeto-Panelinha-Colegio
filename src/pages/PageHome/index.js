@@ -45,7 +45,14 @@ const PageHome = () => {
         vagas.map((dados) => (
           <h1>
             {dados.nome}
-            Essa vaga tem {dados.cad.length} candidatos
+            {dados.cad.length === 0 ? (
+              <>Essa vaga não tem candidato</>
+            ) : dados.cad.length === 1 ? (
+              <>Essa vaga tem um candidato</>
+            ) : (
+              <>Essa vaga tem {dados.cad.length} candidatos</>
+            )}
+            yarn
             <br />
             {dados.cad &&
               dados.cad.map((candidatos, i) => (

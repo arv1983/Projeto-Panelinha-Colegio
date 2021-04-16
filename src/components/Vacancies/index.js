@@ -27,11 +27,6 @@ const Vacancies = () => {
 
   const { loggedUser, id } = User();
 
-  const history = useHistory();
-  if (loggedUser.type === "pf" && token) {
-    history.push("/home");
-  }
-
   useEffect(() => {
     api
       .get(`/vacancies?idUser=${id}`)
@@ -194,11 +189,11 @@ const Vacancies = () => {
           <div>
             <input
               type="checkbox"
-              name="reactnative"
+              name="reactNative"
               value="true"
               {...register("reactNative")}
             />
-            <label for="ReactJs">React Native</label>
+            <label for="ReactNative">React Native</label>
           </div>
 
           <div>
