@@ -2,8 +2,11 @@ import AlteraHead from "../../components/AlterHead";
 import { User } from "../../providers/UserProvider";
 import { useEffect, useState } from "react";
 import api from "../../services/api";
+import PerfilDev from "../../components/PerfilDev";
 
 import { Div} from './style'
+import { Modal } from "@material-ui/core";
+import {BtnAtt} from '../../stylesGlobal'
 
 const PageHome = () => {
   const { id } = User();
@@ -37,13 +40,21 @@ const PageHome = () => {
   };
   // FIM NAO FUÇAR... CODIGO DOS DEUSES
 
+  const [open, setOpen] = useState(false);
+
+    const handleOpen = (e) => {
+        setOpen(true);
+      };
+      const handleClose = (e) => {
+        setOpen(false);
+      };
+
   return (
     <>
       <AlteraHead />
       <div>
         <h1 style={{textAlign: "center", margin: "5px auto"}}>Voce tem: {vagas.length} Anunciada</h1>
         <div style={{display: "flex", flexWrap: "wrap" ,height: "auto"}}>
-
           {vagas &&
             vagas.map((dados) => (
               <Div>
@@ -62,8 +73,13 @@ const PageHome = () => {
                       <div>
                         <h2>Candidato</h2>
                         <br />
-                        <h3>Nome:</h3>{candi.find((element) => element.id === Number(candidatos))?.name}
-                        AQUI VEM LINK PARA VER PERFIL
+                        <h3>Nome:{candi.find((element) => element.id === Number(candidatos))?.name}</h3>
+                        <BtnAtt onClick={handleOpen}>Perfil</BtnAtt>
+                        <Modal open={open} onClose={handleClose}>
+                          <PerfilDev dados={candi.find(
+                              (element) => element.id === Number(candidatos)
+                            )}/>
+                        </Modal>
                       </div>
                   ))}
                 </div>

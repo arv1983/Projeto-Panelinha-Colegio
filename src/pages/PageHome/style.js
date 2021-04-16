@@ -24,7 +24,7 @@ export const Div = styled.div`
     
 
     @media (min-width: 900px){
-        width: 45%;
+        width: 30%;
     }
 
 `
