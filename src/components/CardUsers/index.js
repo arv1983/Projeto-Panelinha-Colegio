@@ -1,9 +1,10 @@
-import { Modal } from "@material-ui/core"
-import ModalCompanay from "../ModalCompanay"
+import { Modal } from "@material-ui/core";
 import {useState} from "react";
 
-import {DivPai, btnVagas} from './style';
+import {DivPai} from './style';
 import ModalUser from "../ModalUser";
+import {BtnAtt} from '../../stylesGlobal';
+import PerfilDev from "../PerfilDev";
 
 const CardUsers = ({user}) =>{
     const [open, setOpen] = useState(false);
@@ -24,9 +25,9 @@ const CardUsers = ({user}) =>{
                 <h2>{user.name} {user.id}</h2>
             </div>
 
-            <button onClick={handleOpen}>Exibir Pefil</button>
+            <BtnAtt onClick={handleOpen}>Exibir Pefil</BtnAtt>
             <Modal open={open} onClose={handleClose}>
-                <ModalUser user={user}/>
+                <PerfilDev dados={user}/>
             </Modal>
         </DivPai>
     )

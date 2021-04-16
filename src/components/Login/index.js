@@ -10,7 +10,7 @@ import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
 import { Token } from "../../providers/TokenProvider";
 
-const Login = ({ label }) => {
+const Login = ({ notifyLog }) => {
   const { setId, loggedUser, userCountClick, setUserCountClick } = User();
 
   const { token, setToken } = Token();
@@ -18,23 +18,27 @@ const Login = ({ label }) => {
   const history = useHistory();
 
   const handleData = (dados) => {
-    setUserCountClick(userCountClick + 1);
     api
       .post("/login", dados)
-      .then((response) => {
-        localStorage.clear();
-        localStorage.setItem(
-          "token",
-          JSON.stringify(response.data.accessToken)
-        );
-        setToken(JSON.parse(localStorage.getItem("token")));
-        setId(jwt_decode(localStorage.getItem("token")).sub);
-        if (loggedUser.type === "pf") {
-          history.push("/users/dev");
-        } else {
-          history.push("/users/comp");
-        }
-      })
+      .then(
+        (response) =>
+          notifyLog() &&
+          setTimeout(() => {
+            console.log("entrei aqui");
+            localStorage.clear();
+            localStorage.setItem(
+              "token",
+              JSON.stringify(response.data.accessToken)
+            );
+            setToken(JSON.parse(localStorage.getItem("token")));
+            setId(jwt_decode(localStorage.getItem("token")).sub);
+            if (loggedUser.type === "pf") {
+              history.push("/users/dev");
+            } else {
+              history.push("/users/comp");
+            }
+          }, 3000)
+      )
       .catch(() => {
         setError("password", { message: "Conta não existente" });
       });

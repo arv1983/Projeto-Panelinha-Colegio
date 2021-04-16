@@ -20,7 +20,7 @@ const NavegationMob = () => {
   };
   return (
     <div>
-      {token && (
+      {localStorage.getItem("token") && (
         <HeadMob>
           <DivIcon>
             <Link>

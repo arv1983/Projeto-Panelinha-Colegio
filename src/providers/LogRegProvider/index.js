@@ -14,6 +14,6 @@ export const LogRegProvider = (props) => {
       {props.children}
     </LogRegContext.Provider>
   );
-}; 
+};
 
 export const LogReg = () => React.useContext(LogRegContext);
