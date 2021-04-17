@@ -7,15 +7,11 @@ context("Form Seach Dev", ()=>{
     cy.visit("http://localhost:3000/");
     cy.get(":nth-child(1) > .sc-gsDJrp").type("capstone2@gmail.com");
     cy.get(":nth-child(2) > .sc-gsDJrp").type("123456");
+   
     cy.get(".sc-bdvvaa").click();
-    cy.get(":nth-child(1) > .sc-dkPtyc");
-    
-    
-
-
-
+    cy.get("form > :nth-child(1) > .sc-dkPtyc").click().type("Francisco");
+    cy.get("form > :nth-child(3) > :nth-child(6)").click();
+  
   })
-
-
 
 })
