@@ -22,11 +22,22 @@ const GetOneCompany = () => {
   } = useForm({});
 
   const getCompany = (data) => {
+    data.name
+      .toLocaleLowerCase("en-US")
+      .replace(/[^a-z0-9]/gi, "")
+      .trim();
+
+    console.log(
+      data.city
+        .toLocaleLowerCase("en-US")
+        .replace(/[^a-z0-9]/gi, "")
+        .trim()
+    );
     api
       .get(
-        `/users?${data.company ? "name=" + data.company : ""}&${
-          data.have_vacancies ? "have_vacancies=" + data.have_vacancies : ""
-        }&${data.city ? "city=" + data.city : ""}&type=pj`
+        `/users?${data.name ? "name=" + data.name : ""}&${
+          data.city ? "city=" + data.city : ""
+        }&type=pj`
       )
 
       .then((res) => {
@@ -43,19 +54,6 @@ const GetOneCompany = () => {
       </div>
       <form onSubmit={handleSubmit(getCompany)}>
         <div>
-          <DivOption>
-            <h3>Status de vaga de emprego:</h3>
-            <input
-              {...register("have_vacancies")}
-              type="radio"
-              value={true}
-              checked={true}
-            />
-            <label>Vagas abertas</label>
-            <input {...register("have_vacancies")} type="radio" value={false} />
-            <label>Vagas não abertas</label>
-          </DivOption>
-
           <DivPesque>
             <DivP>
               <InputPesq
@@ -84,5 +82,5 @@ const GetOneCompany = () => {
     </div>
   );
 };
- 
+
 export default GetOneCompany;

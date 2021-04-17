@@ -1,11 +1,11 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../../providers/UserProvider";
-import {Mybutton} from "./styles"
+import { Mybutton } from "./styles";
 import api from "../../services/api";
 import { Vac } from "../../providers/VacancieProvider";
 import { BtnAtt, DivCheckeBox } from "../../stylesGlobal";
-import { InputPesq, DivP, DivB , DivPesque } from "../GetOneDev/style"
-import { DivPrincipal} from '../VacanciesList/style'
+import { InputPesq, DivP, DivB, DivPesque } from "../GetOneDev/style";
+import { DivPrincipal } from "../VacanciesList/style";
 
 const GetVacanciesComp = () => {
   const { id } = User();
@@ -61,7 +61,8 @@ const GetVacanciesComp = () => {
 
   // fim meu codigo
   const subscribe = (vac_id, array_de_vagas) => {
-    array_de_vagas?.push(id);
+    var id1 = parseInt(id);
+    array_de_vagas?.push(id1);
     api
       .patch(
         `/vacancies/${vac_id}`,
@@ -94,14 +95,22 @@ const GetVacanciesComp = () => {
 
   return (
     <>
-      <h1 style={{textAlign: "center"}}>Pesquisar Vagas</h1>
+      <h1 style={{ textAlign: "center" }}>Pesquisar Vagas</h1>
       <form onSubmit={(e) => handleData(e)}>
         <DivPesque>
           <DivP>
-            <InputPesq name="busca" type="text" placeholder="Nome da vaga"></InputPesq>
+            <InputPesq
+              name="busca"
+              type="text"
+              placeholder="Nome da vaga"
+            ></InputPesq>
           </DivP>
           <DivP>
-            <InputPesq name="descr" type="text" placeholder="Descrição"></InputPesq>
+            <InputPesq
+              name="descr"
+              type="text"
+              placeholder="Descrição"
+            ></InputPesq>
           </DivP>
         </DivPesque>
         <DivCheckeBox>
@@ -109,7 +118,7 @@ const GetVacanciesComp = () => {
             <input type="checkbox" name="presencial"></input>
             <label>Presencial</label>
           </div>
-          
+
           <div>
             <input type="checkbox" name="reactjs"></input>
             <label>Reactjs</label>
@@ -136,7 +145,7 @@ const GetVacanciesComp = () => {
           </div>
           <div>
             <input type="checkbox" name="typescript"></input>
-            <label>Typescript</label>       
+            <label>Typescript</label>
           </div>
           <div>
             <input type="checkbox" name="nodejs"></input>
@@ -154,18 +163,18 @@ const GetVacanciesComp = () => {
             <input type="checkbox" name="objective_c"></input>
             <label>Objective c</label>
           </div>
-          
+
           <div>
             <input type="checkbox" name="go"></input>
             <label>Go</label>
           </div>
-          
+
           <div>
             <input type="checkbox" name="html5"></input>
             <label>Html5</label>
           </div>
           <div>
-            <input  type="checkbox" name="bootstrap"></input>
+            <input type="checkbox" name="bootstrap"></input>
             <label>Bootstrap</label>
           </div>
           <div>
@@ -178,21 +187,34 @@ const GetVacanciesComp = () => {
         </DivB>
       </form>
 
-      <div style={{display:  "flex", flexWrap: "wrap"}}>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
         {vacancies &&
           vacancies.map((vac) => (
             <DivPrincipal>
               <h1>Vaga: {vac.nome}</h1>
               <h4>{vac.data}</h4>
-              <h4 style={{display: "inline"}}>Modalidade: </h4><span>{vac.presencial? "Presencial": "Remota"}</span>
-              <p><h4 style={{display: "inline"}}>Descrição: {vac.descricao}</h4></p>
-              
-              {vac.cad?.indexOf(id) < 0 ? (
-                <Mybutton  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</Mybutton>
+              <h4 style={{ display: "inline" }}>Modalidade: </h4>
+              <span>{vac.presencial ? "Presencial" : "Remota"}</span>
+              <p>
+                <h4 style={{ display: "inline" }}>
+                  Descrição: {vac.descricao}
+                </h4>
+              </p>
+
+              {!vac.cad?.find((vac) => vac === parseInt(id)) ? (
+                <Mybutton
+                  onClick={(e) => {
+                    subscribe(vac.id, vac.cad);
+                  }}
+                >
+                  Inscreve-se
+                </Mybutton>
               ) : (
-                <Mybutton onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</Mybutton>
+                <Mybutton onClick={() => unSubscribe(vac.id, vac.cad)}>
+                  Desinscreve-se
+                </Mybutton>
               )}
-            </DivPrincipal> 
+            </DivPrincipal>
           ))}
       </div>
       <br></br>
