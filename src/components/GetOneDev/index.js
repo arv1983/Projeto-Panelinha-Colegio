@@ -31,7 +31,7 @@ const GetOneDev = () => {
 
     api
       .get(
-        `/users?type=pf&${data.name ? "name=" + data.name : ""}&${
+        `/users?type=pf&${data.name ? "name_like=" + data.name : ""}&${
           data.have_job ? "have_job=" + data.have_job : ""
         }&${data.avaliable_job ? "avaliable_job=" + data.avaliable_job : ""}&${
           data.quarter ? x : ""
