@@ -20,7 +20,7 @@ const PerfilDev = (props) => {
     <Principa>
       <div>
         <h4 style={{ display: "inline" }}>Nome: </h4>
-        {props.dados?.name ? props.dados?.name : "Não informado"}
+        {props.dados?.name ? props.dados?.name : "Não informado."}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>E-mail: </h4>
