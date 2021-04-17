@@ -24,9 +24,15 @@ const GetOneCompany = () => {
   const getCompany = (data) => {
     api
       .get(
+<<<<<<< HEAD
         `/users?${data.company ? "name=" + data.company : ""}&${
           data.have_vacancies ? "have_vacancies=" + data.have_vacancies : ""
         }&${data.city ? "city=" + data.city : ""}&type=pj`
+=======
+        `/users?${data.name ? "name=" + data.name : ""}&${
+          data.city ? "city=" + data.city : ""
+        }&type=pj`
+>>>>>>> development
       )
 
       .then((res) => {
@@ -43,6 +49,7 @@ const GetOneCompany = () => {
       </div>
       <form onSubmit={handleSubmit(getCompany)}>
         <div>
+<<<<<<< HEAD
           <DivOption>
             <h3>Status de vaga de emprego:</h3>
             <input
@@ -56,6 +63,8 @@ const GetOneCompany = () => {
             <label>Vagas não abertas</label>
           </DivOption>
 
+=======
+>>>>>>> development
           <DivPesque>
             <DivP>
               <InputPesq
@@ -84,5 +93,9 @@ const GetOneCompany = () => {
     </div>
   );
 };
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> development
 export default GetOneCompany;
