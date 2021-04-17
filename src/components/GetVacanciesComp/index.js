@@ -188,9 +188,9 @@ const GetVacanciesComp = () => {
               <p><h4 style={{display: "inline"}}>Descrição: {vac.descricao}</h4></p>
               
               {vac.cad?.indexOf(id) < 0 ? (
-                <Mybutton  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</Mybutton>
+                <BtnAtt  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</BtnAtt>
               ) : (
-                <Mybutton onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</Mybutton>
+                <BtnAtt onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</BtnAtt>
               )}
             </DivPrincipal> 
           ))}
