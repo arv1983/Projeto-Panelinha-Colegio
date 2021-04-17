@@ -65,7 +65,7 @@ const PerfilDev = (props) => {
         <h4 style={{ display: "inline" }}>Disponel p/ trabalhar:</h4>{" "}
         {props.dados?.avaliable_job
           ? "Sim"
-          : "Não" || (!props.dados?.is_coach && "Não informado")}
+          : "Não" || (!props.dados?.avaliable_job && "Não informado")}
       </div>
       <div className="img">
         {props.dados?.reactjs ? <img src={IMGreactjs} alt="react"></img> : ""}
