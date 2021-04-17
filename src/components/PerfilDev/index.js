@@ -16,12 +16,12 @@ import IMGjava_script from "../../img/icones/javascript.png";
 
 import { Principa } from "./style";
 const PerfilDev = (props) => {
-  console.log(props.dados?.name);
+  console.log(props.dados?.have_job);
   return (
     <Principa>
       <div>
         <h4 style={{ display: "inline" }}>Nome: </h4>
-        {props.dados?.name ? props.dados?.name : "Não informado"}
+        {props.dados?.nome ? props.dados?.nome : "Não informado"}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>E-mail: </h4>
@@ -47,11 +47,17 @@ const PerfilDev = (props) => {
       </div>
       <div>
         <h4 style={{ display: "inline" }}>Tem emprego:</h4>{" "}
-        {props.dados?.have_job ? props.dados?.have_job : "Não informado"}
+        {props.dados?.have_job
+          ? props.dados?.have_job
+            ? "Sim"
+            : "Não"
+          : "Não informado"}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>Coach:</h4>{" "}
-        {props.dados?.is_coach ? props.dados?.is_coach : "Não informado"}
+        {props.dados?.is_coach
+          ? "Sim"
+          : "Não" || (!props.dados?.is_coach && "Não informado")}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>Cidade:</h4>{" "}
@@ -61,11 +67,13 @@ const PerfilDev = (props) => {
         <h4 style={{ display: "inline" }}>Disponel p/ trabalhar:</h4>{" "}
         {props.dados?.avaliable_job
           ? props.dados?.avaliable_job
+            ? "Sim"
+            : "Não"
           : "Não informado"}
       </div>
       <div className="img">
         {props.dados?.reactjs ? <img src={IMGreactjs} alt="react"></img> : ""}
-        {props.dados?.reactnative ? (
+        {props.dados?.reactNative ? (
           <img src={IMGreact_native} alt="react"></img>
         ) : (
           ""

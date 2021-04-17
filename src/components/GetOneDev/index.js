@@ -66,7 +66,7 @@ const GetOneDev = () => {
       <form onSubmit={handleSubmit(getDev)}>
         <DivPesque>
           <DivP>
-            <InputPesq name="nome" placeholder="Nome do dev" />
+            <InputPesq {...register("name")} placeholder="Nome do dev" />
           </DivP>
         </DivPesque>
         <DivOption>
