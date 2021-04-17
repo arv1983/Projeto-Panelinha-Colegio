@@ -93,7 +93,7 @@ const PageHome = () => {
                           Perfil
                         </BtnAtt>
                         <Modal
-                          style={{ opacity: "1.1" }}
+                          style={{ opacity: "1.0" }}
                           open={open}
                           onClose={handleClose}
                         >
