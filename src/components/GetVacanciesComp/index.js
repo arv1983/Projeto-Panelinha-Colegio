@@ -32,7 +32,7 @@ const GetVacanciesComp = () => {
           e.target.descr.value ? "&descricao_like=" + e.target.descr.value : ""
         }${e.target.presencial.checked ? "&presencial=true" : ""}${
           e.target.reactjs.checked ? "&reactjs=true" : ""
-        }${e.target.reactnative.checked ? "&reactnative=true" : ""}${
+        }${e.target.reactNative.checked ? "&reactNative=true" : ""}${
           e.target.flutter.checked ? "&flutter=true" : ""
         }${e.target.python.checked ? "&python=true" : ""}${
           e.target.javascript.checked ? "&javascript=true" : ""
@@ -124,7 +124,7 @@ const GetVacanciesComp = () => {
             <label>Reactjs</label>
           </div>
           <div>
-            <input type="checkbox" name="reactnative"></input>
+            <input type="checkbox" name="reactNative"></input>
             <label>React Native</label>
           </div>
           <div>

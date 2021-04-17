@@ -22,17 +22,6 @@ const GetOneCompany = () => {
   } = useForm({});
 
   const getCompany = (data) => {
-    data.name
-      .toLocaleLowerCase("en-US")
-      .replace(/[^a-z0-9]/gi, "")
-      .trim();
-
-    console.log(
-      data.city
-        .toLocaleLowerCase("en-US")
-        .replace(/[^a-z0-9]/gi, "")
-        .trim()
-    );
     api
       .get(
         `/users?${data.name ? "name=" + data.name : ""}&${
