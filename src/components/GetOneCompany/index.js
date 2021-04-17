@@ -24,7 +24,7 @@ const GetOneCompany = () => {
   const getCompany = (data) => {
     api
       .get(
-        `/users?${data.name ? "name=" + data.name : ""}&${
+        `/users?${data.name ? "name_like=" + data.name : ""}&${
           data.city ? "city=" + data.city : ""
         }&type=pj`
       )
