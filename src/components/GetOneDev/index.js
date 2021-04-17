@@ -7,6 +7,7 @@ import { DivOption, BtnAtt, DivCheckeBox } from "../../stylesGlobal";
 import { InputPesq, DivP, DivB, DivPesque } from "./style";
 import CardUsers from "../CardUsers";
 import { useForm } from "react-hook-form";
+<<<<<<< HEAD
 // import { Token } from "../../providers/TokenProvider";
 // import { useHistory } from "react-router-dom";
 const GetOneDev = () => {
@@ -16,6 +17,11 @@ const GetOneDev = () => {
   // if (!token) {
   //   history.push("/");
   // }
+=======
+
+const GetOneDev = () => {
+  const [devs, setDevs] = useState([]);
+>>>>>>> development
 
   const {
     register,
@@ -24,6 +30,7 @@ const GetOneDev = () => {
     reset,
   } = useForm({});
 
+<<<<<<< HEAD
   // const pesquisaDev = (e) => {
   //   e.preventDefault();
   //   api
@@ -77,6 +84,25 @@ const GetOneDev = () => {
           data.have_job ? "have_job=" + data.have_job : ""
         }&${data.avaliable_job ? "avaliable_job=" + data.avaliable_job : ""}&${
           data.quarter && y
+=======
+  const getDev = (data) => {
+    console.log(data);
+    var x = "";
+    for (let i = 0; i < data.quarter.length; i++) {
+      if (i === 0) {
+        x = "quarter=" + data.quarter[i] + "&";
+      } else if (i > 0) {
+        x = x + "quarter=" + data.quarter[i] + "&";
+      }
+    }
+
+    api
+      .get(
+        `/users?type=pf&${data.name ? "name_like=" + data.name : ""}&${
+          data.have_job ? "have_job=" + data.have_job : ""
+        }&${data.avaliable_job ? "avaliable_job=" + data.avaliable_job : ""}&${
+          data.quarter ? x : ""
+>>>>>>> development
         }&${data.is_coach ? "is_coach=" + data.is_coach : ""}&${
           data.reactjs ? "reactjs=" + data.reactjs : ""
         }&${data.reactNative ? "reactNative=" + data.reactNative : ""}&${
@@ -108,7 +134,11 @@ const GetOneDev = () => {
       <form onSubmit={handleSubmit(getDev)}>
         <DivPesque>
           <DivP>
+<<<<<<< HEAD
             <InputPesq name="nome" placeholder="Nome do dev" />
+=======
+            <InputPesq {...register("name")} placeholder="Nome do dev" />
+>>>>>>> development
           </DivP>
         </DivPesque>
         <DivOption>

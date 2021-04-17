@@ -100,7 +100,11 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
     // cameça putaria
 
     setReactjsInput(loggedUser.reactjs);
+<<<<<<< HEAD
     setReactNativeInput(loggedUser.reactnative);
+=======
+    setReactNativeInput(loggedUser.reactNative);
+>>>>>>> development
     setFlutterInput(loggedUser.flutter);
     setPythonInput(loggedUser.python);
     setJavascriptInput(loggedUser.javascript);
@@ -143,7 +147,11 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
     loggedUser.html5,
     loggedUser.bootstrap,
     loggedUser.php,
+<<<<<<< HEAD
     loggedUser.reactnative,
+=======
+    loggedUser.reactNative,
+>>>>>>> development
   ]);
 
   const {
@@ -170,7 +178,11 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
           description: descriptionInput,
           is_coach: is_coachInput,
           reactjs: reactjsInput,
+<<<<<<< HEAD
           reactnative: reactNativeInput,
+=======
+          reactNative: reactNativeInput,
+>>>>>>> development
           flutter: flutterInput,
           python: pythonInput,
           javascript: javascriptInput,
@@ -302,7 +314,11 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
           </div>
           <div>
             <input
+<<<<<<< HEAD
               {...register("reactnative")}
+=======
+              {...register("reactNative")}
+>>>>>>> development
               type="checkbox"
               checked={reactNativeInput === true && <>checked</>}
               value="true"

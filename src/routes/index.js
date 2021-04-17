@@ -27,6 +27,10 @@ const Routes = () => {
       <Route exact path="/pesquisa">
         <PagePesquisa /> 
       </Route>
+      {/* Favor não retirar a página de Erro */}
+      <Route>
+        <Error404/>
+      </Route>
     </Switch>
   );
 };
