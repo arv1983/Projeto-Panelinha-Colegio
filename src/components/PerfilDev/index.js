@@ -48,10 +48,8 @@ const PerfilDev = (props) => {
       <div>
         <h4 style={{ display: "inline" }}>Tem emprego:</h4>{" "}
         {props.dados?.have_job
-          ? props.dados?.have_job
-            ? "Sim"
-            : "Não"
-          : "Não informado"}
+          ? "Sim"
+          : "Não" || (!props.dados?.have_job && "Não informado")}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>Coach:</h4>{" "}
@@ -66,10 +64,8 @@ const PerfilDev = (props) => {
       <div>
         <h4 style={{ display: "inline" }}>Disponel p/ trabalhar:</h4>{" "}
         {props.dados?.avaliable_job
-          ? props.dados?.avaliable_job
-            ? "Sim"
-            : "Não"
-          : "Não informado"}
+          ? "Sim"
+          : "Não" || (!props.dados?.avaliable_job && "Não informado")}
       </div>
       <div className="img">
         {props.dados?.reactjs ? <img src={IMGreactjs} alt="react"></img> : ""}
