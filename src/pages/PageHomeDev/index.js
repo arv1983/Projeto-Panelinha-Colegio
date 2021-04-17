@@ -48,7 +48,7 @@ const PerfilDev = (props) => {
         <h4 style={{ display: "inline" }}>Tem emprego:</h4>{" "}
         {props.dados?.have_job
           ? "Sim"
-          : "Não" || (!props.dados?.have_job && "Não informado")}
+          : "Não" || (!props.dados?.have_job && "Não informado.")}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>Coach:</h4>{" "}
