@@ -172,9 +172,9 @@ const VacanciesListEdit = (props) => {
               <div>
                 <input
                   type="checkbox"
-                  name="reactnative"
-                  defaultChecked={props.dados.reactnative}
-                  {...register("reactnative")}
+                  name="reactNative"
+                  defaultChecked={props.dados.reactNative}
+                  {...register("reactNative")}
                 />
                 <label for="ReactNative">React Native</label>
               </div>
