@@ -1,5 +1,6 @@
 import {  useState } from "react";
 import { User } from "../../providers/UserProvider";
+import {Mybutton} from "./styles"
 import api from "../../services/api";
 import { Vac } from "../../providers/VacancieProvider";
 import { BtnAtt, DivCheckeBox } from "../../stylesGlobal";
@@ -189,9 +190,9 @@ const GetVacanciesComp = () => {
               
               <h2>{console.log(vac)}</h2>
               {vac.cad?.indexOf(id) < 0 ? (
-                <BtnAtt  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</BtnAtt>
+                <Mybutton  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</Mybutton>
               ) : (
-                <BtnAtt onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</BtnAtt>
+                <Mybutton onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</Mybutton>
               )}
             </DivPrincipal> 
           ))}
