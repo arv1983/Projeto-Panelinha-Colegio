@@ -7,21 +7,9 @@ import { DivOption, BtnAtt, DivCheckeBox } from "../../stylesGlobal";
 import { InputPesq, DivP, DivB, DivPesque } from "./style";
 import CardUsers from "../CardUsers";
 import { useForm } from "react-hook-form";
-<<<<<<< HEAD
-// import { Token } from "../../providers/TokenProvider";
-// import { useHistory } from "react-router-dom";
-const GetOneDev = () => {
-  const [devs, setDevs] = useState([]);
-  // const { token } = Token();
-  // const history = useHistory();
-  // if (!token) {
-  //   history.push("/");
-  // }
-=======
 
 const GetOneDev = () => {
   const [devs, setDevs] = useState([]);
->>>>>>> development
 
   const {
     register,
@@ -30,63 +18,7 @@ const GetOneDev = () => {
     reset,
   } = useForm({});
 
-<<<<<<< HEAD
-  // const pesquisaDev = (e) => {
-  //   e.preventDefault();
-  //   api
-  //     .get(
-  //       `/users?${
-  //         e.target.have_job.value === "true"
-  //           ? "&have_job=true"
-  //           : "&have_job=false"
-  //       }${
-  //         e.target.avaliable_job.value === "true"
-  //           ? "&avaliable_job=true"
-  //           : "&avaliable_job=false"
-  //       }${
-  //         e.target.is_coach.value === "true"
-  //           ? "&is_coach=true"
-  //           : "&is_coach=false"
-  //       }${e.target.q1.checked ? "&quarter=q1" : ""}${
-  //         e.target.q2.checked ? "&quarter=q2" : ""
-  //       }${e.target.q3.checked ? "&quarter=q3" : ""}${
-  //         e.target.q4.checked ? "&quarter=q4" : ""
-  //       }${e.target.reactjs.checked ? "&reactjs=true" : ""}${
-  //         e.target.reactnative.checked ? "&reactnative=true" : ""
-  //       }${e.target.flutter.checked ? "&flutter=true" : ""}${
-  //         e.target.python.checked ? "&python=true" : ""
-  //       }${e.target.javascript.checked ? "&javascript=true" : ""}${
-  //         e.target.sql.checked ? "&sql=true" : ""
-  //       }${e.target.typescript.checked ? "&typescript=true" : ""}${
-  //         e.target.nodejs.checked ? "&nodejs=true" : ""
-  //       }${e.target.dart.checked ? "&dart=true" : ""}${
-  //         e.target.ruby_on_rails.checked ? "&ruby_on_rails=true" : ""
-  //       }${e.target.objective_c.checked ? "&objective_c=true" : ""}${
-  //         e.target.go.checked ? "&go=true" : ""
-  //       }${e.target.html5.checked ? "&html5=true" : ""}${
-  //         e.target.bootstrap.checked ? "&bootstrap=true" : ""
-  //       }${e.target.php.checked ? "&php=true" : ""}${
-  //         e.target.nome.value ? "&nome_like=" + e.target.nome.value : ""
-  //       }`
-  //     )
-  //     .then((res) => {
-  //       console.log(res);
-  //       setDevs(res.data);
-  //     });
-  // };
   const getDev = (data) => {
-    const x = data.quarter.join("");
-    var y = "";
-
-    api
-      .get(
-        `/users?type=pf&${data.name ? "name=" + data.name : ""}&${
-          data.have_job ? "have_job=" + data.have_job : ""
-        }&${data.avaliable_job ? "avaliable_job=" + data.avaliable_job : ""}&${
-          data.quarter && y
-=======
-  const getDev = (data) => {
-    console.log(data);
     var x = "";
     for (let i = 0; i < data.quarter.length; i++) {
       if (i === 0) {
@@ -102,7 +34,6 @@ const GetOneDev = () => {
           data.have_job ? "have_job=" + data.have_job : ""
         }&${data.avaliable_job ? "avaliable_job=" + data.avaliable_job : ""}&${
           data.quarter ? x : ""
->>>>>>> development
         }&${data.is_coach ? "is_coach=" + data.is_coach : ""}&${
           data.reactjs ? "reactjs=" + data.reactjs : ""
         }&${data.reactNative ? "reactNative=" + data.reactNative : ""}&${
@@ -123,7 +54,6 @@ const GetOneDev = () => {
       )
       .then((res) => {
         setDevs(res.data);
-        console.log(res);
       });
   };
   return (
@@ -134,11 +64,7 @@ const GetOneDev = () => {
       <form onSubmit={handleSubmit(getDev)}>
         <DivPesque>
           <DivP>
-<<<<<<< HEAD
-            <InputPesq name="nome" placeholder="Nome do dev" />
-=======
             <InputPesq {...register("name")} placeholder="Nome do dev" />
->>>>>>> development
           </DivP>
         </DivPesque>
         <DivOption>
