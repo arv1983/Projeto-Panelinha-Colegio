@@ -1,16 +1,19 @@
+//Gianine
+
 import { Modal } from "@material-ui/core";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
-import {Vac} from "../../providers/VacancieProvider"
+import { Vac } from "../../providers/VacancieProvider";
+
 const VacanciesListEdit = (props) => {
-  console.log(props);
   const { id } = User();
+
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
     if (!localToken) {
@@ -26,11 +29,11 @@ const VacanciesListEdit = (props) => {
     setOpen(false);
   };
   const schema = yup.object().shape({
-    nome: yup.string().required("Campo obrigatorio"),
-    descricao: yup.string().required("Campo obrigatorio"),
-    presencial: yup.string().required("Campo obrigatorio"),
-    beneficios: yup.string().required("Campo obrigatorio"),
-    local: yup.string().required("Campo obrigatori"),
+    nome: yup.string().required("Campo obrigatório"),
+    descricao: yup.string(),
+    presencial: yup.boolean(),
+    beneficios: yup.string(),
+    local: yup.string(),
     reactjs: yup.boolean(),
     reactNative: yup.boolean(),
     flutter: yup.boolean(),
@@ -46,7 +49,7 @@ const VacanciesListEdit = (props) => {
     html5: yup.boolean(),
     bootstrap: yup.boolean(),
     php: yup.boolean(),
-    data: yup.string().required("Campo obrigatorio"),
+    data: yup.string(),
   });
   const {
     register,
@@ -56,7 +59,6 @@ const VacanciesListEdit = (props) => {
     resolver: yupResolver(schema),
   });
   const handleData = (dados) => {
-    console.log(dados.ruby_on_rails);
     api
       .patch(
         `/vacancies/${props.dados.id}`,
@@ -68,7 +70,7 @@ const VacanciesListEdit = (props) => {
           local: dados.local,
           data: dados.data,
           reactjs: dados.reactjs,
-          reactnative: dados.reactnative,
+          reactNative: dados.reactNative,
           flutter: dados.flutter,
           python: dados.python,
           javascript: dados.javascript,
@@ -91,6 +93,7 @@ const VacanciesListEdit = (props) => {
       )
       .then((response) => {
         if (response.status === 200) {
+          props.notifyUpVacancies();
           api
             .get(`/vacancies?idUser=${id}`)
             .then((response) => {
@@ -98,11 +101,15 @@ const VacanciesListEdit = (props) => {
             })
             .catch((e) => console.log(e));
         }
+        setTimeout(() => {
+          handleClose();
+        }, 2000);
       })
       .catch((e) => {
         console.log(e);
       });
   };
+
   return (
     <>
       <button onClick={handleOpen}>Editar vaga</button>
@@ -126,13 +133,16 @@ const VacanciesListEdit = (props) => {
               />
             </div>
             <div>
-              <InputProfile
-                type="text"
-                defaultValue={props.dados.presencial}
-                placeholder="presencial"
+              <input
                 {...register("presencial")}
+                type="checkbox"
+                name="presencial"
+                defaultChecked={props.dados.presencial}
               />
+              <label for="Presencial">Presencial</label>
+              <p style={{ color: "red" }}>{errors.presencial?.message}</p>
             </div>
+
             <div>
               <InputProfile
                 type="text"
@@ -149,16 +159,6 @@ const VacanciesListEdit = (props) => {
                 {...register("local")}
               />
             </div>
-            <div>
-              <InputProfile
-                type="text"
-                defaultValue={props.dados.data}
-                placeholder="data"
-                {...register("data")}
-              />
-            </div>
-            {console.log("teste")}
-            {console.log(props.dados.reactjs)}
             <DivChecked>
               <div>
                 <input
