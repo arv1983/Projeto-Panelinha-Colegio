@@ -24,7 +24,6 @@ const Login = ({ notifyLog }) => {
         (response) =>
           notifyLog() &&
           setTimeout(() => {
-            console.log("entrei aqui");
             localStorage.clear();
             localStorage.setItem(
               "token",

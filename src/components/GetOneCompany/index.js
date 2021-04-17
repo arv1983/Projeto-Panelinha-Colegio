@@ -22,7 +22,6 @@ const GetOneCompany = () => {
   } = useForm({});
 
   const getCompany = (data) => {
-    console.log(data.company);
     api
       .get(
         `/users?${data.company ? "name=" + data.company : ""}&${

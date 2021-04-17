@@ -3,9 +3,6 @@ export const TokenContext = React.createContext({});
 
 export const TokenProvider = (props) => {
   const [token, setToken] = useState();
-
-  console.log(token);
-
   useEffect(() => {
     if (token) {
       setToken(JSON.parse(localStorage.getItem("token")));

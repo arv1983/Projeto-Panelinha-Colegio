@@ -54,7 +54,6 @@ const GetVacanciesComp = () => {
         }
       )
       .then((res) => {
-        console.log(res);
         setVacancies(res.data);
       })
       .catch((e) => console.log(e));
@@ -188,7 +187,6 @@ const GetVacanciesComp = () => {
               <h4 style={{display: "inline"}}>Modalidade: </h4><span>{vac.presencial? "Presencial": "Remota"}</span>
               <p><h4 style={{display: "inline"}}>Descrição: {vac.descricao}</h4></p>
               
-              <h2>{console.log(vac)}</h2>
               {vac.cad?.indexOf(id) < 0 ? (
                 <Mybutton  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</Mybutton>
               ) : (

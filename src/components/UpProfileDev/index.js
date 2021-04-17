@@ -192,7 +192,6 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
         }
       )
       .then((res) => {
-        console.log("Patch", res.data);
         notifyUpProfDev();
       })
       .catch((e) => console.log(e));
@@ -302,7 +301,6 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
             <label for="ReactJs">ReactJs</label>
           </div>
           <div>
-            {console.log("react Native" + reactNativeInput)}
             <input
               {...register("reactnative")}
               type="checkbox"
@@ -313,7 +311,6 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
             <label for="ReactJs">React Native</label>
           </div>
           <div>
-            {console.log("react flutter" + flutterInput)}
             <input
               {...register("flutter")}
               type="checkbox"
