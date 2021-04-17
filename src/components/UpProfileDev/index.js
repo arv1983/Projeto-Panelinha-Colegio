@@ -302,7 +302,7 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
           </div>
           <div>
             <input
-              {...register("reactnative")}
+              {...register("reactNative")}
               type="checkbox"
               checked={reactNativeInput === true && <>checked</>}
               value="true"
