@@ -13,15 +13,15 @@ import IMGgo from "../../img/icones/go.png";
 import IMGreactjs from "../../img/icones/reactjs.png";
 import IMGreact_native from "../../img/icones/reactnative.png";
 import IMGjava_script from "../../img/icones/javascript.png";
-
 import { Principa } from "./style";
+
 const PerfilDev = (props) => {
   console.log(props.dados?.have_job);
   return (
     <Principa>
       <div>
         <h4 style={{ display: "inline" }}>Nome: </h4>
-        {props.dados?.nome ? props.dados?.nome : "Não informado"}
+        {props.dados?.nome ? props.dados?.name : "Não informado"}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>E-mail: </h4>

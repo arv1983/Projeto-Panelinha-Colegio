@@ -4,6 +4,8 @@ import PageLogReg from "../pages/PageLogReg";
 import PagePesquisa from "../pages/PagePesquisa";
 import PageProfileComp from "../pages/PageProfileCompany";
 import PageProfileUsers from "../pages/PageProfileUsers";
+import PageHomeDev from "../pages/PageHomeDev";
+
 import Error404 from "../pages/Error";
 import GetOneCompany from "../components/GetOneCompany";
 import GetOneDev from "../components/GetOneDev";
@@ -18,6 +20,11 @@ const Routes = () => {
       <Route exact path="/home">
         <PageHome />
       </Route>
+
+      <Route exact path="/homeDev">
+        <PageHomeDev />
+      </Route>
+
       <Route exact path="/users/comp">
         <PageProfileComp />
       </Route>
@@ -25,10 +32,10 @@ const Routes = () => {
         <PageProfileUsers />
       </Route>
       <Route exact path="/pesquisa">
-        <PagePesquisa /> 
+        <PagePesquisa />
       </Route>
     </Switch>
   );
 };
- 
+
 export default Routes;
