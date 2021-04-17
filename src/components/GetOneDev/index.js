@@ -68,7 +68,6 @@ const GetOneDev = () => {
   //     });
   // };
   const getDev = (data) => {
-    console.log(data);
     const x = data.quarter.join("");
     var y = "";
 

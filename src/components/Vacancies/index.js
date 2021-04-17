@@ -37,7 +37,6 @@ const Vacancies = ({ notifyCreateVacancies, notifyUpVacancies }) => {
   }, [id, vacCountClick]);
 
   const handleData = (dados) => {
-    console.log(dados);
     if (dados.presencial === "true") {
       dados.presencial = true;
     }
@@ -81,7 +80,6 @@ const Vacancies = ({ notifyCreateVacancies, notifyUpVacancies }) => {
       .then((res) => {
         notifyCreateVacancies();
         setVacCountClick(vacCountClick + 1);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e);
