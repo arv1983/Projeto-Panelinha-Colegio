@@ -16,7 +16,6 @@ const ModalCompanay = ({ user }) => {
     api
       .get(`/vacancies/?idUser=${user.id}`)
       .then((res) => {
-        console.log(res);
         setDados(res.data);
       })
       .catch((e) => console.log(e));

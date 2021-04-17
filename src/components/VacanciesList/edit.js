@@ -59,7 +59,6 @@ const VacanciesListEdit = (props) => {
     resolver: yupResolver(schema),
   });
   const handleData = (dados) => {
-    console.log(dados.ruby_on_rails);
     api
       .patch(
         `/vacancies/${props.dados.id}`,
@@ -134,8 +133,6 @@ const VacanciesListEdit = (props) => {
               />
             </div>
             <div>
-              {console.log(props.dados.presencial)}
-
               <input
                 {...register("presencial")}
                 type="checkbox"
