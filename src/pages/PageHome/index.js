@@ -27,7 +27,6 @@ const PageHome = () => {
         arr = arr.join("");
         if (arr) {
           api.get(`/users/?${arr}`).then((response) => {
-            console.log(response);
             setCandi(response.data);
           });
         }
@@ -42,10 +41,8 @@ const PageHome = () => {
   const handleClose = (e) => {
     setOpen(false);
   };
-  console.log(candi);
   const [perfil, setPerfil] = useState([]);
   const abreDiv = (e) => {
-    console.log(e);
     setPerfil(e);
   };
   return (
@@ -78,18 +75,18 @@ const PageHome = () => {
                         <h3>
                           Nome:
                           {
-                            candi.find((element) => element.id === candidatos)
-                              ?.name
+                            candi.find(
+                              (element) => element.id === Number(candidatos)
+                            )?.name
                           }
                         </h3>
-                        {console.log(
-                          candi.find((element) => element.id === candidatos)
-                        )}
                         <BtnAtt
                           onClick={() => {
                             handleOpen();
                             abreDiv(
-                              candi.find((element) => element.id === candidatos)
+                              candi.find(
+                                (element) => element.id === Number(candidatos)
+                              )
                             );
                           }}
                         >
