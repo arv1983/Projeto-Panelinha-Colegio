@@ -16,12 +16,12 @@ import IMGjava_script from "../../img/icones/javascript.png";
 
 import { Principa } from "./style";
 const PerfilDev = (props) => {
-  console.log(props.dados?.have_job);
+  console.log(props.dados?.php);
   return (
     <Principa>
       <div>
         <h4 style={{ display: "inline" }}>Nome: </h4>
-        {props.dados?.nome ? props.dados?.nome : "Não informado"}
+        {props.dados?.name ? props.dados?.name : "Não informado"}
       </div>
       <div>
         <h4 style={{ display: "inline" }}>E-mail: </h4>
@@ -68,7 +68,9 @@ const PerfilDev = (props) => {
           : "Não" || (!props.dados?.avaliable_job && "Não informado")}
       </div>
       <div className="img">
+        <h4 style={{ textAlign: "center" }}>Tecnologias do Dev</h4>{" "}
         {props.dados?.reactjs ? <img src={IMGreactjs} alt="react"></img> : ""}
+        {props.dados?.reactNative}
         {props.dados?.reactNative ? (
           <img src={IMGreact_native} alt="react"></img>
         ) : (
