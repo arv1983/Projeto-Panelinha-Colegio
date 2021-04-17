@@ -16,7 +16,11 @@ const PageHome = () => {
   // INICIO NAO FUÇAR... CODIGO DOS DEUSES
   const carrega = () => {
     api
+<<<<<<< HEAD
+      .get(`/vacancies?idUsers=${id}`)
+=======
       .get(`/vacancies?idUser=${id}`)
+>>>>>>> development
       .then((res) => {
         setVagas(res.data);
         let arr = [];
@@ -27,6 +31,10 @@ const PageHome = () => {
         arr = arr.join("");
         if (arr) {
           api.get(`/users/?${arr}`).then((response) => {
+<<<<<<< HEAD
+            console.log(response);
+=======
+>>>>>>> development
             setCandi(response.data);
           });
         }
@@ -41,8 +49,15 @@ const PageHome = () => {
   const handleClose = (e) => {
     setOpen(false);
   };
+<<<<<<< HEAD
+  console.log(candi);
   const [perfil, setPerfil] = useState([]);
   const abreDiv = (e) => {
+    console.log(e);
+=======
+  const [perfil, setPerfil] = useState([]);
+  const abreDiv = (e) => {
+>>>>>>> development
     setPerfil(e);
   };
   return (
@@ -65,8 +80,13 @@ const PageHome = () => {
                   <h3>Essa vaga tem {dados.cad.length} candidatos</h3>
                 )}
                 <br />
+<<<<<<< HEAD
+
+                <div style={{ border: "1px double white" }}>
+=======
                 <div style={{ border: "1px double white" }}>
                   {console.log(dados)}
+>>>>>>> development
                   {dados.cad &&
                     dados.cad.map((candidatos, i) => (
                       <div>
@@ -75,25 +95,43 @@ const PageHome = () => {
                         <h3>
                           Nome:
                           {
+<<<<<<< HEAD
+                            candi.find((element) => element.id === candidatos)
+                              ?.name
+                          }
+                        </h3>
+                        {console.log(
+                          candi.find((element) => element.id === candidatos)
+                        )}
+=======
                             candi.find(
                               (element) => element.id === Number(candidatos)
                             )?.name
                           }
                         </h3>
+>>>>>>> development
                         <BtnAtt
                           onClick={() => {
                             handleOpen();
                             abreDiv(
+<<<<<<< HEAD
+                              candi.find((element) => element.id === candidatos)
+=======
                               candi.find(
                                 (element) => element.id === Number(candidatos)
                               )
+>>>>>>> development
                             );
                           }}
                         >
                           Perfil
                         </BtnAtt>
                         <Modal
+<<<<<<< HEAD
+                          style={{ opacity: "0.2" }}
+=======
                           style={{ opacity: "1.0" }}
+>>>>>>> development
                           open={open}
                           onClose={handleClose}
                         >

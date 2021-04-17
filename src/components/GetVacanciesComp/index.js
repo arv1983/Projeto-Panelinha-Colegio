@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+import {  useState } from "react";
+import { User } from "../../providers/UserProvider";
+import {Mybutton} from "./styles"
+import api from "../../services/api";
+import { Vac } from "../../providers/VacancieProvider";
+import { BtnAtt, DivCheckeBox } from "../../stylesGlobal";
+import { InputPesq, DivP, DivB , DivPesque } from "../GetOneDev/style"
+import { DivPrincipal} from '../VacanciesList/style'
+=======
 import { useEffect, useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { Mybutton } from "./styles";
@@ -6,6 +16,7 @@ import { Vac } from "../../providers/VacancieProvider";
 import { BtnAtt, DivCheckeBox } from "../../stylesGlobal";
 import { InputPesq, DivP, DivB, DivPesque } from "../GetOneDev/style";
 import { DivPrincipal } from "../VacanciesList/style";
+>>>>>>> development
 
 const GetVacanciesComp = () => {
   const { id } = User();
@@ -32,7 +43,11 @@ const GetVacanciesComp = () => {
           e.target.descr.value ? "&descricao_like=" + e.target.descr.value : ""
         }${e.target.presencial.checked ? "&presencial=true" : ""}${
           e.target.reactjs.checked ? "&reactjs=true" : ""
+<<<<<<< HEAD
+        }${e.target.reactnative.checked ? "&reactnative=true" : ""}${
+=======
         }${e.target.reactNative.checked ? "&reactNative=true" : ""}${
+>>>>>>> development
           e.target.flutter.checked ? "&flutter=true" : ""
         }${e.target.python.checked ? "&python=true" : ""}${
           e.target.javascript.checked ? "&javascript=true" : ""
@@ -61,8 +76,12 @@ const GetVacanciesComp = () => {
 
   // fim meu codigo
   const subscribe = (vac_id, array_de_vagas) => {
+<<<<<<< HEAD
+    array_de_vagas?.push(id);
+=======
     var id1 = parseInt(id);
     array_de_vagas?.push(id1);
+>>>>>>> development
     api
       .patch(
         `/vacancies/${vac_id}`,
@@ -95,6 +114,16 @@ const GetVacanciesComp = () => {
 
   return (
     <>
+<<<<<<< HEAD
+      <h1 style={{textAlign: "center"}}>Pesquisar Vagas</h1>
+      <form onSubmit={(e) => handleData(e)}>
+        <DivPesque>
+          <DivP>
+            <InputPesq name="busca" type="text" placeholder="Nome da vaga"></InputPesq>
+          </DivP>
+          <DivP>
+            <InputPesq name="descr" type="text" placeholder="Descrição"></InputPesq>
+=======
       <h1 style={{ textAlign: "center" }}>Pesquisar Vagas</h1>
       <form onSubmit={(e) => handleData(e)}>
         <DivPesque>
@@ -111,6 +140,7 @@ const GetVacanciesComp = () => {
               type="text"
               placeholder="Descrição"
             ></InputPesq>
+>>>>>>> development
           </DivP>
         </DivPesque>
         <DivCheckeBox>
@@ -118,13 +148,21 @@ const GetVacanciesComp = () => {
             <input type="checkbox" name="presencial"></input>
             <label>Presencial</label>
           </div>
+<<<<<<< HEAD
+          
+=======
 
+>>>>>>> development
           <div>
             <input type="checkbox" name="reactjs"></input>
             <label>Reactjs</label>
           </div>
           <div>
+<<<<<<< HEAD
+            <input type="checkbox" name="reactnative"></input>
+=======
             <input type="checkbox" name="reactNative"></input>
+>>>>>>> development
             <label>React Native</label>
           </div>
           <div>
@@ -145,7 +183,11 @@ const GetVacanciesComp = () => {
           </div>
           <div>
             <input type="checkbox" name="typescript"></input>
+<<<<<<< HEAD
+            <label>Typescript</label>       
+=======
             <label>Typescript</label>
+>>>>>>> development
           </div>
           <div>
             <input type="checkbox" name="nodejs"></input>
@@ -163,18 +205,30 @@ const GetVacanciesComp = () => {
             <input type="checkbox" name="objective_c"></input>
             <label>Objective c</label>
           </div>
+<<<<<<< HEAD
+          
+=======
 
+>>>>>>> development
           <div>
             <input type="checkbox" name="go"></input>
             <label>Go</label>
           </div>
+<<<<<<< HEAD
+          
+=======
 
+>>>>>>> development
           <div>
             <input type="checkbox" name="html5"></input>
             <label>Html5</label>
           </div>
           <div>
+<<<<<<< HEAD
+            <input  type="checkbox" name="bootstrap"></input>
+=======
             <input type="checkbox" name="bootstrap"></input>
+>>>>>>> development
             <label>Bootstrap</label>
           </div>
           <div>
@@ -187,12 +241,27 @@ const GetVacanciesComp = () => {
         </DivB>
       </form>
 
+<<<<<<< HEAD
+      <div style={{display:  "flex", flexWrap: "wrap"}}>
+=======
       <div style={{ display: "flex", flexWrap: "wrap" }}>
+>>>>>>> development
         {vacancies &&
           vacancies.map((vac) => (
             <DivPrincipal>
               <h1>Vaga: {vac.nome}</h1>
               <h4>{vac.data}</h4>
+<<<<<<< HEAD
+              <h4 style={{display: "inline"}}>Modalidade: </h4><span>{vac.presencial? "Presencial": "Remota"}</span>
+              <p><h4 style={{display: "inline"}}>Descrição: {vac.descricao}</h4></p>
+              
+              {vac.cad?.indexOf(id) < 0 ? (
+                <Mybutton  onClick={()=>subscribe(vac.id, vac.cad)}>Inscreve-se</Mybutton>
+              ) : (
+                <Mybutton onClick={()=>unSubscribe(vac.id, vac.cad)}>Desinscreve-se</Mybutton>
+              )}
+            </DivPrincipal> 
+=======
               <h4 style={{ display: "inline" }}>Modalidade: </h4>
               <span>{vac.presencial ? "Presencial" : "Remota"}</span>
               <p>
@@ -215,6 +284,7 @@ const GetVacanciesComp = () => {
                 </Mybutton>
               )}
             </DivPrincipal>
+>>>>>>> development
           ))}
       </div>
       <br></br>
