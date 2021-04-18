@@ -17,9 +17,10 @@ const PageHome = () => {
   // INICIO NAO FUÇAR... CODIGO DOS DEUSES
   const carrega = () => {
     api
-      .get(`/vacancies?idUsers=${id}`)
+      .get(`/vacancies?idUser=${id}`)
       .then((res) => {
         setVagas(res.data);
+        console.log(res);
         let arr = [];
         res.data.map((pesq_id) =>
           pesq_id.cad.map((add) => arr.push("&id=" + add))
@@ -34,6 +35,7 @@ const PageHome = () => {
       })
       .catch((e) => console.log(e));
   };
+
   // FIM NAO FUÇAR... CODIGO DOS DEUSES
   const [open, setOpen] = useState(false);
   const handleOpen = (e) => {
@@ -107,7 +109,7 @@ const PageHome = () => {
                           Perfil
                         </BtnAtt>
                         <Modal
-                          style={{ opacity: "0.2" }}
+                          style={{ opacity: "1.0" }}
                           open={open}
                           onClose={handleClose}
                         >
