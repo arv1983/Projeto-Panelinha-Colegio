@@ -118,7 +118,6 @@ const GetVacanciesComp = () => {
             <input type="checkbox" name="presencial"></input>
             <label>Presencial</label>
           </div>
-
           <div>
             <input type="checkbox" name="reactjs"></input>
             <label>Reactjs</label>
@@ -163,12 +162,10 @@ const GetVacanciesComp = () => {
             <input type="checkbox" name="objective_c"></input>
             <label>Objective c</label>
           </div>
-
           <div>
             <input type="checkbox" name="go"></input>
             <label>Go</label>
           </div>
-
           <div>
             <input type="checkbox" name="html5"></input>
             <label>Html5</label>

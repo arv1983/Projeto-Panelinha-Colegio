@@ -66,10 +66,17 @@ const Register = ({ notifyReg }) => {
   };
 
   const schema = yup.object().shape({
-    name: yup.string().required("Field Required"),
-    email: yup.string().required("Field Required"),
-    password: yup.string().required("Field Required"),
-    type: yup.string().required("Field Required"),
+    name: yup.string().required("Campo obrigatório"),
+    email: yup.string().email("E-MAIL inválido").required("Campo obrigatório."),
+    password: yup
+      .string()
+      .min(8, "Mínimo de 8 dígitos")
+      .matches(
+        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial!"
+      )
+      .required("Campo obrigatório"),
+    type: yup.string().required("Campo obrigatório"),
   });
   const {
     register,
@@ -96,10 +103,12 @@ const Register = ({ notifyReg }) => {
             </div>
             <div>
               <Input
-                type="text"
+                type="password"
+                name="password"
                 placeholder="Password"
                 {...register("password")}
               />
+              <p style={{ color: "red" }}>{errors.password?.message}</p>
             </div>
             <div>
               <label>Tipo de Pessoa</label>

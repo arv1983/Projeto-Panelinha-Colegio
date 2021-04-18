@@ -16,7 +16,6 @@ import IMGjava_script from "../../img/icones/javascript.png";
 
 import { Principa } from "./style";
 const PerfilDev = (props) => {
-  console.log(props.dados?.php);
   return (
     <Principa>
       <div>

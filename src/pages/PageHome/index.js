@@ -16,7 +16,7 @@ const PageHome = () => {
   // INICIO NAO FUÇAR... CODIGO DOS DEUSES
   const carrega = () => {
     api
-      .get(`/vacancies?idUser=${id}`)
+      .get(`/vacancies?idUsers=${id}`)
       .then((res) => {
         setVagas(res.data);
         let arr = [];
@@ -65,8 +65,8 @@ const PageHome = () => {
                   <h3>Essa vaga tem {dados.cad.length} candidatos</h3>
                 )}
                 <br />
+
                 <div style={{ border: "1px double white" }}>
-                  {console.log(dados)}
                   {dados.cad &&
                     dados.cad.map((candidatos, i) => (
                       <div>
@@ -93,7 +93,7 @@ const PageHome = () => {
                           Perfil
                         </BtnAtt>
                         <Modal
-                          style={{ opacity: "1.0" }}
+                          style={{ opacity: "0.2" }}
                           open={open}
                           onClose={handleClose}
                         >

@@ -19,7 +19,6 @@ const GetOneDev = () => {
   } = useForm({});
 
   const getDev = (data) => {
-    console.log(data);
     var x = "";
     for (let i = 0; i < data.quarter.length; i++) {
       if (i === 0) {
@@ -55,7 +54,6 @@ const GetOneDev = () => {
       )
       .then((res) => {
         setDevs(res.data);
-        console.log(res);
       });
   };
   return (

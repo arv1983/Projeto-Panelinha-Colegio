@@ -30,7 +30,6 @@ const GetOneCompany = () => {
       )
 
       .then((res) => {
-        console.log(res);
         setCompanie(res.data);
       })
       .catch((e) => console.log(e));
@@ -71,5 +70,4 @@ const GetOneCompany = () => {
     </div>
   );
 };
-
 export default GetOneCompany;

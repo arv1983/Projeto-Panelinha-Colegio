@@ -5,19 +5,31 @@ import PagePesquisa from "../pages/PagePesquisa";
 import PageProfileComp from "../pages/PageProfileCompany";
 import PageProfileUsers from "../pages/PageProfileUsers";
 import Error404 from "../pages/Error";
-import GetOneCompany from "../components/GetOneCompany";
-import GetOneDev from "../components/GetOneDev";
-import GetVacanciesComp from "../components/GetVacanciesComp";
+import { User } from "../providers/UserProvider";
+import PageHomeDev from "../components/HomeDev";
+import AlteraHead from '../components/AlterHead';
 
 const Routes = () => {
+  const { loggedUser } = User();
   return (
     <Switch>
       <Route exact path="/">
         <PageLogReg />
       </Route>
-      <Route exact path="/home">
-        <PageHome />
-      </Route>
+      {loggedUser.type === "pf" ? (
+
+        <Route exact path="/home">
+          <AlteraHead/>
+          <PageHomeDev/>
+        </Route>
+          
+          ) : (
+            <Route exact path="/home">
+              
+              <PageHome />
+            </Route>
+        )}
+      
       <Route exact path="/users/comp">
         <PageProfileComp />
       </Route>
@@ -26,6 +38,10 @@ const Routes = () => {
       </Route>
       <Route exact path="/pesquisa">
         <PagePesquisa /> 
+      </Route>
+      
+      <Route>
+        <Error404/>
       </Route>
     </Switch>
   );
