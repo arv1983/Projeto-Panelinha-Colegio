@@ -7,11 +7,11 @@ describe("When login is ok", () => {
     render(<Login></Login>);
 
     userEvent.type(screen.getByPlaceholderText("E-mail"), "");
-    userEvent.type(screen.getByPlaceholderText("Password"), "");
+    userEvent.type(screen.getByPlaceholderText("Senha"), "");
 
     userEvent.click(screen.getByRole("button"));
 
-    const message = await screen.findAllByText("Field Required");
+    const message = await screen.findAllByText("Campo obrigatório");
 
     expect(message).toBeTruthy();
   });

@@ -6,6 +6,7 @@ import PerfilDev from "../../components/PerfilDev";
 import { Div } from "./style";
 import { Modal } from "@material-ui/core";
 import { BtnAtt } from "../../stylesGlobal";
+import { useHistory } from "react-router-dom";
 const PageHome = () => {
   const { id } = User();
   const [vagas, setVagas] = useState([]);
@@ -45,6 +46,19 @@ const PageHome = () => {
   const abreDiv = (e) => {
     setPerfil(e);
   };
+
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
   return (
     <>
       <AlteraHead />
@@ -70,10 +84,10 @@ const PageHome = () => {
                   {dados.cad &&
                     dados.cad.map((candidatos, i) => (
                       <div>
-                        <h2>Candidato: Id:{candidatos}</h2>
+                        <h2>Candidato</h2>
                         <br />
                         <h3>
-                          Nome:
+                          Nome: {""}
                           {
                             candi.find(
                               (element) => element.id === Number(candidatos)

@@ -4,8 +4,7 @@ import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 
-import { InputProfile, BtnAtt, DivOption } from "../../stylesGlobal";
-import { Token } from "../../providers/TokenProvider";
+import { InputProfile, BtnAtt } from "../../stylesGlobal";
 import { useHistory } from "react-router-dom";
 
 const UpProfileComp = ({ notifyUpProfComp }) => {
@@ -19,11 +18,14 @@ const UpProfileComp = ({ notifyUpProfComp }) => {
     return JSON.parse(localToken);
   });
 
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
   const [nameInput, setNameInput] = useState("");
 
   const [cityInput, setCityInput] = useState("");
-
-  const [have_vacanciesInput, setHave_vacanciesInput] = useState("");
 
   const [social_mediasInput, setSocial_mediasInput] = useState("");
 
@@ -32,13 +34,11 @@ const UpProfileComp = ({ notifyUpProfComp }) => {
   useEffect(() => {
     setNameInput(loggedUser.name);
     setCityInput(loggedUser.city);
-    setHave_vacanciesInput(loggedUser.have_vacancies);
     setSocial_mediasInput(loggedUser.social_medias);
     setDescriptionInput(loggedUser.description);
   }, [
     loggedUser.city,
     loggedUser.description,
-    loggedUser.have_vacancies,
     loggedUser.name,
     loggedUser.social_medias,
   ]);

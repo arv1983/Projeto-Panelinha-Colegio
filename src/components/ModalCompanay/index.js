@@ -1,16 +1,9 @@
 import api from "../../services/api";
 import { useEffect, useState } from "react";
-import {DivPai} from './syle'
+import { DivPai } from "./syle";
 
 const ModalCompanay = ({ user }) => {
   const [dados, setDados] = useState();
-  const [token] = useState(() => {
-    const localToken = localStorage.getItem("token") || "";
-    if (!localToken) {
-      return "";
-    }
-    return JSON.parse(localToken);
-  });
 
   useEffect(() => {
     api
@@ -23,18 +16,20 @@ const ModalCompanay = ({ user }) => {
 
   return (
     <div>
-      {dados === []? 
+      {dados === [] ? (
         <DivPai>
-          {dados.map((vagas) => 
+          {dados.map((vagas) => (
             <>
-              <h4>Nome:</h4>{vagas.nome}
-            </>)}
-        </DivPai>: 
-        <DivPai>
-          Não tem Vagas Cadastradas
-        </DivPai>}
+              <h4>Nome:</h4>
+              {vagas.nome}
+            </>
+          ))}
+        </DivPai>
+      ) : (
+        <DivPai>Não tem Vagas Cadastradas</DivPai>
+      )}
     </div>
-  )
+  );
 };
 
 export default ModalCompanay;

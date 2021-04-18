@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 export const VacContext = React.createContext({});
 
 export const VacProvider = (props) => {
+  //Tornar Componentes dinamicos
   const [vacCountClick, setVacCountClick] = useState(0);
 
   return (
@@ -15,5 +16,5 @@ export const VacProvider = (props) => {
     </VacContext.Provider>
   );
 };
- 
+
 export const Vac = () => React.useContext(VacContext);
