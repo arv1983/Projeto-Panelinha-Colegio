@@ -5,13 +5,11 @@ import { BiSearchAlt, BiLogOutCircle } from "react-icons/bi";
 import { HeadMob, DivIcon } from "./style";
 import { useHistory } from "react-router-dom";
 import { User } from "../../providers/UserProvider";
-import { Token } from "../../providers/TokenProvider";
 
 const NavegationMob = () => {
   const { loggedUser } = User();
   const { setId } = User();
   const history = useHistory();
-  const { token } = Token();
 
   const logoutUser = () => {
     localStorage.removeItem("token");

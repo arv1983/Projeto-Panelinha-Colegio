@@ -2,7 +2,6 @@ import { Modal } from "@material-ui/core";
 import { useState } from "react";
 
 import { DivPai } from "./style";
-import ModalUser from "../ModalUser";
 import { BtnAtt } from "../../stylesGlobal";
 import PerfilDev from "../PerfilDev";
 

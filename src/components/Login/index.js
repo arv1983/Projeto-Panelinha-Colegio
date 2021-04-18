@@ -8,12 +8,9 @@ import { User } from "../../providers/UserProvider";
 
 import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
-import { Token } from "../../providers/TokenProvider";
 
 const Login = ({ notifyLog }) => {
-  const { setId, loggedUser, userCountClick, setUserCountClick } = User();
-
-  const { token, setToken } = Token();
+  const { setId, loggedUser } = User();
 
   const history = useHistory();
 
@@ -29,7 +26,6 @@ const Login = ({ notifyLog }) => {
               "token",
               JSON.stringify(response.data.accessToken)
             );
-            setToken(JSON.parse(localStorage.getItem("token")));
             setId(jwt_decode(localStorage.getItem("token")).sub);
             if (loggedUser.type === "pf") {
               history.push("/users/dev");
@@ -44,8 +40,8 @@ const Login = ({ notifyLog }) => {
   };
 
   const schema = yup.object().shape({
-    email: yup.string().required("Campo requerido"),
-    password: yup.string().required("Field Required"),
+    email: yup.string().email("E-MAIL inválido").required("Campo obrigatório"),
+    password: yup.string().required("Campo obrigatório"),
   });
 
   const {
@@ -74,9 +70,10 @@ const Login = ({ notifyLog }) => {
             </div>
             <div>
               <Input
+                type="password"
                 className="password"
                 {...register("password")}
-                placeholder="Password"
+                placeholder="Senha"
                 error={!!errors.password}
               />
             </div>

@@ -5,7 +5,6 @@ import { User } from "../../providers/UserProvider";
 import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import {
@@ -15,12 +14,23 @@ import {
   DivOption,
 } from "../../stylesGlobal";
 import { useHistory } from "react-router-dom";
-import { Token } from "../../providers/TokenProvider";
 
 const UpProfileDev = ({ notifyUpProfDev }) => {
   const { id, loggedUser } = User();
 
-  const { token } = Token();
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
+
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
 
   const [nameInput, setNameInput] = useState("");
 
@@ -150,7 +160,6 @@ const UpProfileDev = ({ notifyUpProfDev }) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });

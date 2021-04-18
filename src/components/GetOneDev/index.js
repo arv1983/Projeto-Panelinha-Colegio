@@ -7,16 +7,26 @@ import { DivOption, BtnAtt, DivCheckeBox } from "../../stylesGlobal";
 import { InputPesq, DivP, DivB, DivPesque } from "./style";
 import CardUsers from "../CardUsers";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 
 const GetOneDev = () => {
   const [devs, setDevs] = useState([]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({});
+  const { register, handleSubmit } = useForm({});
+
+  const [token] = useState(() => {
+    const localToken = localStorage.getItem("token") || "";
+    if (!localToken) {
+      return "";
+    }
+    return JSON.parse(localToken);
+  });
+
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
 
   const getDev = (data) => {
     var x = "";

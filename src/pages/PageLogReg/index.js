@@ -8,25 +8,16 @@ import { Rotate } from "react-awesome-reveal";
 
 import { LogReg } from "../../providers/LogRegProvider";
 import AlteraHead from "../../components/AlterHead";
-import { Token } from "../../providers/TokenProvider";
-import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const PageLogReg = () => {
   const { status, setStatus } = LogReg();
 
-  const { token } = Token();
-
-  const history = useHistory();
-
   const notifyReg = () => toast("Cadastrado com sucesso");
 
   const notifyLog = () => toast("Logado com sucesso");
 
-  if (token) {
-    history.push("/home");
-  }
   return (
     <>
       <AlteraHead />

@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Rotate } from "react-awesome-reveal";
 import CardVagas from "../CardVagas/index.js";
 import VacanciesListEdit from "./edit.js";

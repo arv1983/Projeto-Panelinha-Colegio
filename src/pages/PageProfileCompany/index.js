@@ -1,6 +1,5 @@
 import { useHistory } from "react-router-dom";
 import AlteraHead from "../../components/AlterHead";
-import Navegation from "../../components/Navegation";
 import UpProfileComp from "../../components/UpProfileComp";
 import Vacancies from "../../components/Vacancies";
 import { User } from "../../providers/UserProvider";

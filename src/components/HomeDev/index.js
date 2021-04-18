@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import api from "../../services/api";
 import { DivPrincipal } from "./style";
 import { Mybutton } from "./style";
+import { useHistory } from "react-router-dom";
+
 const PageHomeDev = () => {
   const { id } = User();
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(0);
   const [vagas, setVagas] = useState();
   const [token] = useState(() => {
     const localToken = localStorage.getItem("token") || "";
@@ -14,7 +16,12 @@ const PageHomeDev = () => {
     }
     return JSON.parse(localToken);
   });
-  
+  const history = useHistory();
+
+  if (!token) {
+    history.push("/");
+  }
+
   useEffect(() => {
     carrega();
   }, [count, id]);
@@ -30,31 +37,35 @@ const PageHomeDev = () => {
   const subscribe = (vac_id, array_de_vagas) => {
     var id1 = parseInt(id);
     array_de_vagas?.push(id1);
-    api.patch(
-      `/vacancies/${vac_id}`,
-      { cad: array_de_vagas },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    ).then((res) => setCount(count +1));
+    api
+      .patch(
+        `/vacancies/${vac_id}`,
+        { cad: array_de_vagas },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => setCount(count + 1));
   };
   const unSubscribe = (vac_id, array) => {
     array?.splice(array.indexOf(parseInt(id)), 1);
-    api.patch(
-      `/vacancies/${vac_id}`,
-      { cad: array },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    ).then((res) => setCount(count +1));
+    api
+      .patch(
+        `/vacancies/${vac_id}`,
+        { cad: array },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => setCount(count + 1));
   };
   return (
     <>
-      <h1 style={{textAlign: "center"}}>Vagas Inscritas</h1>
+      <h1 style={{ textAlign: "center" }}>Vagas Inscritas</h1>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {vagas &&
           vagas.map((vac) => (

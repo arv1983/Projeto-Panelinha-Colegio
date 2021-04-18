@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import api from "../../services/api";
 import { useForm } from "react-hook-form";
 
-import { DivOption, BtnAtt } from "../../stylesGlobal";
+import { BtnAtt } from "../../stylesGlobal";
 
 import { InputPesq, DivPesque, DivP, DivB } from "./style";
 
@@ -14,12 +14,7 @@ import CardCompany from "../CardCompany/injex";
 const GetOneCompany = () => {
   const [companie, setCompanie] = useState([]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({});
+  const { register, handleSubmit } = useForm({});
 
   const getCompany = (data) => {
     api

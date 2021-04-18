@@ -5,13 +5,13 @@ import Register from "../Register";
 describe("When Register is ok", () => {
   test("Should error message apear", async () => {
     render(<Register></Register>);
-    userEvent.type(screen.getByPlaceholderText("Name"), "");
+    userEvent.type(screen.getByPlaceholderText("Nome"), "");
     userEvent.type(screen.getByPlaceholderText("E-mail"), "");
-    userEvent.type(screen.getByPlaceholderText("Password"), "");
+    userEvent.type(screen.getByPlaceholderText("Senha"), "");
 
     userEvent.click(screen.getByRole("button"));
 
-    const message = await screen.findAllByText("Field Required");
+    const message = await screen.findAllByText("Campo obrigatório");
 
     expect(message).toBeTruthy();
   });
