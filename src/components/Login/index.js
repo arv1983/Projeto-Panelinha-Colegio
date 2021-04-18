@@ -8,12 +8,9 @@ import { User } from "../../providers/UserProvider";
 
 import { Button, Input } from "../../stylesGlobal";
 import { Boxes, Content } from "./style";
-import { Token } from "../../providers/TokenProvider";
 
 const Login = ({ notifyLog }) => {
-  const { setId, loggedUser, userCountClick, setUserCountClick } = User();
-
-  const { token, setToken } = Token();
+  const { setId, loggedUser } = User();
 
   const history = useHistory();
 
@@ -29,7 +26,6 @@ const Login = ({ notifyLog }) => {
               "token",
               JSON.stringify(response.data.accessToken)
             );
-            setToken(JSON.parse(localStorage.getItem("token")));
             setId(jwt_decode(localStorage.getItem("token")).sub);
             if (loggedUser.type === "pf") {
               history.push("/users/dev");
@@ -44,15 +40,8 @@ const Login = ({ notifyLog }) => {
   };
 
   const schema = yup.object().shape({
-    email: yup.string().email("E-MAIL inválido").required("Campo obrigatório."),
-    password: yup
-      .string()
-      .min(8, "Mínimo de 8 dígitos")
-      .matches(
-        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-        "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial!"
-      )
-      .required("Campo obrigatório"),
+    email: yup.string().email("E-MAIL inválido").required("Campo obrigatório"),
+    password: yup.string().required("Campo obrigatório"),
   });
 
   const {
@@ -84,7 +73,7 @@ const Login = ({ notifyLog }) => {
                 type="password"
                 className="password"
                 {...register("password")}
-                placeholder="Password"
+                placeholder="Senha"
                 error={!!errors.password}
               />
             </div>

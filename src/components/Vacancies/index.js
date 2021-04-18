@@ -9,8 +9,6 @@ import { Vac } from "../../providers/VacancieProvider";
 
 import { InputProfile, BtnAtt } from "../../stylesGlobal";
 import { DivChecked, DivCampos, DivBotao } from "./style";
-import { Token } from "../../providers/TokenProvider";
-import { useHistory } from "react-router-dom";
 
 const Vacancies = ({ notifyCreateVacancies, notifyUpVacancies }) => {
   const [lista, setLista] = useState();
@@ -25,7 +23,7 @@ const Vacancies = ({ notifyCreateVacancies, notifyUpVacancies }) => {
     return JSON.parse(localToken);
   });
 
-  const { loggedUser, id } = User();
+  const { id } = User();
 
   useEffect(() => {
     api

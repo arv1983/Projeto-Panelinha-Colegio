@@ -67,7 +67,7 @@ const Register = ({ notifyReg }) => {
 
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
-    email: yup.string().email("E-MAIL inválido").required("Campo obrigatório."),
+    email: yup.string().email("E-MAIL inválido").required("Campo obrigatório"),
     password: yup
       .string()
       .min(8, "Mínimo de 8 dígitos")
@@ -94,7 +94,7 @@ const Register = ({ notifyReg }) => {
         <Content>
           <form onSubmit={handleSubmit(handleData)}>
             <div>
-              <Input type="text" placeholder="Name" {...register("name")} />
+              <Input type="text" placeholder="Nome" {...register("name")} />
               <p style={{ color: "red" }}>{errors.name?.message}</p>
             </div>
             <div>
@@ -105,7 +105,7 @@ const Register = ({ notifyReg }) => {
               <Input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Senha"
                 {...register("password")}
               />
               <p style={{ color: "red" }}>{errors.password?.message}</p>

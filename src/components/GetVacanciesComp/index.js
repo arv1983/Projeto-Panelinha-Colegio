@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { Mybutton } from "./styles";
 import api from "../../services/api";
@@ -17,7 +17,7 @@ const GetVacanciesComp = () => {
     return JSON.parse(localToken);
   });
   const [vacancies, setVacancies] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [users] = useState([]);
   const { vacCountClick, setVacCountClick } = Vac();
   // meu codigo
 

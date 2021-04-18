@@ -8,8 +8,6 @@ export const UserProvider = (props) => {
 
   const [loggedUser, setLoggedUser] = useState([]);
 
-  const [userCountClick, setUserCountClick] = useState(0);
-
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setId(JSON.parse(jwt_decode(localStorage.getItem("token")).sub));
@@ -18,7 +16,7 @@ export const UserProvider = (props) => {
 
   useEffect(() => {
     if (id) {
-      api 
+      api
         .get(`/users/${id}`)
         .then((response) => {
           setLoggedUser(response.data);
@@ -34,8 +32,6 @@ export const UserProvider = (props) => {
         setId,
         loggedUser,
         setLoggedUser,
-        userCountClick,
-        setUserCountClick,
       }}
     >
       {props.children}

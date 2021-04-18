@@ -1,15 +1,12 @@
-//Gianine
-
 import { Modal } from "@material-ui/core";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services/api";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { User } from "../../providers/UserProvider";
 import { DivPrincipal, DivChecked, Btn } from "./style";
 import { InputProfile } from "../../stylesGlobal";
-import { Vac } from "../../providers/VacancieProvider";
 
 const VacanciesListEdit = (props) => {
   const { id } = User();
